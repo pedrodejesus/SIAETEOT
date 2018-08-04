@@ -1,0 +1,47 @@
+01. Atualizar alunos; SECRETARIA
+	1.1 Inserir aluno;
+	1.2 Editar aluno;
+	1.3 Excluir aluno;
+	1.4 Detalhar aluno;
+	1.5 Listar aluno;
+02. Atualizar funcionário;
+
+03. Atualizar setor; 
+
+04. Atualizar função; SECRETARIA
+05. Atualizar cargo; SECRETARIA
+06. Atualizar disciplina; SECRETARIA	
+07. Atualizar usuários; ADM
+08. Atualizar curso;
+09. Atualizar transferência de turma;
+10. Atualizar transferência de unidade;
+10. Atualizar unidade;
+11. Atualizar avaliações;
+12. Atualizar sala;
+13. Atualizar horário;
+14. Atualizar turma;
+15. Atualizar COC;
+16. Atualizar reunião;
+16. Atualizar responsável;
+
+
+
+17. Registrar frequência; PROFESSOR
+12. Registrar conteúdo; PROFESSOR
+09. Matricular turma/aluno aprovados;
+
+15. Matricular aluno; SECRETARIA
+
+21. Imprimir boletim; SECRETARIA
+22. Imprimir lista de alunos por turma/ano letivo;
+22. Imprimir horário; 
+23. Imprimir habilitação professor;
+24. Atualizar disponibilidade professor;
+25. Diário
+	25.1 Frequência;
+	25.2 Conteúdo;
+	25.3 Avaliação;
+26. Validar permissão de usuário;
+27. Registrar atividade/avaliação para turma (professor);
+28. Listar atividade/avaliação (aluno);
+29. 
