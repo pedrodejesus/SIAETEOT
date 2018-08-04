@@ -26,36 +26,36 @@ include "../../base/head.php";
                             <div class="card-header bg-light">
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <h3>Disciplinas</h3>
+                                        <h3>Salas</h3>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="input-group">
-                                            <input type="text" id="busca" onkeyup="searchDisc(this.value)" class="form-control">
+                                            <input type="text" id="busca" onkeyup="searchSala(this.value)" class="form-control">
                                             <span class="input-group-btn">
-                                                <button type="submit" onclick="searchDisc(this.value)" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp; Pesquisar</button>
+                                                <button type="submit" onclick="searchSala(this.value)" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp; Pesquisar</button>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <a href="view/cadastrar_disc.php"><button type="button" class="btn btn-primary"><i class="fa fa-plus-circle"></i>&nbsp; Adicionar</button></a>
+                                        <a href="view/cadastrar_sala.php"><button type="button" class="btn btn-primary"><i class="fa fa-plus-circle"></i>&nbsp; Adicionar</button></a>
                                     </div>
                                 </div>
                             </div>
                             <div id="card-body" class="card-body">
                             <?php include "messages.php"; ?>
                                 <div id="table-list" class="table-responsive">
-                                    <table cellpadding="20" id="tabela_disc" class="table table-sm tablesorter">
+                                    <table cellpadding="20" id="tabela_sala" class="table table-sm tablesorter">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                                 <th scope="col">Nome</th>
-                                                <th scope="col">Sigla</th>
-                                                <th scope="col">Carga Horária</th>
-                                                <th scope="col">Curso</th>
+                                                <th scope="col">Situação</th>
+                                                <th scope="col">Capacidade</th>
+                                                <th scope="col">Tipo</th>
                                                 <th scope="col">Ações</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="tbody_disc">
+                                        <tbody id="tbody_sala">
                                         <?php
                                             include("../../base/conexao.php"); //Chama o arquivo de conexão com o banco de dados;
                                                     
@@ -64,25 +64,22 @@ include "../../base/head.php";
                                             $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
                                             $inicio = ($quantidade * $pagina) - $quantidade;
 
-                                            $data = mysql_query("select * from disciplina order by id_disc asc limit $inicio, $quantidade;") or die(mysql_error());
+                                            $data = mysql_query("select * from sala order by id_sala asc limit $inicio, $quantidade;") or die(mysql_error());
                                                 
                                             while($info = mysql_fetch_array($data)){ //Transforma o conteúdo da variável $data em um array na variável $info;
-                                                
-                                                $data_cur = mysql_query("select * from curso where id_cur = '".$info["id_cur"]."';") or die(mysql_error());
-                                                $info_cur = mysql_fetch_array($data_cur);
-                                                
+                                                                                                
                                                 echo "<tr scope='row'>";
-                                                echo "<td>".$info['id_disc']."</td>";
-                                                echo "<td>".$info['nome_disc']."</td>";
-                                                echo "<td>".$info['sigla_disc']."</td>";
-                                                echo "<td>".$info['ch_disc']."</td>"; 
-                                                echo "<td>".$info_cur['nome_cur']."</td>";
+                                                echo "<td>".$info['id_sala']."</td>";
+                                                echo "<td>".$info['nome_sala']."</td>";
+                                                echo "<td>".$info['situacao']."</td>";
+                                                echo "<td>".$info['capacidade']."</td>"; 
+                                                echo "<td>".$info['tipo']."</td>";
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
-                                                            <a class='btn btn-success' href=view/visualizar_disc.php?id_disc=".$info['id_disc']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
+                                                            <a class='btn btn-success' href=view/visualizar_sala.php?id_sala=".$info['id_sala']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
                                                                 
-                                                            <a class='btn btn-warning' href=view/editar_disc.php?id_disc=".$info['id_disc']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
+                                                            <a class='btn btn-warning' href=view/editar_sala.php?id_sala=".$info['id_sala']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
                                                                 
-                                                            <a class='btn btn-danger' onclick='deletaDisc(".$info['id_disc'].")' data-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
+                                                            <a class='btn btn-danger' onclick='deletaSala(".$info['id_sala'].")' data-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
                                                           </div>
                                                         </td></tr>";
                                             }
@@ -93,7 +90,7 @@ include "../../base/head.php";
                                     <nav aria-label="Paginação">
                                         <ul class="pagination">
                                         <?php 
-                                            $sqlTotal 		= "select id_disc from disciplina;";
+                                            $sqlTotal 		= "select id_sala from sala;";
                                                 
                                             $qrTotal  		= mysql_query($sqlTotal) or die (mysql_error());
                                             $numTotal 		= mysql_num_rows($qrTotal);

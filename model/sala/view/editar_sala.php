@@ -19,11 +19,9 @@ include "../../../base/head.php"
             <?php
                 include "../../../base/sidebar.php";
                 include("../../../base/conexao.php");
-                $id_disc = (int) $_GET['id_disc'];
-                $sql = mysql_query("select * from disciplina where id_disc = '".$id_disc."';");
+                $id_sala = (int) $_GET['id_sala'];
+                $sql = mysql_query("select * from sala where id_sala = '".$id_sala."';");
                 $row = mysql_fetch_array($sql);
-                                
-                $id_cur = $row["id_cur"];
             ?>
 
             <div class="content">
@@ -32,104 +30,49 @@ include "../../../base/head.php"
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-light">
-                                    Editar disciplina <?php echo $row["id_disc"]." - ".$row["nome_disc"];?>
+                                    Editar sala <?php echo $row["id_sala"]." - ".$row["nome_sala"];?>
                                 </div>
 
                                 <div class="card-body">
-                                    <form action="../controller/atualiza_disc.php?id_disc=<?php echo $row["id_disc"]; ?>" method="post">
+                                    <form action="../controller/atualiza_sala.php?id_sala=<?php echo $row["id_sala"]; ?>" method="post">
                                         <div class="row">
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <label for="id_disc" class="form-control-label">Matrícula</label>
-                                                    <input class="form-control" type="text"name="id_disc" id="id_disc" value="<?php echo $row["id_disc"];?>" readonly />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="nome_disc" class="form-control-label">Nome</label>
-                                                    <input class="form-control" type="text" maxlength="100" name="nome_disc" id="nome_disc" value="<?php echo $row["nome_disc"];?>" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="sigla_disc" class="form-control-label">Sigla</label>
-                                                    <input class="form-control" type="text" maxlength="10" name="sigla_disc" id="sigla_disc" value="<?php echo $row["sigla_disc"];?>" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="ch_disc" class="form-control-label">Carga Horária</label>
-                                                    <input class="form-control" type="text" name="ch_disc" id="ch_disc" value="<?php echo $row["ch_disc"];?>" />
+                                                    <label for="id_sala" class="form-control-label">ID</label>
+                                                    <input class="form-control" type="text" name="id_sala" id="id_sala" value="<?php echo $row["id_sala"]; ?>" readonly />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="id_cur">Curso</label>
-                                                    <select id="id_cur" name="id_cur" class="form-control">
-                                                        <?php 
-                                                            if ("0" == $id_cur){
-                                                                echo "<option value='0'>Administração</option>
-                                                                      <option value='1'>Formação Geral</option>
-                                                                      <option value='3'>Análises Clinicas</option>
-                                                                      <option value='4'>Gerência em Saúde</option>
-                                                                      <option value='5'>Informática para Internet</option>";
-                                                            }else if ("1" == $id_cur){
-                                                                echo "<option value='1'>Formação Geral</option>
-                                                                      <option value='0'>Administração</option>
-                                                                      <option value='3'>Análises Clinicas</option>
-                                                                      <option value='4'>Gerência em Saúde</option>
-                                                                      <option value='5'>Informática para Internet</option>";
-                                                            }else if ("3" == $id_cur){
-                                                                echo "<option value='3'>Análises Clinicas</option>
-                                                                      <option value='0'>Administração</option>
-                                                                      <option value='1'>Formação Geral</option>
-                                                                      <option value='4'>Gerência em Saúde</option>
-                                                                      <option value='5'>Informática para Internet</option>";
-                                                            }else if ("4" == $id_cur){
-                                                                echo "<option value='4'>Gerência em Saúde</option>
-                                                                      <option value='0'>Administração</option>
-                                                                      <option value='1'>Formação Geral</option>
-                                                                      <option value='3'>Análises Clinicas</option>
-                                                                      <option value='5'>Informática para Internet</option>";
-                                                            }else if ("5" == $id_cur){
-                                                                echo "<option value='5'>Informática para Internet</option>
-                                                                      <option value='0'>Administração</option>
-                                                                      <option value='1'>Formação Geral</option>
-                                                                      <option value='3'>Análises Clinicas</option>
-                                                                      <option value='4'>Gerência em Saúde</option>";
-                                                            }
-                                                        ?>
-                                                    </select>
+                                                    <label for="nome_sala" class="form-control-label">Nome</label>
+                                                    <input class="form-control" type="text" maxlength="20" name="nome_sala" id="nome_sala" value="<?php echo $row["nome_sala"]; ?>" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="situacao" class="form-control-label">Situação</label>
+                                                    <input class="form-control" type="text" maxlength="100" name="situacao" id="situacao" value="<?php echo $row["situacao"]; ?>" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="capacidade" class="form-control-label">Capacidade</label>
+                                                    <input class="form-control" type="text" maxlength="10" name="capacidade" id="capacidade" value="<?php echo $row["capacidade"]; ?>" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="tipo" class="form-control-label">Tipo</label>
+                                                    <input class="form-control" type="text" name="tipo" id="tipo" value="<?php echo $row["tipo"]; ?>" />
                                                 </div>
                                             </div>
                                         </div>
                                         
-                                        <!--<div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="tipo_alu">Tipo do aluno</label>
-                                                    <select id="tipo_alu" name="tipo_alu" class="form-control">
-                                                        <?php 
-                                                            /*if ("I" == $tipo_alu){
-                                                                echo "<option value='I'>Ensino Integrado</option>
-                                                                      <option value='S'>Ensino Subsequente</option>";
-                                                            }else if ("S" == $tipo_alu){
-                                                                echo "<option value='S'>Ensino Subsequente</option>
-                                                                      <option value='I'>Ensino Integrado</option>";
-                                                            }*/
-                                                        ?>
-                                                        <option value="I">Ensino Integrado</option>
-                                                        <option value="S">Ensino Subsequente</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>-->
-
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="btn-group" role="group"> 
                                                     <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp; Salvar</button>
-                                                    <a href="../lista_disciplina.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>
+                                                    <a href="../lista_sala.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>
                                                 </div>
                                             </div>
                                         </div>

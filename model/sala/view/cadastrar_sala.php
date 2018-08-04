@@ -26,48 +26,40 @@ include "../../../base/head.php"
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-light">
-                                    Adicionar disciplina
+                                    Adicionar sala
                                 </div>
                                 
                                 <div class="card-body">
-                                    <form action="../controller/insere_disc.php" method="post">
+                                    <form action="../controller/insere_sala.php" method="post">
                                         <div class="row">
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <label for="id_disc" class="form-control-label">ID</label>
-                                                    <input class="form-control" type="text" name="id_disc" id="id_disc" value="0" disabled />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="nome_disc" class="form-control-label">Nome</label>
-                                                    <input class="form-control" type="text" maxlength="100" name="nome_disc" id="nome_disc" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="sigla_disc" class="form-control-label">Sigla</label>
-                                                    <input class="form-control" type="text" maxlength="10" name="sigla_disc" id="sigla_disc" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="ch_disc" class="form-control-label">Carga Horária</label>
-                                                    <input class="form-control" type="text" name="ch_disc" id="ch_disc" />
+                                                    <label for="id_sala" class="form-control-label">ID</label>
+                                                    <input class="form-control" type="text" name="id_sala" id="id_sala" value="0" disabled />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="id_cur">Curso</label>
-                                                    <select id="id_cur" name="id_cur" class="form-control">
-                                                        <?php
-                                                            include("../../../base/conexao.php");
-                                                            $data = mysql_query("select * from curso") or die(mysql_error());
-                                                            while($info = mysql_fetch_array($data)){
-                                                                echo "<option value='".$info['id_cur']."'>".$info['nome_cur']."</option>";
-                                                            }
-                                                        ?>
-                                                    </select>
+                                                    <label for="nome_sala" class="form-control-label">Nome</label>
+                                                    <input class="form-control" type="text" maxlength="20" name="nome_sala" id="nome_sala" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="situacao" class="form-control-label">Situação</label>
+                                                    <input class="form-control" type="text" maxlength="100" name="situacao" id="situacao" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="capacidade" class="form-control-label">Capacidade</label>
+                                                    <input class="form-control" type="text" maxlength="10" name="capacidade" id="capacidade" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="tipo" class="form-control-label">Tipo</label>
+                                                    <input class="form-control" type="text" name="tipo" id="tipo" />
                                                 </div>
                                             </div>
                                         </div>
@@ -76,7 +68,7 @@ include "../../../base/head.php"
                                             <div class="col-md-4">
                                                 <div class="btn-group" role="group"> 
                                                     <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp; Salvar</button>
-                                                    <a href="../lista_aluno.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>
+                                                    <a href="../lista_sala.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>
                                                 </div>
                                             </div>
                                         </div>

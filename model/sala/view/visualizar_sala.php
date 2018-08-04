@@ -36,17 +36,12 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
             <?php
                 include("../../../base/conexao.php");
                         
-                $id_disc = (int) $_GET['id_disc'];
-                $sql = mysql_query("select * from disciplina where id_disc = '".$id_disc."';");
+                $id_sala = (int) $_GET['id_sala'];
+                $sql = mysql_query("select * from sala where id_sala = '".$id_sala."';");
                 $row = mysql_fetch_array($sql);
-        
+                
                 $id_cur = $row["id_cur"];
                 
-                /*$sql2 = mysql_query("select * from localidade where cep = '".$row["cep"]."';");
-                $row2 = mysql_fetch_array($sql2);
-        
-                $sexo_alu = $row["sexo_alu"];
-                $tipo_alu = $row["tipo_alu"];*/
             ?>
 
             <div class="content">
@@ -57,7 +52,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
                                 <div class="card-header bg-light">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h4><?php echo $row["id_disc"]." - ".$row["nome_disc"]; ?></h4>
+                                            <h4><?php echo $row["id_sala"]." - ".$row["nome_sala"]; ?></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -66,46 +61,32 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
                                     <div class="row">
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <label for="id_disc" class="form-control-label"><strong>ID</strong></label>
-                                                    <p class="form-control-plaintext"><?php echo $row["id_disc"]; ?></p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="nome_disc" class="form-control-label"><strong>Nome</strong></label>
-                                                    <p class="form-control-plaintext"><?php echo $row["nome_disc"]; ?></p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="sigla_disc" class="form-control-label"><strong>Sigla</strong></label>
-                                                    <p class="form-control-plaintext"><?php echo $row["sigla_disc"]; ?></p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="ch_disc" class="form-control-label"><strong>Carga Horária</strong></label>
-                                                    <p class="form-control-plaintext"><?php echo $row["ch_disc"]; ?></p>
+                                                    <label for="id_sala" class="form-control-label"><strong>ID</strong></label>
+                                                    <p class="form-control-plaintext"><?php echo $row["id_sala"]; ?></p>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="id_cur" class="form-control-label"><strong>Curso</strong></label>
-                                                    <p class="form-control-plaintext">
-                                                        <?php 
-                                                            if ("0" == $id_cur){
-                                                                echo "Administração";
-                                                            }else if ("1" == $id_cur){
-                                                                echo "Formação Geral";
-                                                            }else if ("3" == $id_cur){
-                                                                echo "Análises Clinicas";
-                                                            }else if ("4" == $id_cur){
-                                                                echo "Gerência em Saúde";
-                                                            }else if ("5" == $id_cur){
-                                                                echo "Informática para Internet";
-                                                            }
-                                                        ?>
-                                                    </p>
+                                                    <label for="nome_sala" class="form-control-label"><strong>Nome</strong></label>
+                                                    <p class="form-control-plaintext"><?php echo $row["nome_sala"]; ?></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="situacao" class="form-control-label"><strong>Situação</strong></label>
+                                                    <p class="form-control-plaintext"><?php echo $row["situacao"]; ?></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="capacidade" class="form-control-label"><strong>Capacidade</strong></label>
+                                                    <p class="form-control-plaintext"><?php echo $row["capacidade"]; ?></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="tipo" class="form-control-label"><strong>Tipo</strong></label>
+                                                    <p class="form-control-plaintext"><?php echo $row["tipo"]; ?></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,11 +95,11 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
                                         <div class="col-md-4">
                                             <div class="btn-group" role="group"> 
                                                 <?php
-                                                    echo "<a class='btn btn-warning' href=editar_disc.php?id_disc=".$row['id_disc']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
+                                                    echo "<a class='btn btn-warning' href=editar_sala.php?id_sala=".$row['id_sala']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
                                                                 
-                                                           <a class='btn btn-danger' href='../controller/exclui_disc.php?id_disc=".$row['id_disc']."'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
+                                                           <a class='btn btn-danger' href='../controller/exclui_sala.php?id_sala=".$row['id_sala']."'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
                                                            
-                                                           <a class='btn btn-light' href='../lista_disciplina.php'><i class='fa fa-undo'></i>&nbsp; Voltar</a>";
+                                                           <a class='btn btn-light' href='../lista_sala.php'><i class='fa fa-undo'></i>&nbsp; Voltar</a>";
                                                 ?>
                                             </div>
                                         </div>
