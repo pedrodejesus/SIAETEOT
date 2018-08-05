@@ -191,8 +191,8 @@ include "../../../base/head.php"
             </div>
         </div>
     </div>
-	<script src="\projeto/assets/js/cep.js"></script>
     
+	<script src="\projeto/assets/js/cep.js"></script>
     <script src="\projeto/assets/js/popper.min.js"></script>
     <script src="\projeto/assets/js/bootstrap.min.js"></script>
 	<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>

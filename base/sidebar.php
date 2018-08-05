@@ -12,6 +12,9 @@
                                 <a href="\projeto/model/setor/lista_setor.php" class="nav-link"><i class="fa fa-building"></i> Setores</a>
                             </li>
                             <li class="nav-item">
+                                <a href="\projeto/model/sala/lista_sala.php" class="nav-link"><i class="fa fa-door-closed"></i> Salas</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="\projeto/model/cargo/lista_cargo.php" class="nav-link"><i class="fa fa-male"></i> Cargos</a>
                             </li>
                             <li class="nav-item">

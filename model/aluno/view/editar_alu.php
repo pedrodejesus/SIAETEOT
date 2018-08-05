@@ -9,6 +9,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
 }
 include "../../../base/head.php"
 ?>
+<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
 </head>
 <body class="sidebar-fixed header-fixed">
     <div class="page-wrapper">
@@ -197,10 +198,9 @@ include "../../../base/head.php"
         </div>
     </div>
     
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="\projeto/assets/js/cep.js"></script>
     <script src="\projeto/assets/js/popper.min.js"></script>
     <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/cep.js"></script>
 	<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
 	<script src="\projeto/assets/js/script_mask.js"></script>
     <script src="\projeto/assets/js/chart.min.js"></script>

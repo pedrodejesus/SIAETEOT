@@ -1,5 +1,5 @@
 <?php
-
+header('content-type text/html charset=iso-8859-1');
 // A sessão precisa ser iniciada em cada página diferente
 if (!isset($_SESSION)) session_start();
 $nivel_necessario = 2;
@@ -14,7 +14,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="iso-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -35,14 +35,13 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
             
             <?php
                 include("../../../base/conexao.php");
-                        
+        
                 $matricula_alu = (int) $_GET['matricula_alu'];
                 $sql = mysql_query("select * from aluno where matricula_alu = '".$matricula_alu."';");
                 $row = mysql_fetch_array($sql);
                 
                 $sql2 = mysql_query("select * from localidade where cep = '".$row["cep"]."';");
                 $row2 = mysql_fetch_array($sql2);
-                header('Content-Type: text/html; charset=UTF-8'); // Acentuação
         
                 $sexo_alu = $row["sexo_alu"];
                 $tipo_alu = $row["tipo_alu"];
@@ -167,7 +166,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="bairro"><strong>Bairro</strong></label>
-                                                <p class="form-control-plaintext"><?php echo $row2["bairro"]; header("Content-Type: text/html; charset=utf-8",true); ?></p>
+                                                <p class="form-control-plaintext"><?php echo $row2["bairro"]; ?></p>
                                             </div>
                                         </div>
                                         
