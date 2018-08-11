@@ -16,12 +16,13 @@ function searchAlu(valor) { // Função para buscar aluno
             document.getElementById('tbody_alu').innerHTML = 'Buscando...';
         }else if(req.readyState == 4 && req.status == 200) { // Verifica se o Ajax realizou todas as operações corretamente
         
-        var resposta = req.responseText; // Resposta retornada pelo busca.php        
-        document.getElementById('tbody_alu').innerHTML = resposta; // Abaixo colocamos a(s) resposta(s) na div resultado
-        }
-        /*if(!resposta){
-            document.getElementById('card-body').innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Aluno não encontrado!</div>";
-        } A FAZER: IMPLEMENTAR AVISO DE REGISTRO NÃO ENCONTRADO*/
+            var resposta = req.responseText; // Resposta retornada pelo busca.php        
+            if(resposta){
+                document.getElementById('tbody_alu').innerHTML = resposta; // Abaixo colocamos a(s) resposta(s) na div resultado
+            } else{
+                document.getElementById('nf_alu').innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Aluno não encontrado! <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+            } /*A FAZER: IMPLEMENTAR AVISO DE REGISTRO NÃO ENCONTRADO*/
+        } 
     }
     req.send(null);
 }

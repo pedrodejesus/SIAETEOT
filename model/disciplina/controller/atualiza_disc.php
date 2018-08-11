@@ -10,11 +10,10 @@ $encoding = mb_internal_encoding();
 $id_disc          = $_POST["id_disc"];
 $nome_disc        = mb_strtoupper($_POST["nome_disc"], $encoding);
 $sigla_disc       = mb_strtoupper($_POST["sigla_disc"], $encoding);
-$ch_disc          = $_POST["ch_disc"];
 $id_cur           = $_POST["id_cur"];
 
 $sql  = "update disciplina set ";
-$sql .= "nome_disc='".$nome_disc."', sigla_disc='".$sigla_disc."', ch_disc='".$ch_disc."', id_cur='".$id_cur."' ";
+$sql .= "nome_disc='".$nome_disc."', sigla_disc='".$sigla_disc."', id_cur='".$id_cur."' ";
 $sql .= "where id_disc = '".$id_disc."';";
 
 $resultado = mysql_query($sql) or die(mysql_error());

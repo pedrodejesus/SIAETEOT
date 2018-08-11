@@ -50,12 +50,6 @@ include "../../../base/head.php"
                                                     <input class="form-control" type="text" maxlength="10" name="sigla_disc" id="sigla_disc" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="ch_disc" class="form-control-label">Carga Horária</label>
-                                                    <input class="form-control" type="text" name="ch_disc" id="ch_disc" />
-                                                </div>
-                                            </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="id_cur">Curso</label>
@@ -76,7 +70,7 @@ include "../../../base/head.php"
                                             <div class="col-md-4">
                                                 <div class="btn-group" role="group"> 
                                                     <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp; Salvar</button>
-                                                    <a href="../lista_aluno.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>
+                                                    <a href="../lista_disciplina.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>
                                                 </div>
                                             </div>
                                         </div>

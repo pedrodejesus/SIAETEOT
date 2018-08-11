@@ -26,7 +26,7 @@ include "../../base/head.php";
                             <div class="card-header bg-light">
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <h3>Unidades Estudantis</h3>
+                                        <h3>Unidades Escolares</h3>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="input-group">

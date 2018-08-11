@@ -22,8 +22,6 @@ include "../../../base/head.php"
                 $id_disc = (int) $_GET['id_disc'];
                 $sql = mysql_query("select * from disciplina where id_disc = '".$id_disc."';");
                 $row = mysql_fetch_array($sql);
-                                
-                $id_cur = $row["id_cur"];
             ?>
 
             <div class="content">
@@ -56,75 +54,19 @@ include "../../../base/head.php"
                                                     <input class="form-control" type="text" maxlength="10" name="sigla_disc" id="sigla_disc" value="<?php echo $row["sigla_disc"];?>" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="ch_disc" class="form-control-label">Carga Horária</label>
-                                                    <input class="form-control" type="text" name="ch_disc" id="ch_disc" value="<?php echo $row["ch_disc"];?>" />
-                                                </div>
-                                            </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="id_cur">Curso</label>
                                                     <select id="id_cur" name="id_cur" class="form-control">
-                                                        <?php 
-                                                            if ("0" == $id_cur){
-                                                                echo "<option value='0'>Administração</option>
-                                                                      <option value='1'>Formação Geral</option>
-                                                                      <option value='3'>Análises Clinicas</option>
-                                                                      <option value='4'>Gerência em Saúde</option>
-                                                                      <option value='5'>Informática para Internet</option>";
-                                                            }else if ("1" == $id_cur){
-                                                                echo "<option value='1'>Formação Geral</option>
-                                                                      <option value='0'>Administração</option>
-                                                                      <option value='3'>Análises Clinicas</option>
-                                                                      <option value='4'>Gerência em Saúde</option>
-                                                                      <option value='5'>Informática para Internet</option>";
-                                                            }else if ("3" == $id_cur){
-                                                                echo "<option value='3'>Análises Clinicas</option>
-                                                                      <option value='0'>Administração</option>
-                                                                      <option value='1'>Formação Geral</option>
-                                                                      <option value='4'>Gerência em Saúde</option>
-                                                                      <option value='5'>Informática para Internet</option>";
-                                                            }else if ("4" == $id_cur){
-                                                                echo "<option value='4'>Gerência em Saúde</option>
-                                                                      <option value='0'>Administração</option>
-                                                                      <option value='1'>Formação Geral</option>
-                                                                      <option value='3'>Análises Clinicas</option>
-                                                                      <option value='5'>Informática para Internet</option>";
-                                                            }else if ("5" == $id_cur){
-                                                                echo "<option value='5'>Informática para Internet</option>
-                                                                      <option value='0'>Administração</option>
-                                                                      <option value='1'>Formação Geral</option>
-                                                                      <option value='3'>Análises Clinicas</option>
-                                                                      <option value='4'>Gerência em Saúde</option>";
-                                                            }
-                                                        ?>
+                                                        <option value="0"<?php if (!(strcmp(0, htmlentities($row["id_cur"], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Administração</option>
+                                                        <option value="1"<?php if (!(strcmp(1, htmlentities($row["id_cur"], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Formação Geral</option>
+                                                        <option value="3"<?php if (!(strcmp(3, htmlentities($row["id_cur"], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Análises Clínicas</option>
+                                                        <option value="4"<?php if (!(strcmp(4, htmlentities($row["id_cur"], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Gerência em Saúde</option>
+                                                        <option value="5"<?php if (!(strcmp(5, htmlentities($row["id_cur"], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Informática para Internet</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <!--<div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="tipo_alu">Tipo do aluno</label>
-                                                    <select id="tipo_alu" name="tipo_alu" class="form-control">
-                                                        <?php 
-                                                            /*if ("I" == $tipo_alu){
-                                                                echo "<option value='I'>Ensino Integrado</option>
-                                                                      <option value='S'>Ensino Subsequente</option>";
-                                                            }else if ("S" == $tipo_alu){
-                                                                echo "<option value='S'>Ensino Subsequente</option>
-                                                                      <option value='I'>Ensino Integrado</option>";
-                                                            }*/
-                                                        ?>
-                                                        <option value="I">Ensino Integrado</option>
-                                                        <option value="S">Ensino Subsequente</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>-->
-
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="btn-group" role="group"> 

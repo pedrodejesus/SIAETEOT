@@ -77,7 +77,7 @@ include "../../base/head.php";
                                             $data = mysql_query("select * from aluno order by nome_alu asc limit $inicio, $quantidade;") or die(mysql_error());
                                                 
                                             while($info = mysql_fetch_array($data)){ //Transforma o conteúdo da variável $data em um array na variável $info;
-                                                echo "<tr style='margin-right:20px !important;' scope='row'>";
+                                                echo "<tr scope='row'>";
                                                 echo "<td>".$info['matricula_alu']."</td>";
                                                 echo "<td>".$info['nome_alu']."</td>";
                                                 echo "<td>".$info['sobrenome_alu']."</td>"; 

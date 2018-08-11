@@ -40,7 +40,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
                 $sql = mysql_query("select * from aluno where matricula_alu = '".$matricula_alu."';");
                 $row = mysql_fetch_array($sql);
                 
-                $sql2 = mysql_query("select * from localidade where cep = '".$row["cep"]."';");
+                $sql2 = mysql_query("select upper(tp_logradouro) as tp_logradouro, upper(logradouro) as logradouro, upper(bairro) as bairro, upper(cidade) as cidade, uf from localidade where cep = '".$row["cep"]."';");
                 $row2 = mysql_fetch_array($sql2);
         
                 $sexo_alu = $row["sexo_alu"];

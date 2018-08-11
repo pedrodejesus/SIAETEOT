@@ -50,7 +50,6 @@ include "../../base/head.php";
                                                 <th scope="col">ID&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                                 <th scope="col">Nome</th>
                                                 <th scope="col">Sigla</th>
-                                                <th scope="col">Carga Horária</th>
                                                 <th scope="col">Curso</th>
                                                 <th scope="col">Ações</th>
                                             </tr>
@@ -75,7 +74,6 @@ include "../../base/head.php";
                                                 echo "<td>".$info['id_disc']."</td>";
                                                 echo "<td>".$info['nome_disc']."</td>";
                                                 echo "<td>".$info['sigla_disc']."</td>";
-                                                echo "<td>".$info['ch_disc']."</td>"; 
                                                 echo "<td>".$info_cur['nome_cur']."</td>";
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                             <a class='btn btn-success' href=view/visualizar_disc.php?id_disc=".$info['id_disc']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>

@@ -111,7 +111,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="dt_cadastro" class="form-control-label">Data do cadastro</label>
-                                                <input class="form-control" type="text" name="dt_cadastro" id="dt_cadastro" placeholder="<?php echo date('d/m/Y'); ?> " readonly />
+                                                <input class="form-control" type="text" name="dt_cadastro" id="dt_cadastro" placeholder="<?php echo date('d/m/Y'); ?>" readonly />
                                             </div>
                                         </div>
                                     </div>

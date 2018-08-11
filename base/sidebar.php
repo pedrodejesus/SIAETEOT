@@ -2,8 +2,21 @@
                     <nav class="sidebar-nav">
                         <ul class="nav">
                             <li class="nav-title">Ações</li>
+                            <li class="nav-item nav-dropdown">
+                                <a href="" class="nav-link nav-dropdown-toggle">
+                                    <i class="fa fa-user-graduate"></i> Alunos <i class="fa fa-caret-left"></i>
+                                </a>
+                                <ul class="nav-dropdown-items">
+                                    <li class="nav-item">
+                                        <a href="\projeto/model/aluno/lista_aluno.php" class="nav-link"><i class="fa fa-user-graduate"></i> Listar Alunos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="\projeto/model/matriculado/lista_matriculado.php" class="nav-link"><i class="fa fa-clipboard-list"></i> Matículas</a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li class="nav-item">
-                                <a href="\projeto/model/aluno/lista_aluno.php" class="nav-link"><i class="fa fa-user-graduate"></i> Alunos</a>
+                                <a href="\projeto/model/turma/lista_turma.php" class="nav-link"><i class="fa fa-users"></i> Turmas</a>
                             </li>
                             <li class="nav-item">
                                 <a href="\projeto/model/disciplina/lista_disciplina.php" class="nav-link"><i class="fa fa-book"></i> Disciplinas</a>
@@ -21,7 +34,7 @@
                                 <a href="\projeto/model/funcao/lista_funcao.php" class="nav-link"><i class="fa fa-male"></i> Funções</a>
                             </li>
                             <li class="nav-item">
-                                <a href="\projeto/model/ue/lista_ue.php" class="nav-link"><i class="fa fa-building"></i> Unidades Estudantis</a>
+                                <a href="\projeto/model/ue/lista_ue.php" class="nav-link"><i class="fa fa-building"></i> Unidades Escolares</a>
                             </li>
                             <li class="nav-item">
                                 <a href="\projeto/model/funcionario/lista_funcionario.php" class="nav-link"><i class="fa fa-chalkboard-teacher"></i> Funcionários</a>
@@ -46,10 +59,10 @@
                                 <a href="index.html" class="nav-link"><i class="fa fa-file"></i> Avaliação</a>
                             </li>
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link"><i class="fa fa-users"></i> Turmas</a>
+                                <a href="\projeto/model/ministra/lista_ministra.php" class="nav-link"><i class="fa fa-users"></i> Ministra</a>
                             </li>
                             <li class="nav-item">
-                                <a href="\projeto/model/ministra/lista_ministra.php" class="nav-link"><i class="fa fa-users"></i> Ministra</a>
+                                <a href="\projeto/model/diario/diario.php" class="nav-link"><i class="fa fa-th-list"></i> Diário Eletrônico</a>
                             </li>
                             <!--<li class="nav-item nav-dropdown">
                                 <a href="#" class="nav-link nav-dropdown-toggle">

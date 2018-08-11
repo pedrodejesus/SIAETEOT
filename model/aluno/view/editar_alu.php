@@ -36,7 +36,7 @@ include "../../../base/head.php"
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-light">
-                                    Editar aluno <?php echo $row["matricula_alu"]." - ".$row["nome_alu"];?>
+                                    <h4>Editar aluno <?php echo $row["matricula_alu"]." - ".$row["nome_alu"];?></h4>
                                 </div>
 
                                 <div class="card-body">
@@ -125,8 +125,6 @@ include "../../../base/head.php"
                                                                       <option value='I'>Ensino Integrado</option>";
                                                             }
                                                         ?>
-                                                        <option value="I">Ensino Integrado</option>
-                                                        <option value="S">Ensino Subsequente</option>
                                                     </select>
                                                 </div>
                                             </div>

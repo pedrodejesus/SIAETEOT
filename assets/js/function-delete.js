@@ -38,3 +38,7 @@ function deletaSala(idDado){
     var href = "/projeto/model/sala/controller/exclui_sala.php?id_sala=" + idDado; //Seta o caminho para quando clicar em "Sim"
     $('#confirmDelete').prop("href", href); //Adiciona atributo de deleção ao link
 }
+function deletaTurma(idDado){
+    var href = "/projeto/model/turma/controller/exclui_turma.php?id_turma=" + idDado; //Seta o caminho para quando clicar em "Sim"
+    $('#confirmDelete').prop("href", href); //Adiciona atributo de deleção ao link
+}
