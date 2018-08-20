@@ -24,14 +24,14 @@ $tipo_alu            = $_POST["tipo_alu"];
 $sql  = "insert into aluno values ";
 $sql .= "('$matricula_alu', '$nome_alu', '$sobrenome_alu', '$cpf_alu', '$rg_alu', '$dt_nasc_alu', '$nome_pai', '$nome_mae', '$sexo_alu', NULL, '$tipo_alu', NULL, NULL, NULL, NULL, '$cep', '$num_resid_alu', '$complemento_alu');";
 
-$resultado = mysql_query($sql);
+$resultado = mysqli_query($conexao, $sql);
 
 if($resultado){
-    $registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
-    mysql_close($conexao);
+    $registra_atv = mysqli_query ($conexao, lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
+    mysqli_close($conexao);
     header('Location: ../lista_aluno.php?msg=1');
 }else{
-    mysql_close($conexao);
+    mysqli_close($conexao);
     header('Location: ../lista_aluno.php?msg=2');
 }
 ?>

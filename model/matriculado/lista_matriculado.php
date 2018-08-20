@@ -69,9 +69,9 @@ include "../../base/head.php";
                                             $sql .= ("and m.id_turma = t.id_turma ");
                                             $sql .= ("order by a.nome_alu asc limit $inicio, $quantidade;");
                                             
-                                            $data = mysql_query($sql) or die(mysql_error());
+                                            $data = mysqli_query($conexao, $sql) or die(mysqli_error());
                                                 
-                                            while($info = mysql_fetch_array($data)){
+                                            while($info = mysqli_fetch_array($data)){
                                                 echo "<tr scope='row'>";
                                                 echo "<td>".$info['matricula_alu']."</td>";
                                                 echo "<td>".$info['nome_alu']." ".$info['sobrenome_alu']."</td>";
@@ -89,9 +89,9 @@ include "../../base/head.php";
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                             <a class='btn btn-success' href=view/visualizar_mat.php?matricula_alu=".$info['matricula_alu']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
                                                                 
-                                                            <a class='btn btn-warning' href=view/editar_mat.php?matricula_mat=".$info['matricula_mat']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
+                                                            <a class='btn btn-warning' href=view/editar_mat.php?matricula_mat=".$info['matricula_alu']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
                                                                 
-                                                            <a class='btn btn-danger' onclick='deletaAlu(".$info['matricula_mat'].")' sql-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
+                                                            <a class='btn btn-danger' onclick='deletaAlu(".$info['matricula_alu'].")' sql-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
                                                           </div>
                                                         </td></tr>";
                                             }
@@ -103,9 +103,9 @@ include "../../base/head.php";
                                         <?php 
                                             $sqlTotal 		= "select distinct matricula_alu from matriculado;";
                                                 
-                                            $qrTotal  		= mysql_query($sqlTotal) or die (mysql_error());
-                                            $numTotal 		= mysql_num_rows($qrTotal);
-                                            $totalpagina = (ceil($numTotal/$quantidade)<=0) ? 1 : ceil($numTotal/$quantidade);
+                                            $qrTotal  		= mysqli_query($conexao, $sqlTotal) or die (mysql_error());
+                                            $numTotal 		= mysqli_num_rows($qrTotal);
+                                            $totalpagina    = (ceil($numTotal/$quantidade)<=0) ? 1 : ceil($numTotal/$quantidade);
 
                                             $exibir = 3;
                                             $anterior = (($pagina-1) <= 0) ? 1 : $pagina - 1;

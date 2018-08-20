@@ -20,9 +20,9 @@ include "../../base/head.php"
         
                 $matricula_alu = (int) $_GET['matricula_alu'];
                 $id_turma = (int) $_GET['id_turma'];
-                $sql .= "call select_disciplinas_aluno_boletim(".$matricula_alu.", ".$id_turma.")";
-                $query = mysql_query($sql);
-                $row = mysql_fetch_array($query);
+                $sql = "call select_disciplinas_aluno_boletim(".$matricula_alu.", ".$id_turma.")";
+                $query = mysqli_query($conexao, $sql);
+                $row = mysqli_fetch_array($query);
             ?>
 
             <div class="content">
@@ -84,9 +84,12 @@ include "../../base/head.php"
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                            $query_bol = mysql_query($sql);
-                                                            while($row_bol = mysql_fetch_array($query)){
-                                                                if (empty($row_bol['nota_1t'])){
+                                                            mysqli_free_result($query);
+                                                            mysqli_next_result($conexao);
+                                                            $sql_bol = "call select_disciplinas_aluno_boletim(".$matricula_alu.", ".$id_turma.")";
+                                                            $query_bol = mysqli_query($conexao, $sql_bol) or die(mysqli_error($conexao));;
+                                                            while($row_bol = mysqli_fetch_array($query_bol)){
+                                                                /*if (empty($row_bol['nota_1t'])){
                                                                     $row_bol['nota_1t'] = "-";
                                                                 }
                                                                 if (empty($row_bol['nota_rec_1t'])){
@@ -103,7 +106,7 @@ include "../../base/head.php"
                                                                 }
                                                                 if (empty($row_bol['nota_rec_3t'])){
                                                                     $row_bol['nota_rec_3t'] = "-";
-                                                                }
+                                                                }*/
                                                                 
                                                                 $disc_len = strlen($row_bol['nome_disc']);
                                                                 if($disc_len > 15){
@@ -114,20 +117,43 @@ include "../../base/head.php"
                                                                 /*if( (int) $row_bol['nota_1t'] < 6){
                                                                     echo "<td style='background-color:#ef5350;color:#FFF' class='text-center'>";
                                                                 }*/
-                                                                echo "<td class='text-center'>";
-                                                                echo $row_bol['nota_1t']."</td>";
-                                                                echo "<td class='text-center'>".$row_bol['nota_rec_1t']."</td>";
+                                                                if (empty($row_bol['nota_1t'])){
+                                                                    echo "<td class='text-center'>-</td>";
+                                                                }else{
+                                                                    echo "<td class='text-center'>".$row_bol['nota_1t']."</td>";
+                                                                }
+                                                                if (empty($row_bol['nota_rec_1t'])){
+                                                                    echo "<td class='text-center'>-</td>";
+                                                                }else{
+                                                                    echo "<td class='text-center'>".$row_bol['nota_rec_1t']."</td>";
+                                                                }
                                                                 echo "<td></td>";
-                                                                echo "<td class='text-center'>".$row_bol['nota_2t']."</td>";
-                                                                echo "<td class='text-center'>".$row_bol['nota_rec_2t']."</td>";
+                                                                if (empty($row_bol['nota_2t'])){
+                                                                    echo "<td class='text-center'>-</td>";
+                                                                }else{
+                                                                    echo "<td class='text-center'>".$row_bol['nota_2t']."</td>";
+                                                                }
+                                                                if (empty($row_bol['nota_rec_2t'])){
+                                                                    echo "<td class='text-center'>-</td>";
+                                                                }else{
+                                                                    echo "<td class='text-center'>".$row_bol['nota_rec_2t']."</td>";
+                                                                }
                                                                 echo "<td></td>";
-                                                                echo "<td class='text-center'>".$row_bol['nota_3t']."</td>";
-                                                                echo "<td class='text-center'>".$row_bol['nota_rec_3t']."</td>";
+                                                                if (empty($row_bol['nota_3t'])){
+                                                                    echo "<td class='text-center'>-</td>";
+                                                                }else{
+                                                                    echo "<td class='text-center'>".$row_bol['nota_3t']."</td>";
+                                                                }
+                                                                if (empty($row_bol['nota_rec_3t'])){
+                                                                    echo "<td class='text-center'>-</td>";
+                                                                }else{
+                                                                    echo "<td class='text-center'>".$row_bol['nota_rec_3t']."</td>";
+                                                                }
                                                                 echo "<td></td>";
                                                                 $resultado_decimal = ($row_bol['nota_1t'] + $row_bol['nota_2t'] + $row_bol['nota_3t']) / 3;
                                                                 $resultado = number_format($resultado_decimal,1,",",".");
                                                                 //$resultado = round($resultado_decimal, 1);
-                                                                if(($row_bol['nota_1t'] == "-")||($row_bol['nota_2t'] == "-")||($row_bol['nota_3t'] == "-")){
+                                                                if((empty($row_bol['nota_1t']))||(empty($row_bol['nota_2t']))||(empty($row_bol['nota_3t']))){
                                                                     $resultado = "-";
                                                                 }
                                                                 echo "<td>".$resultado."</td>";

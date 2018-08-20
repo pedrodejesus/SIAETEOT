@@ -18,7 +18,7 @@ include "../../../base/head.php"
         <div class="main-container">
             <?php
                 include "../../../base/sidebar.php";
-                include("../../../base/conexao.php");
+                include "../../../base/conexao.php";
 
                 $matricula_alu = (int) $_GET['matricula_alu'];
                 $sql   = "select a.matricula_alu, a.nome_alu, a.sobrenome_alu, a.cpf_alu, a.rg_alu, a.dt_nasc_alu, ";
@@ -27,8 +27,8 @@ include "../../../base/head.php"
                 $sql  .= "from aluno a, localidade l ";
                 $sql  .= "where a.cep = l.cep ";
                 $sql  .= "and a.matricula_alu = '".$matricula_alu."';";
-                $query = mysql_query($sql);
-                $row   = mysql_fetch_array($query);
+                $query = mysqli_query($conexao, $sql);
+                $row   = mysqli_fetch_array($query);
             ?>
             <div class="content">
                 <div class="container-fluid">

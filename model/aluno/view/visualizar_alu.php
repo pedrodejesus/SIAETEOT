@@ -26,8 +26,8 @@ include "../../../base/head.php"
                 $sql  .= "from aluno a, localidade l ";
                 $sql  .= "where a.cep = l.cep ";
                 $sql  .= "and a.matricula_alu = '".$matricula_alu."';";
-                $query = mysql_query($sql);
-                $row   = mysql_fetch_array($query);
+                $query = mysqli_query($conexao, $sql);
+                $row   = mysqli_fetch_array($query);
             ?>
             <div class="content">
                 <div class="container-fluid">
@@ -141,7 +141,7 @@ include "../../../base/head.php"
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <strong>Logradouro</strong>
-                                                <p class="form-control-plaintext"><?php echo $row["tp_logradouro"]." ".$row2["logradouro"]; ?></p>
+                                                <p class="form-control-plaintext"><?php echo $row["tp_logradouro"]." ".$row["logradouro"]; ?></p>
                                             </div>
                                         </div>
 

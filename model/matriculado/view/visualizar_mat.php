@@ -28,8 +28,8 @@ include "../../../base/head.php"
                 $sql .= "and m.id_disc = d.id_disc ";
                 $sql .= "and m.id_turma = t.id_turma ";
                 $sql .= "and m.matricula_alu = '".$matricula_alu."' ";
-                $query = mysql_query($sql);
-                $row = mysql_fetch_array($query);
+                $query = mysqli_query($conexao, $sql);
+                $row = mysqli_fetch_array($query);
                 
                 /*$sql2 = mysql_query("select upper(tp_logradouro) as tp_logradouro, upper(logradouro) as logradouro, upper(bairro) as bairro, upper(cidade) as cidade, uf from localidade where cep = '".$row["cep"]."';");
                 $row2 = mysql_fetch_array($sql2);
@@ -130,8 +130,8 @@ include "../../../base/head.php"
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                            $query_disc = mysql_query($sql);
-                                                            while($row_disc = mysql_fetch_array($query_disc)){
+                                                            $query_disc = mysqli_query($conexao, $sql);
+                                                            while($row_disc = mysqli_fetch_array($query_disc)){
                                                                 echo "<tr scope='row'>";
                                                                 echo "<td>".$row_disc['id_disc']."</td>";
                                                                 echo "<td>".$row_disc['nome_disc']."</td>";

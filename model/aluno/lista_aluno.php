@@ -62,9 +62,9 @@ include "../../base/head.php";
                                             $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
                                             $inicio = ($quantidade * $pagina) - $quantidade;
 
-                                            $data = mysql_query("select * from aluno order by nome_alu asc limit $inicio, $quantidade;") or die(mysql_error());
+                                            $data = mysqli_query($conexao, "select * from aluno order by nome_alu asc limit $inicio, $quantidade;")/* or die(mysql_error())*/;
                                                 
-                                            while($info = mysql_fetch_array($data)){
+                                            while($info = mysqli_fetch_array($data)){
                                                 echo "<tr scope='row'>";
                                                 echo "<td>".$info['matricula_alu']."</td>";
                                                 echo "<td>".$info['nome_alu']."</td>";
@@ -97,8 +97,8 @@ include "../../base/head.php";
                                         <?php 
                                             $sqlTotal 		= "select matricula_alu from aluno;";
                                                 
-                                            $qrTotal  		= mysql_query($sqlTotal) or die (mysql_error());
-                                            $numTotal 		= mysql_num_rows($qrTotal);
+                                            $qrTotal  		= mysqli_query($conexao, $sqlTotal) or die (mysql_error());
+                                            $numTotal 		= mysqli_num_rows($qrTotal);
                                             $totalpagina = (ceil($numTotal/$quantidade)<=0) ? 1 : ceil($numTotal/$quantidade);
 
                                             $exibir = 3;

@@ -20,8 +20,8 @@ include "../../../base/head.php"
                 include "../../../base/sidebar.php";
                 include("../../../base/conexao.php");
                 $id_disc = (int) $_GET['id_disc'];
-                $sql = mysql_query("select * from disciplina where id_disc = '".$id_disc."';");
-                $row = mysql_fetch_array($sql);
+                $sql = mysqli_query($conexao, "select * from disciplina where id_disc = '".$id_disc."';");
+                $row = mysqli_fetch_array($sql);
             ?>
             <div class="content">
                 <div class="container-fluid">
@@ -36,7 +36,7 @@ include "../../../base/head.php"
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="id_disc" class="form-control-label">Matrícula</label>
+                                                    <label for="id_disc" class="form-control-label">ID</label>
                                                     <input class="form-control" type="text"name="id_disc" id="id_disc" value="<?php echo $row["id_disc"];?>" readonly />
                                                 </div>
                                             </div>

@@ -65,9 +65,9 @@ include "../../base/head.php";
                                             $sql .= "where d.id_cur = c.id_cur ";
                                             $sql .= "order by id_disc asc limit $inicio, $quantidade;";
                                             
-                                            $data = mysql_query($sql) or die(mysql_error());
+                                            $data = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
                                                 
-                                            while($info = mysql_fetch_array($data)){                                                
+                                            while($info = mysqli_fetch_array($data)){                                                
                                                 echo "<tr scope='row'>";
                                                 echo "<td>".$info['id_disc']."</td>";
                                                 echo "<td>".$info['nome_disc']."</td>";
@@ -90,8 +90,8 @@ include "../../base/head.php";
                                         <?php 
                                             $sqlTotal 		= "select id_disc from disciplina;";
                                                 
-                                            $qrTotal  		= mysql_query($sqlTotal) or die (mysql_error());
-                                            $numTotal 		= mysql_num_rows($qrTotal);
+                                            $qrTotal  		= mysqli_query($conexao, $sqlTotal) or die (mysql_error());
+                                            $numTotal 		= mysqli_num_rows($qrTotal);
                                             $totalpagina = (ceil($numTotal/$quantidade)<=0) ? 1 : ceil($numTotal/$quantidade);
 
                                             $exibir = 3;

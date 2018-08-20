@@ -16,14 +16,14 @@ $sql  = "update disciplina set ";
 $sql .= "nome_disc='".$nome_disc."', sigla_disc='".$sigla_disc."', id_cur='".$id_cur."' ";
 $sql .= "where id_disc = '".$id_disc."';";
 
-$resultado = mysql_query($sql) or die(mysql_error());
+$resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 if($resultado){
-    $registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
-    mysql_close($conexao); 
+    $registra_atv = mysqli_query ($conexao, lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
+    mysqli_close($conexao); 
     header('Location: ../lista_disciplina.php?msg=3');
 }else{
-    mysql_close($conexao); 
+    mysqli_close($conexao); 
     header('Location: ../lista_disciplina.php?msg=4');
 }
 ?>

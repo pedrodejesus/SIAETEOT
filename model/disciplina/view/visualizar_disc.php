@@ -25,8 +25,8 @@ include "../../../base/head.php"
                 $sql .= "from disciplina d, curso c ";
                 $sql .= "where d.id_cur = c.id_cur ";
                 $sql .= "and id_disc = '".$id_disc."';";
-                $query = mysql_query($sql);
-                $row = mysql_fetch_array($query);
+                $query = mysqli_query($conexao, $sql);
+                $row = mysqli_fetch_array($query);
             ?>
             <div class="content">
                 <div class="container-fluid">
