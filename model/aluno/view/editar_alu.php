@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
 $nivel_necessario = 2;
 
@@ -9,55 +8,65 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
 }
 include "../../../base/head.php"
 ?>
+<style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
 <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
 </head>
+
 <body class="sidebar-fixed header-fixed">
     <div class="page-wrapper">
         <?php include "../../../base/nav.php" ?>
         <div class="main-container">
-            
             <?php
                 include "../../../base/sidebar.php";
                 include("../../../base/conexao.php");
-                $matricula_alu = (int) $_GET['matricula_alu'];
-                $sql = mysql_query("select * from aluno where matricula_alu = '".$matricula_alu."';");
-                $row = mysql_fetch_array($sql);
-                
-                $sql2 = mysql_query("select * from localidade where cep = '".$row["cep"]."';");
-                $row2 = mysql_fetch_array($sql2);
-                    
-                $sexo_alu = $row["sexo_alu"];
-                $tipo_alu = $row["tipo_alu"];
-            ?>
 
+                $matricula_alu = (int) $_GET['matricula_alu'];
+                $sql   = "select a.matricula_alu, a.nome_alu, a.sobrenome_alu, a.cpf_alu, a.rg_alu, a.dt_nasc_alu, ";
+                $sql  .= "a.nome_pai, a.nome_mae, a.sexo_alu, a.tipo_alu, a.cep, a.num_resid_alu, a.complemento_alu, ";
+                $sql  .= "l.cep, l.tp_logradouro, l.logradouro, l.bairro, l.cidade, l.uf ";
+                $sql  .= "from aluno a, localidade l ";
+                $sql  .= "where a.cep = l.cep ";
+                $sql  .= "and a.matricula_alu = '".$matricula_alu."';";
+                $query = mysql_query($sql);
+                $row   = mysql_fetch_array($query);
+            ?>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-light">
-                                    <h4>Editar aluno <?php echo $row["matricula_alu"]." - ".$row["nome_alu"];?></h4>
+                                    <h4>Editar aluno(a) <?php echo $row["matricula_alu"]." - ".$row["nome_alu"];?></h4>
                                 </div>
-
                                 <div class="card-body">
                                     <form action="../controller/atualiza_alu.php?matricula_alu=<?php echo $row["matricula_alu"]; ?>" method="post">
                                         <div class="row">
                                             <div class="col-md-4">
+                                                <script>
+                                                    function SomenteNumero(e){
+                                                        var tecla=(window.event)?event.keyCode:e.which;   
+                                                        if((tecla>47 && tecla<58)) return true;
+                                                        else{
+                                                            if (tecla==8 || tecla==0) return true;
+                                                        else  return false;
+                                                        }
+                                                    }
+                                                </script>
                                                 <div class="form-group">
                                                     <label for="matricula_alu" class="form-control-label">Matrícula</label>
-                                                    <input class="form-control" type="text" size="15" maxlength="256" name="matricula_alu" id="matricula_alu" value="<?php echo $row["matricula_alu"];?>" />
+                                                    <input onkeypress='return SomenteNumero(event)' class="form-control" type="text" maxlength="18" name="matricula_alu" id="matricula_alu" value="<?php echo $row["matricula_alu"];?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="nome_alu" class="form-control-label">Nome</label>
-                                                    <input class="form-control" type="text" maxlength="30" name="nome_alu" id="nome_alu" value="<?php echo $row["nome_alu"];?>" />
+                                                    <input class="form-control" type="text" maxlength="30" name="nome_alu" id="nome_alu" value="<?php echo $row["nome_alu"];?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="sobrenome_alu" class="form-control-label">Sobrenome</label>
-                                                    <input class="form-control" type="text" maxlength="70" name="sobrenome_alu" id="sobrenome_alu" value="<?php echo $row["sobrenome_alu"];?>" />
+                                                    <input class="form-control" type="text" maxlength="70" name="sobrenome_alu" id="sobrenome_alu" value="<?php echo $row["sobrenome_alu"];?>" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -66,19 +75,19 @@ include "../../../base/head.php"
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="cpf_alu" class="form-control-label">CPF</label>
-                                                    <input class="form-control" type="text" name="cpf_alu" id="cpf_alu" value="<?php echo $row["cpf_alu"];?>" />
+                                                    <input class="form-control" type="text" name="cpf_alu" id="cpf_alu" value="<?php echo $row["cpf_alu"];?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="rg_alu" class="form-control-label">RG</label>
-                                                    <input class="form-control" type="text" maxlength="20" name="rg_alu" id="rg_alu" value="<?php echo $row["rg_alu"];?>" />
+                                                    <input onkeypress='return SomenteNumero(event)' class="form-control" type="text" maxlength="20" name="rg_alu" id="rg_alu" value="<?php echo $row["rg_alu"];?>" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="dt_nasc_alu" class="form-control-label">Data de nascimento</label>
-                                                    <input class="form-control" type="date" name="dt_nasc_alu" id="dt_nasc_alu" value="<?php echo $row['dt_nasc_alu']; ?>" />
+                                                    <input class="form-control" type="date" name="dt_nasc_alu" id="dt_nasc_alu" value="<?php echo $row['dt_nasc_alu']; ?>" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -100,15 +109,8 @@ include "../../../base/head.php"
                                                 <div class="form-group">
                                                     <label for="sexo_alu">Sexo</label>
                                                     <select id="sexo_alu" name="sexo_alu" class="form-control">
-                                                        <?php 
-                                                            if ("M" == $sexo_alu ){
-                                                                echo "<option value='M'>Masculino</option>
-                                                                      <option value='F'>Feminino</option>";
-                                                            }else if ("F" == $sexo_alu){
-                                                                echo "<option value='F'>Feminino</option>
-                                                                      <option value='M'>Masculino</option>";
-                                                            }
-                                                        ?>
+                                                        <option value="M"<?php if (!(strcmp('M', htmlentities($row['sexo_alu'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Masculino</option>
+                                                        <option value="F"<?php if (!(strcmp('F', htmlentities($row['sexo_alu'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Feminino</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -116,15 +118,8 @@ include "../../../base/head.php"
                                                 <div class="form-group">
                                                     <label for="tipo_alu">Tipo do aluno</label>
                                                     <select id="tipo_alu" name="tipo_alu" class="form-control">
-                                                        <?php 
-                                                            if ("I" == $tipo_alu){
-                                                                echo "<option value='I'>Ensino Integrado</option>
-                                                                      <option value='S'>Ensino Subsequente</option>";
-                                                            }else if ("S" == $tipo_alu){
-                                                                echo "<option value='S'>Ensino Subsequente</option>
-                                                                      <option value='I'>Ensino Integrado</option>";
-                                                            }
-                                                        ?>
+                                                        <option value="S"<?php if (!(strcmp('S', htmlentities($row['tipo_alu'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Ensino Subsequente</option>
+                                                        <option value="I"<?php if (!(strcmp('I', htmlentities($row['tipo_alu'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Ensino Integrado</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -134,7 +129,7 @@ include "../../../base/head.php"
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="cep" class="form-control-label">CEP</label>
-                                                    <input class="form-control" type="text" name="cep" id="cep" value="<?php echo $row["cep"];?>" />
+                                                    <input class="form-control" type="text" name="cep" id="cep" value="<?php echo $row["cep"];?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -155,25 +150,25 @@ include "../../../base/head.php"
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="logradouro" class="form-control-label">Logradouro</label>
-                                                    <input class="form-control" type="text" name="logradouro" id="logradouro" value="<?php echo $row2["tp_logradouro"]." ".$row2["logradouro"];?>" disabled />
+                                                    <input class="form-control" type="text" name="logradouro" id="logradouro" value="<?php echo $row["tp_logradouro"]." ".$row["logradouro"];?>" disabled />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="bairro">Bairro</label>
-                                                    <input id="bairro" name="bairro" class="form-control" value="<?php echo $row2["bairro"]?>" disabled />
+                                                    <input id="bairro" name="bairro" class="form-control" value="<?php echo $row["bairro"]?>" disabled />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="cidade">Cidade</label>
-                                                    <input id="cidade" name="cidade" class="form-control" value="<?php echo $row2["cidade"]?>" disabled />
+                                                    <input id="cidade" name="cidade" class="form-control" value="<?php echo $row["cidade"]?>" disabled />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="uf">UF</label>
-                                                    <input id="uf" name="uf" class="form-control" value="<?php echo $row2["uf"]?>" disabled />
+                                                    <input id="uf" name="uf" class="form-control" value="<?php echo $row["uf"]?>" disabled />
                                                 </div>
                                             </div>
                                         </div>
@@ -197,14 +192,10 @@ include "../../../base/head.php"
     </div>
     
     <script src="\projeto/assets/js/cep.js"></script>
-    <script src="\projeto/assets/js/popper.min.js"></script>
     <script src="\projeto/assets/js/bootstrap.min.js"></script>
 	<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
 	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/chart.min.js"></script>
     <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
-
 </body>
 
 </html>

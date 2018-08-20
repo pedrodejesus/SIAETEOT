@@ -30,7 +30,7 @@ if($resultado){
     $registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
     mysql_close($conexao);
     //header('Location: ../lista_turma.php?msg=1');
-    header('Location: ../view/cadastrar_disc_pdr.php?id_turma='.$id_turma);
+    header('Location: ../view/cadastrar_disc_pdr.php?numero='.$numero.'&ano_letivo='.$ano_letivo);
     /*echo $sql;
     foreach($checkbox as $valor){
         echo $valor;

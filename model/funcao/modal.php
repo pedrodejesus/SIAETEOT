@@ -2,13 +2,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger">
-                <h5 class="modal-title text-white">Exclusão de setor</h5>
+                <h5 class="modal-title text-white"><i class="fa fa-exclamation-triangle"></i>&nbsp; Aviso: Exclusão de função</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
-            <div class="modal-body">Deseja realmente excluir essa setor?</div>
+            <div class="modal-body">Esta ação excluirá também os dados de exercimento desta função por seus respectivos funcionários. Deseja realmente excluir essa função?</div>
 
             <div class="modal-footer">
                 <a id="confirmDelete"><button type="button" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp; Sim</button></a>

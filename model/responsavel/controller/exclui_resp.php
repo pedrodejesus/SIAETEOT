@@ -7,9 +7,7 @@ include("../../../base/conexao.php");
 include("../../../base/logatvusu.php");
 
 $id_resp = (int) @$_GET['id_resp'];
-
 $sql = "delete from responsavel where id_resp = '$id_resp';";
-
 $resultado = mysql_query($sql) or die(mysql_error());
 
 if($resultado){
@@ -17,6 +15,7 @@ if($resultado){
     mysql_close($conexao);
     header('Location: ../lista_responsavel.php?msg=5');
 }else{
+    mysql_close($conexao);
     header('Location: ../lista_responsavel.php?msg=6');
 }
 

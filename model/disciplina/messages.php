@@ -5,9 +5,9 @@ if(isset($_GET['msg'])){
 	switch($msg){
 		case 1:
 			echo '<div class="alert alert-success alert-dismissible fade show" role="alert">Disciplina cadastrada com sucesso!
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <a href="lista_disciplina.php"><button type="button" class="close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button></a>
                   </div>';
 			break;
         case 2:
@@ -47,20 +47,6 @@ if(isset($_GET['msg'])){
 			break;
 		case 7:
 			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Usuário sem permissão de acesso!
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>';
-			break;
-        case 8:
-			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Número de matrícula já existente!
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>';
-			break;
-        case 9:
-			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Número de CPF já existente!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -7,9 +7,7 @@ include("../../../base/conexao.php");
 include("../../../base/logatvusu.php");
 
 $matricula_alu = (int) @$_GET['matricula_alu'];
-
 $sql = "delete from aluno where matricula_alu = '$matricula_alu';";
-
 $resultado = mysql_query($sql) or die(mysql_error());
 
 if($resultado){
@@ -17,6 +15,7 @@ if($resultado){
     mysql_close($conexao);
     header('Location: ../lista_aluno.php?msg=5');
 }else{
+    mysql_close($conexao);
     header('Location: ../lista_aluno.php?msg=6');
 }
 

@@ -20,8 +20,9 @@ include "../../../base/head.php"
                 include "../../../base/sidebar.php";
                 include("../../../base/conexao.php");
 
-                $id_turma = (int) $_GET['id_turma'];
-                $sql = mysql_query("select * from turma where id_turma = '".$id_turma."';");
+                $numero = (int) $_GET['numero'];
+                $ano_letivo = (int) $_GET['ano_letivo'];
+                $sql = mysql_query("select * from turma where numero = '".$numero."' and ano_letivo='".$ano_letivo."';");
                 $row = mysql_fetch_array($sql);
 
                 /*$sql  = mysql_query("select t.numero, t.ano_letivo, d.id_disc, d.sigla_disc, d.id_cur ");
@@ -35,7 +36,7 @@ include "../../../base/head.php"
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-light">
-                                    <h4>Cadastrar disciplinas da turma <?php echo $row['numero']."/".$row['ano_letivo']; ?></h4>
+                                    <h4>Cadastrar disciplinas da turma <?php echo $numero."/".$ano_letivo ?></h4>
                                 </div> 
                                 
                                 <div class="card-body">
@@ -76,8 +77,8 @@ include "../../../base/head.php"
                                                 while($row2 = mysql_fetch_array($sql2)){
                                                     echo "<div class='col-md-1'>
                                                             <div class='form-check form-check-inline'>
-                                                                <input class='form-check-input checkbox' type='checkbox' id='disc_pdr_tur' name='disc_pdr_tur[]' value='".$row2['id_disc']."'>
-                                                                <label class='form-check-label' for='checkbox'>".$row2['sigla_disc']."</label>
+                                                                <input class='form-check-input checkbox' type='checkbox' id='disc_pdr_tur' name='disc_pdr_tur[]' value='".$row2['id_disc']."' data-toggle='tooltip' data-placement='top' title='".$row2['nome_disc']."'>
+                                                                <label class='form-check-label' for='checkbox' data-toggle='tooltip' data-placement='top' title='".$row2['nome_disc']."'>".$row2['sigla_disc']."</label>
                                                             </div>
                                                           </div>";
                                                 }
@@ -132,8 +133,8 @@ include "../../../base/head.php"
                                                 while($row3 = mysql_fetch_array($sql3)){
                                                     echo "<div class='col-md-1'>
                                                             <div class='form-check form-check-inline'>
-                                                                <input class='form-check-input checkbox_tecnico' type='checkbox' id='disc_pdr_tur' name='disc_pdr_tur[]' value='".$row3['id_disc']."'>
-                                                                <label class='form-check-label' for='checkbox'>".$row3['sigla_disc']."</label>
+                                                                <input class='form-check-input checkbox_tecnico' type='checkbox' id='disc_pdr_tur' name='disc_pdr_tur[]' value='".$row3['id_disc']."' data-toggle='tooltip' data-placement='top' title='".$row3['nome_disc']."'>
+                                                                <label class='form-check-label' for='checkbox' data-toggle='tooltip' data-placement='top' title='".$row3['nome_disc']."'>".$row3['sigla_disc']."</label>
                                                             </div>
                                                           </div>";
                                                     echo "<input type='hidden' name='id_turma' id='id_turma' value='".$id_turma."' />";
@@ -141,11 +142,12 @@ include "../../../base/head.php"
                                             ?>
                                         </div>
                                         <br>
+                                        <input type="hidden" name="id_turma" id="id_turma" value="<?php echo $row['id_turma']; ?>" />
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="btn-group" role="group"> 
                                                     <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp; Salvar</button>
-                                                    <a href="../lista_turma.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>
+                                                    <!--<a href="../lista_turma.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>-->
                                                 </div>
                                             </div>
                                         </div>

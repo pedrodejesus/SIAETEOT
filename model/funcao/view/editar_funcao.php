@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
 $nivel_necessario = 2;
 
@@ -11,11 +10,11 @@ include "../../../base/head.php"
 ?>
 <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
 </head>
+
 <body class="sidebar-fixed header-fixed">
     <div class="page-wrapper">
         <?php include "../../../base/nav.php" ?>
         <div class="main-container">
-            
             <?php
                 include "../../../base/sidebar.php";
                 include("../../../base/conexao.php");
@@ -23,16 +22,14 @@ include "../../../base/head.php"
                 $sql = mysql_query("select * from funcao where id_funcao = '".$id_funcao."';");
                 $row = mysql_fetch_array($sql);
             ?>
-
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-light">
-                                    EDITAR FUNCAO <?php echo $row["id_funcao"]." - ".$row["nome_funcao"];?>
+                                    <h4>Editar função <?php echo $row["id_funcao"]." - ".$row["nome_funcao"];?></h4>
                                 </div>
-
                                 <div class="card-body">
                                     <form action="../controller/atualiza_funcao.php?id_funcao=<?php echo $row["id_funcao"]; ?>" method="post">
                                         <div class="row">
@@ -45,7 +42,7 @@ include "../../../base/head.php"
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="nome_funcao" class="form-control-label">Nome</label>
-                                                    <input class="form-control" type="text" maxlength="20" name="nome_funcao" id="nome_funcao" value="<?php echo $row["nome_funcao"];?>" />
+                                                    <input class="form-control" type="text" maxlength="20" name="nome_funcao" id="nome_funcao" value="<?php echo $row["nome_funcao"];?>" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -68,12 +65,8 @@ include "../../../base/head.php"
     </div>
     
     <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/popper.min.js"></script>
     <script src="\projeto/assets/js/bootstrap.min.js"></script>
-	<script src="\projeto/assets/js/script_mask.js"></script>
     <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
-
 </body>
 
 </html>

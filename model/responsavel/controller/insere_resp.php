@@ -17,7 +17,7 @@ $tel_resp           = $_POST["tel_resp"];
 $email_resp         = $_POST["email_resp"];
 $matricula_alu      = substr($_POST["matricula_alu"],0, strpos($_POST["matricula_alu"],' -'));
 
-$sql   = "insert into responsavel values ";  // Adiciona os dados à tabela;
+$sql   = "insert into responsavel values ";
 $sql  .= "('0', '$nome_resp', '$sobrenome_resp', '$cpf_resp', '$rg_resp', '$cel_resp', '$tel_resp', '$email_resp', '$matricula_alu');";
 
 $resultado = mysql_query($sql);
@@ -26,7 +26,8 @@ if($resultado){
     mysql_close($conexao);
     header('Location: ../lista_responsavel.php?msg=1');
 }else{
-    echo "Erro <br>".$sql;
+    mysql_close($conexao);
+    header('Location: ../lista_responsavel.php?msg=2');
 }
 
 

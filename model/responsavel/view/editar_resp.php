@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
 $nivel_necessario = 2;
 
@@ -9,55 +8,53 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
 }
 include "../../../base/head.php"
 ?>
-    <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
-    <link href="\projeto/assets/js/jquery.autocomplete.css" rel="stylesheet">
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
-    <script src="\projeto/assets/js/jquery.autocomplete.js"></script>
-    <script type="text/javascript">
-        $().ready(function() {
-            $("#matricula_alu").autocomplete("filtra_alu.php", {
-                width: 250,
-                matchContains: true,
-                //mustMatch: true,
-                //minChars: 0,
-                //multiple: true,
-                //highlight: false,
-                //multipleSeparator: ",",
-                selectFirst: false
-            });
+<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
+<script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
+<script src="\projeto/assets/js/jquery.autocomplete.js"></script>
+<link href="\projeto/assets/js/jquery.autocomplete.css" rel="stylesheet">
+<style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
+<script type="text/javascript">
+    $().ready(function() {
+        $("#matricula_alu").autocomplete("filtra_alu.php", {
+            width: 250,
+            matchContains: true,
+            //mustMatch: true,
+            //minChars: 0,
+            //multiple: true,
+            //highlight: false,
+            //multipleSeparator: ",",
+            selectFirst: false
         });
-    </script>
+    });
+</script>
 </head>
+
 <body class="sidebar-fixed header-fixed">
     <div class="page-wrapper">
         <?php include "../../../base/nav.php" ?>
         <div class="main-container">
-            
             <?php
                 include "../../../base/sidebar.php";
                 include("../../../base/conexao.php");
-                $id_resp = (int) $_GET['id_resp'];
-                $sql = mysql_query("select * from responsavel where id_resp = '".$id_resp."';");
-                $row = mysql_fetch_array($sql);
-                
-                $sql2 = mysql_query("select * from aluno where matricula_alu = '".$row["matricula_alu"]."';");
-                $row2 = mysql_fetch_array($sql2);
-            ?>
 
+                $id_resp = (int) $_GET['id_resp'];
+                $sql  = "select r.id_resp, r.nome_resp, r.sobrenome_resp, r.cpf_resp, r.rg_resp, ";
+                $sql .= "r.cel_resp, r.tel_resp, r.email_resp, r.matricula_alu, ";
+                $sql .= "a.matricula_alu, a.nome_alu, a.sobrenome_alu ";
+                $sql .= "from responsavel r, aluno a ";
+                $sql .= "where r.matricula_alu = a.matricula_alu ";
+                $sql .= "and r.id_resp = '".$id_resp."';";
+                $query = mysql_query($sql);
+                $row = mysql_fetch_array($query);
+            ?>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-light">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-12">
-                                            <h4>Editar Responsável <?php echo $row["id_resp"]." - ".$row["nome_resp"]." ".$row["sobrenome_resp"];?></h4>
-                                        </div>
-                                    </div>  
+                                    <h4>Editar responsável <?php echo $row["id_resp"]." - ".$row["nome_resp"]." ".$row["sobrenome_resp"];?></h4>
                                 </div>
-
                                 <div class="card-body">
                                     <form action="../controller/atualiza_resp.php?id_resp=<?php echo $row["id_resp"]; ?>" method="post">
                                         <div class="row">
@@ -70,19 +67,19 @@ include "../../../base/head.php"
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="nome_resp" class="form-control-label">Nome</label>
-                                                    <input class="form-control" type="text" maxlength="30" name="nome_resp" id="nome_resp" value="<?php echo $row["nome_resp"];?>" />
+                                                    <input class="form-control" type="text" maxlength="30" name="nome_resp" id="nome_resp" value="<?php echo $row["nome_resp"];?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="sobrenome_resp" class="form-control-label">Sobrenome</label>
-                                                    <input class="form-control" type="text" maxlength="70" name="sobrenome_resp" id="sobrenome_resp" value="<?php echo $row["sobrenome_resp"];?>" />
+                                                    <input class="form-control" type="text" maxlength="70" name="sobrenome_resp" id="sobrenome_resp" value="<?php echo $row["sobrenome_resp"];?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="cpf_resp" class="form-control-label">CPF</label>
-                                                    <input class="form-control" type="text" name="cpf_resp" id="cpf_resp" value="<?php echo $row["cpf_resp"];?>" />
+                                                    <input class="form-control" type="text" name="cpf_resp" id="cpf_resp" value="<?php echo $row["cpf_resp"];?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -92,6 +89,7 @@ include "../../../base/head.php"
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <div class="form-group">
@@ -108,12 +106,13 @@ include "../../../base/head.php"
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="email_resp" class="form-control-label">E-mail</label>
-                                                    <input class="form-control" type="text" name="email_resp" id="email_resp" value="<?php echo $row['email_resp']; ?>" />
+                                                    <input class="form-control" type="text" name="email_resp" id="email_resp" value="<?php echo $row['email_resp']; ?>" required />
                                                 </div>
-                                            </div><div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="matricula_alu" class="form-control-label">Aluno referente</label>
-                                                    <input class="form-control" type="text" name="matricula_alu" id="matricula_alu" value="<?php echo $row2['matricula_alu']." - ".$row2['nome_alu']." ".$row2['sobrenome_alu']; ?>" />
+                                                    <input class="form-control" type="text" name="matricula_alu" id="matricula_alu" value="<?php echo $row['matricula_alu']." - ".$row['nome_alu']." ".$row['sobrenome_alu']; ?>" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -135,17 +134,11 @@ include "../../../base/head.php"
             </div>
         </div>
     </div>
-    
-    
-    <script src="\projeto/assets/js/popper.min.js"></script>
+
     <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/cep.js"></script>
 	<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
 	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/chart.min.js"></script>
     <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
-
 </body>
 
 </html>

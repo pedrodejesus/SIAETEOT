@@ -7,9 +7,7 @@ include("../../../base/conexao.php");
 include("../../../base/logatvusu.php");
 
 $id_setor = (int) @$_GET['id_setor'];
-
 $sql = "delete from setor where id_setor = '$id_setor';";
-
 $resultado = mysql_query($sql) or die(mysql_error());
 
 if($resultado){
@@ -17,7 +15,7 @@ if($resultado){
     mysql_close($conexao);
     header('Location: ../lista_setor.php?msg=5');
 }else{
+    mysql_close($conexao);
     header('Location: ../lista_setor.php?msg=6');
 }
-
 ?>

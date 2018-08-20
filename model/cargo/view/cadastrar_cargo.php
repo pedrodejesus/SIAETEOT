@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
 $nivel_necessario = 2;
 
@@ -10,25 +9,22 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
 include "../../../base/head.php"
 ?>
 <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
+<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
 </head>
+
 <body class="sidebar-fixed header-fixed">
     <div class="page-wrapper">
-
         <?php include "../../../base/nav.php" ?>
-
         <div class="main-container">
-
             <?php include "../../../base/sidebar.php" ?>
-
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-light">
-                                    Adicionar cargo
+                                    <h4>Adicionar cargo</h4>
                                 </div>
-                                
                                 <div class="card-body">
                                     <form action="../controller/insere_cargo.php" method="post">
                                         <div class="row">
@@ -63,15 +59,9 @@ include "../../../base/head.php"
             </div>
         </div>
     </div>
-	<script src="\projeto/assets/js/cep.js"></script>
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/popper.min.js"></script>
+
     <script src="\projeto/assets/js/bootstrap.min.js"></script>
-	<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
-	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/chart.min.js"></script>
     <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
 
 </body>
 

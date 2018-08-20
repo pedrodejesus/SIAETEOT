@@ -1,30 +1,17 @@
 <?php
-
-// A sessão precisa ser iniciada em cada página diferente
-if (!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
 $nivel_necessario = 2;
 
-// Verifica se não há a variável da sessão que identifica o usuário
-if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necessario)) {
+if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necessario)) { // Verifica se não há a variável da sessão que identifica o usuário
 	session_destroy(); // Destrói a sessão por segurança
 	header("Location: index.php"); exit; // Redireciona o visitante de volta pro login
 }
+include "../../../base/head.php"
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>ETEOT - Escola Técnica Estadual Oscar Tenório</title>
-
-    <link href="\projeto/assets/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 
 <body class="sidebar-fixed header-fixed">
+    <?php include "../modal.php" ?>
     <div class="page-wrapper">
         <?php include "../../../base/nav.php" ?>
         <div class="main-container">
@@ -33,13 +20,14 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
                 include("../../../base/conexao.php");
                         
                 $id_resp = (int) $_GET['id_resp'];
-                $sql = mysql_query("select * from responsavel where id_resp = '".$id_resp."';");
-                $row = mysql_fetch_array($sql);
-                    
-                $sql1 = mysql_query("select * from aluno where matricula_alu = '".$row['matricula_alu']."';");
-                $row1 = mysql_fetch_array($sql1);
-        
-                header("Content-Type: text/html; charset=utf-8",true); // Acentuação
+                $sql  = "select r.id_resp, r.nome_resp, r.sobrenome_resp, r.cpf_resp, r.rg_resp, ";
+                $sql .= "r.cel_resp, r.tel_resp, r.email_resp, r.matricula_alu, ";
+                $sql .= "a.matricula_alu, a.nome_alu, a.sobrenome_alu ";
+                $sql .= "from responsavel r, aluno a ";
+                $sql .= "where r.matricula_alu = a.matricula_alu ";
+                $sql .= "and r.id_resp = '".$id_resp."';";
+                $query = mysql_query($sql);
+                $row = mysql_fetch_array($query);
             ?>
             <div class="content">
                 <div class="container-fluid">
@@ -53,9 +41,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="card-body">
-                                    
+                                <div class="card-body">   
                                     <div class="row">
                                         <div class="col-md-1">
                                             <div class="form-group">
@@ -112,21 +98,19 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="dt_nasc_resp" class="form-control-label"><strong>Aluno referente</strong></label>
-                                                <p class="form-control-plaintext"><?php echo $row1['matricula_alu']." - ".$row1['nome_alu']." ".$row1['sobrenome_alu'] ?></p>
+                                                <p class="form-control-plaintext"><?php echo $row['matricula_alu']." - ".$row['nome_alu']." ".$row['sobrenome_alu'] ?></p>
                                             </div>
                                         </div>
                                     </div>
                                     
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="btn-group" role="group"> 
-                                                <?php
-                                                    echo "<a class='btn btn-warning' href=editar_resp.php?id_resp=".$row['id_resp']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
-                                                                
-                                                           <a class='btn btn-danger' href='../controller/exclui_resp.php?id_resp=".$row['id_resp']."'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
-                                                           
-                                                           <a class='btn btn-light' href='../lista_responsavel.php'><i class='fa fa-undo'></i>&nbsp; Voltar</a>";
-                                                ?>
+                                            <div class="btn-group" role="group">
+                                                <a class='btn btn-warning' href='editar_alu.php?matricula_alu=<?php echo $id_resp ?>'><i class='fa fa-edit'></i>&nbsp; Editar</a>   
+                                                
+                                                <a class='btn btn-danger' onclick='deletaResp(<?php echo $id_resp ?>)' data-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
+                                                
+                                                <a class='btn btn-light' href='../lista_responsavel.php'><i class='fa fa-undo'></i>&nbsp; Voltar</a>
                                             </div>
                                         </div>
                                     </div>
@@ -138,13 +122,11 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
             </div>
         </div>
     </div>
+    
     <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/popper.min.js"></script>
     <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/chart.min.js"></script>
+    <script src="\projeto/assets/js/function-delete.js"></script>
     <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
-
 </body>
 
 </html>

@@ -2,13 +2,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger">
-                <h5 class="modal-title text-white">Exclusão de turma</h5>
+                <h5 class="modal-title text-white"><i class="fa fa-exclamation-triangle"></i>&nbsp; Aviso: Exclusão de turma</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
-            <div class="modal-body">Deseja realmente excluir essa turma?</div>
+            <div class="modal-body">Esta ação excluirá essa turma do diário de todos os professores, assim como as matrículas de alunos matriculados nessa turma. Deseja realmente excluir essa turma?</div>
 
             <div class="modal-footer">
                 <a id="confirmDelete"><button type="button" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp; Sim</button></a>

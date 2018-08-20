@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
 $nivel_necessario = 2;
 
@@ -10,12 +9,13 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
 include "../../../base/head.php"
 ?>
 <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
+<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
 </head>
+
 <body class="sidebar-fixed header-fixed">
     <div class="page-wrapper">
         <?php include "../../../base/nav.php" ?>
         <div class="main-container">
-            
             <?php
                 include "../../../base/sidebar.php";
                 include("../../../base/conexao.php");
@@ -23,20 +23,18 @@ include "../../../base/head.php"
                 $sql = mysql_query("select * from disciplina where id_disc = '".$id_disc."';");
                 $row = mysql_fetch_array($sql);
             ?>
-
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-light">
-                                    Editar disciplina <?php echo $row["id_disc"]." - ".$row["nome_disc"];?>
+                                    <h4>Editar disciplina <?php echo $row["id_disc"]." - ".$row["nome_disc"];?></h4>
                                 </div>
-
                                 <div class="card-body">
                                     <form action="../controller/atualiza_disc.php?id_disc=<?php echo $row["id_disc"]; ?>" method="post">
                                         <div class="row">
-                                            <div class="col-md-1">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="id_disc" class="form-control-label">Matrícula</label>
                                                     <input class="form-control" type="text"name="id_disc" id="id_disc" value="<?php echo $row["id_disc"];?>" readonly />
@@ -45,13 +43,13 @@ include "../../../base/head.php"
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="nome_disc" class="form-control-label">Nome</label>
-                                                    <input class="form-control" type="text" maxlength="100" name="nome_disc" id="nome_disc" value="<?php echo $row["nome_disc"];?>" />
+                                                    <input class="form-control" type="text" maxlength="100" name="nome_disc" id="nome_disc" value="<?php echo $row["nome_disc"];?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="sigla_disc" class="form-control-label">Sigla</label>
-                                                    <input class="form-control" type="text" maxlength="10" name="sigla_disc" id="sigla_disc" value="<?php echo $row["sigla_disc"];?>" />
+                                                    <input class="form-control" type="text" maxlength="10" name="sigla_disc" id="sigla_disc" value="<?php echo $row["sigla_disc"];?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -84,14 +82,9 @@ include "../../../base/head.php"
             </div>
         </div>
     </div>
-    
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/popper.min.js"></script>
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
 
+    <script src="\projeto/assets/js/bootstrap.min.js"></script>
+    <script src="\projeto/assets/js/carbon.js"></script>
 </body>
 
 </html>

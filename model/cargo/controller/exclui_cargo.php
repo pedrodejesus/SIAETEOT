@@ -7,9 +7,7 @@ include("../../../base/conexao.php");
 include("../../../base/logatvusu.php");
 
 $id_cargo = (int) @$_GET['id_cargo'];
-
 $sql = "delete from cargo where id_cargo = '$id_cargo';";
-
 $resultado = mysql_query($sql) or die(mysql_error());
 
 if($resultado){
@@ -17,6 +15,7 @@ if($resultado){
     mysql_close($conexao);
     header('Location: ../lista_cargo.php?msg=5');
 }else{
+    mysql_close($conexao);
     header('Location: ../lista_cargo.php?msg=6');
 }
 

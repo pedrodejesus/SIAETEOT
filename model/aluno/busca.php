@@ -14,7 +14,6 @@ while ($info = mysql_fetch_array($sql)) { // Exibe todos os valores encontrados
     echo "<td>".$info['nome_alu']."</td>";
     echo "<td>".$info['sobrenome_alu']."</td>"; 
     echo "<td>".$info['cpf_alu']."</td>";
-    //echo "<td>".$info['rg_alu']."</td>";
     echo "<td>".implode("/", array_reverse(explode("-", $info['dt_nasc_alu'])))."</td>";
     switch($info['tipo_alu']){
         case "I";
@@ -22,9 +21,6 @@ while ($info = mysql_fetch_array($sql)) { // Exibe todos os valores encontrados
             break;
         case "S";
             echo "<td>Ensino Subsequente</td>";
-            break;
-        default:
-            echo "<td>Não informado</td>";
             break;
     }
     echo "<td>".$info['cep']."</td>";
@@ -37,6 +33,4 @@ while ($info = mysql_fetch_array($sql)) { // Exibe todos os valores encontrados
                                                           </div>
                                                         </td></tr>";
 }
- 
-header("Content-Type: text/html; charset=utf-8",true); // Acentuação
 ?>

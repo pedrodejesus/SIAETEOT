@@ -4669,7 +4669,7 @@ tbody.collapse.show {
 }
 
 .card-header {
-    padding: 1rem;
+    padding: 1.3rem 1rem 0.7rem 1rem;
     margin-bottom: 0;
     background-color: #fff;
     border-bottom: 1px none
@@ -6270,7 +6270,7 @@ button.bg-danger:hover {
 }
 
 .bg-light {
-    background-color: #f8f9fa!important
+    background-color: #f8f9fb!important
 }
 
 a.bg-light:focus,
@@ -8369,6 +8369,12 @@ button.bg-dark:hover {
     .ml-md-auto,
     .mx-md-auto {
         margin-left: auto!important
+    }
+}
+
+@media (max-width:767.98px) {
+    #add{
+        margin-top: 15px !important;
     }
 }
 

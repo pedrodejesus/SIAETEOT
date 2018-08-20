@@ -53,13 +53,6 @@ if(isset($_GET['msg'])){
                   </div>';
 			break;
         case 8:
-			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Número de matrícula já existente!
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>';
-			break;
-        case 9:
 			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Número de CPF já existente!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

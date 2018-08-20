@@ -1,18 +1,15 @@
 <?php
-header("Content-Type: text/html; charset=utf-8",true); // Acentuação
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
 $nivel_necessario = 2;
 
-if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necessario)) { //Verifica se não há a variável da sessão que identifica o usuário
-	session_destroy(); // Destrói a sessão por segurança 
+if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necessario)) { // Verifica se não há a variável da sessão que identifica o usuário
+	session_destroy(); // Destrói a sessão por segurança
 	header("Location: index.php"); exit; // Redireciona o visitante de volta pro login
 }
 include "../../base/head.php";
 ?>
-<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-<script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
-<script type="text/javascript" src="search.js"></script>
 </head>
+
 <body class="sidebar-fixed header-fixed">
     <?php include "modal.php" ?>
     <div class="page-wrapper">
@@ -21,7 +18,7 @@ include "../../base/head.php";
         <?php include "../../base/sidebar.php" ?>
             <div class="content">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header bg-light">
                                 <div class="row">
@@ -32,12 +29,12 @@ include "../../base/head.php";
                                         <div class="input-group">
                                             <input type="text" id="busca" onkeyup="searchDisc(this.value)" class="form-control">
                                             <span class="input-group-btn">
-                                                <button type="submit" onclick="searchDisc(this.value)" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp; Pesquisar</button>
+                                                <button type="button" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp; Pesquisar</button>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <a href="view/cadastrar_disc.php"><button type="button" class="btn btn-primary"><i class="fa fa-plus-circle"></i>&nbsp; Adicionar</button></a>
+                                        <a href="view/cadastrar_disc.php"><button id='add' type="button" class="btn btn-primary col-sm-12"><i class="fa fa-plus-circle"></i>&nbsp; Adicionar</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -56,25 +53,26 @@ include "../../base/head.php";
                                         </thead>
                                         <tbody id="tbody_disc">
                                         <?php
-                                            include("../../base/conexao.php"); //Chama o arquivo de conexão com o banco de dados;
+                                            include("../../base/conexao.php");
                                                     
                                             $quantidade = 10;
-							
                                             $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
                                             $inicio = ($quantidade * $pagina) - $quantidade;
-
-                                            $data = mysql_query("select * from disciplina order by id_disc asc limit $inicio, $quantidade;") or die(mysql_error());
+                                            
+                                            $sql  = "select d.id_disc, d.nome_disc, d.sigla_disc, d.id_cur, ";
+                                            $sql .= "c.id_cur, c.nome_cur  ";
+                                            $sql .= "from disciplina d, curso c ";
+                                            $sql .= "where d.id_cur = c.id_cur ";
+                                            $sql .= "order by id_disc asc limit $inicio, $quantidade;";
+                                            
+                                            $data = mysql_query($sql) or die(mysql_error());
                                                 
-                                            while($info = mysql_fetch_array($data)){ //Transforma o conteúdo da variável $data em um array na variável $info;
-                                                
-                                                $data_cur = mysql_query("select * from curso where id_cur = '".$info["id_cur"]."';") or die(mysql_error());
-                                                $info_cur = mysql_fetch_array($data_cur);
-                                                
+                                            while($info = mysql_fetch_array($data)){                                                
                                                 echo "<tr scope='row'>";
                                                 echo "<td>".$info['id_disc']."</td>";
                                                 echo "<td>".$info['nome_disc']."</td>";
                                                 echo "<td>".$info['sigla_disc']."</td>";
-                                                echo "<td>".$info_cur['nome_cur']."</td>";
+                                                echo "<td>".$info['nome_cur']."</td>";
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                             <a class='btn btn-success' href=view/visualizar_disc.php?id_disc=".$info['id_disc']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
                                                                 
@@ -84,7 +82,6 @@ include "../../base/head.php";
                                                           </div>
                                                         </td></tr>";
                                             }
-                                            header("Content-Type: text/html; charset=utf-8",true); // Acentuação
                                         ?>
                                         </tbody>
                                     </table>
@@ -126,16 +123,11 @@ include "../../base/head.php";
         </div>
     </div>    
     
-    
-    <!--<script src="\projeto/assets/js/jquery.tablesorter.min.js"></script>
-	<script src="\projeto/assets/js/script_tablesorter.js"></script>-->
-    <script src="\projeto/assets/js/popper.min.js"></script>
+    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
     <script src="\projeto/assets/js/bootstrap.min.js"></script>
+    <script src="search.js"></script>
     <script src="\projeto/assets/js/function-delete.js"></script>
-    <script src="\projeto/assets/js/function-search.js"></script>
-    <script src="\projeto/assets/js/chart.min.js"></script>
     <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
 </body>
 
 </html>

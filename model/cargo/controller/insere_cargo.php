@@ -19,10 +19,7 @@ if($resultado){
     mysql_close($conexao);
     header('Location: ../lista_cargo.php?msg=1');
 }else{
+    mysql_close($conexao);
     header('Location: ../lista_cargo.php?msg=2');
-    /*echo "Erro na inserção de dados!<br>".$sql;
-	echo trigger_error(mysql_error());*/
 }
-
-
 ?>

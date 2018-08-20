@@ -8,7 +8,7 @@ $inicio = ($quantidade * $pagina) - $quantidade;
 $valor = $_GET['valor']; // Recebe o valor enviado
 $sql = mysql_query("select * from responsavel where nome_resp like '%".$valor."%' or sobrenome_resp LIKE '%".$valor."%' order by nome_resp asc limit $inicio, $quantidade"); // Procura titulos no banco relacionados ao valor
  
-while($info = mysql_fetch_array($sql)){ //Transforma o conteúdo da variável $data em um array na variável $info;
+while($info = mysql_fetch_array($sql)){
                                                 echo "<tr scope='row'>";
                                                 echo "<td>".$info['id_resp']."</td>";
                                                 echo "<td>".$info['nome_resp']."</td>";
@@ -25,6 +25,4 @@ while($info = mysql_fetch_array($sql)){ //Transforma o conteúdo da variável $dat
                                                           </div>
                                                         </td></tr>";
                                             }
- 
-header("Content-Type: text/html; charset=utf-8",true); // Acentuação
 ?>

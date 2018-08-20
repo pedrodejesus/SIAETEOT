@@ -7,9 +7,9 @@ include("../../../base/conexao.php");
 include("../../../base/logatvusu.php");
 $encoding = mb_internal_encoding();
 
-$nome_setor        = mb_strtoupper($_POST["nome_setor"], $encoding);
+$nome_setor     = mb_strtoupper($_POST["nome_setor"], $encoding);
 
-$sql   = "insert into setor values ";  // Adiciona os dados à tabela;
+$sql   = "insert into setor values ";
 $sql  .= "('0', '$nome_setor');";
 
 $resultado = mysql_query($sql);
@@ -19,10 +19,7 @@ if($resultado){
     mysql_close($conexao);
     header('Location: ../lista_setor.php?msg=1');
 }else{
+    mysql_close($conexao);
     header('Location: ../lista_setor.php?msg=2');
-    /*echo "Erro na inserção de dados!<br>".$sql;
-	echo trigger_error(mysql_error());*/
 }
-
-
 ?>

@@ -10,7 +10,7 @@ $encoding = mb_internal_encoding();
 $nome_ue        = mb_strtoupper($_POST["nome_ue"], $encoding);
 $tel_ue        = $_POST["tel_ue"];
 
-$sql   = "insert into unidade_estudantil values ";  // Adiciona os dados à tabela;
+$sql   = "insert into unidade_estudantil values ";
 $sql  .= "('0', '$nome_ue', '$tel_ue');";
 
 $resultado = mysql_query($sql);
@@ -20,10 +20,7 @@ if($resultado){
     mysql_close($conexao);
     header('Location: ../lista_ue.php?msg=1');
 }else{
+    mysql_close($conexao);
     header('Location: ../lista_ue.php?msg=2');
-    /*echo "Erro na inserção de dados!<br>".$sql;
-	echo trigger_error(mysql_error());*/
 }
-
-
 ?>

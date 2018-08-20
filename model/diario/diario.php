@@ -3,6 +3,8 @@ header("Content-Type: text/html; charset=utf-8",true); // Acentuação
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
 $nivel_necessario = 2;
 
+$id_func = $_SESSION['FuncID'];
+
 if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necessario)) { //Verifica se não há a variável da sessão que identifica o usuário
 	session_destroy(); // Destrói a sessão por segurança 
 	header("Location: index.php"); exit; // Redireciona o visitante de volta pro login
@@ -18,8 +20,27 @@ include "../../base/head.php";
     <div class="page-wrapper">
     <?php include "../../base/nav.php" ?>
         <div class="main-container">
-        <?php include "../../base/sidebar.php" ?>
+            <?php 
+                include "../../base/conexao.php";
+                include "../../base/sidebar.php";
+    
+                $sql  = "select m.id_func, m.id_disc, ";
+                $sql .= "f.id_func, f.nome_func, f.sobrenome_func, ";
+                $sql .= "d.id_disc, d.nome_disc ";
+                $sql .= "from ministra m, funcionario f, disciplina d ";
+                $sql .= "where m.id_disc = d.id_disc ";
+                $sql .= "and m.id_func = f.id_func ";
+                $sql .= "and f.id_func = '".$id_func."';";
+    
+                $query = mysql_query($sql);
+                $row = mysql_fetch_array($query);
+            ?>
             <div class="content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <?php echo  $row['nome_func']." ".$row['sobrenome_func']; ?>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="nav nav-tabs" role="tablist">

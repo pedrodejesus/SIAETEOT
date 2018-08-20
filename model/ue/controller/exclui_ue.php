@@ -7,9 +7,7 @@ include("../../../base/conexao.php");
 include("../../../base/logatvusu.php");
 
 $id_ue = (int) @$_GET['id_ue'];
-
 $sql = "delete from unidade_estudantil where id_ue = '$id_ue';";
-
 $resultado = mysql_query($sql) or die(mysql_error());
 
 if($resultado){
@@ -17,6 +15,7 @@ if($resultado){
     mysql_close($conexao);
     header('Location: ../lista_ue.php?msg=5');
 }else{
+    mysql_close($conexao);
     header('Location: ../lista_ue.php?msg=6');
 }
 

@@ -23,6 +23,5 @@ if($resultado){
 }else{
     mysql_close($conexao);
     header('Location: ../lista_funcao.php?msg=4');
-    //echo "Erro na atualização dos dados.<br>".$sql;
 }
 ?>

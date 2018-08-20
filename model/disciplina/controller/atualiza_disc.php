@@ -23,8 +23,7 @@ if($resultado){
     mysql_close($conexao); 
     header('Location: ../lista_disciplina.php?msg=3');
 }else{
-    echo $sql;
-    //header('Location: ../lista_disciplina.php?msg=4');
-    //echo "Erro na atualização dos dados.<br>".$sql;
+    mysql_close($conexao); 
+    header('Location: ../lista_disciplina.php?msg=4');
 }
 ?>

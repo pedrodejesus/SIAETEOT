@@ -1,7 +1,7 @@
 <?php
 // Verifica se houve POST e se o usuário ou a senha é(são) vazio(s)
 if (!empty($_POST) AND (empty($_POST['usuario']) OR empty($_POST['senha']))) {
-	header("Location: login.php"); exit;
+	header("Location: ../login.php"); exit;
 }
 
 mysql_connect('localhost', 'root', '') or trigger_error(mysql_error()); // Tenta se conectar ao servidor MySQL
@@ -11,7 +11,7 @@ $usuario = mysql_real_escape_string($_POST['usuario']);
 $senha = mysql_real_escape_string($_POST['senha']);
 
 // Validação do usuário e senha digitados
-$sql = "SELECT id_usu, nome_usu, nivel FROM usuario WHERE (usuario = '". $usuario ."') AND (senha = '". sha1($senha) ."') AND (ativo = 1) LIMIT 1";
+$sql = "SELECT id_usu, nome_usu, nivel, id_func FROM usuario WHERE (usuario = '". $usuario ."') AND (senha = '". sha1($senha) ."') AND (ativo = 1) LIMIT 1";
 $query = mysql_query($sql);
 
 if (mysql_num_rows($query) != 1) {
@@ -29,6 +29,7 @@ if (mysql_num_rows($query) != 1) {
 	$_SESSION['UsuarioID'] = $resultado['id_usu'];
 	$_SESSION['UsuarioNome'] = $resultado['nome_usu'];
 	$_SESSION['UsuarioNivel'] = $resultado['nivel'];
+    $_SESSION['FuncID'] = $resultado['id_func'];
 
 	// Redireciona o visitante
 	header("Location: ../index.php"); exit;

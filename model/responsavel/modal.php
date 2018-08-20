@@ -2,13 +2,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger">
-                <h5 class="modal-title text-white">Exclusão de aluno</h5>
+                <h5 class="modal-title text-white"><i class="fa fa-exclamation-triangle"></i>&nbsp; Aviso: Exclusão de responsável</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
-            <div class="modal-body">Deseja realmente excluir esse aluno?</div>
+            <div class="modal-body">Esta ação excluirá todos os dados referentes a este responsável permanentemente. Deseja realmente excluir esse responsável?</div>
 
             <div class="modal-footer">
                 <a id="confirmDelete"><button type="button" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp; Sim</button></a>

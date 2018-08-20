@@ -1,6 +1,7 @@
 <?php
 session_start();
 $usuario = $_SESSION['UsuarioNome'];
+$id_usuario = $_SESSION['UsuarioID'];
 
 include "../../../base/conexao.php";
 include "../../../base/logatvusu.php";

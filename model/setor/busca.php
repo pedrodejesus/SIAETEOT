@@ -23,5 +23,5 @@ while($info = mysql_fetch_array($sql)){ //Transforma o conteúdo da variável $dat
                                                         </td></tr>";
                                             }
  
-header("Content-Type: text/html; charset=utf-8",true); // Acentuação
+
 ?>

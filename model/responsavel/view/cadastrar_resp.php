@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
 $nivel_necessario = 2;
 
@@ -9,35 +8,31 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
 }
 include "../../../base/head.php"
 ?>
-    <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
-    <link href="\projeto/assets/js/jquery.autocomplete.css" rel="stylesheet">
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
-    <script src="\projeto/assets/js/jquery.autocomplete.js"></script>
-    <script type="text/javascript">
-        $().ready(function() {
-            $("#matricula_alu").autocomplete("filtra_alu.php", {
-                width: 250,
-                matchContains: true,
-                //mustMatch: true,
-                //minChars: 0,
-                //multiple: true,
-                //highlight: false,
-                //multipleSeparator: ",",
-                selectFirst: false
-            });
+<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
+<script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
+<script src="\projeto/assets/js/jquery.autocomplete.js"></script>
+<link href="\projeto/assets/js/jquery.autocomplete.css" rel="stylesheet">
+<style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
+<script type="text/javascript">
+    $().ready(function() {
+        $("#matricula_alu").autocomplete("filtra_alu.php", {
+            width: 250,
+            matchContains: true,
+            //mustMatch: true,
+            //minChars: 0,
+            //multiple: true,
+            //highlight: false,
+            //multipleSeparator: ",",
+            selectFirst: false
         });
-    </script>
+    });
+</script>
 </head>
 <body class="sidebar-fixed header-fixed">
     <div class="page-wrapper">
-
         <?php include "../../../base/nav.php" ?>
-
         <div class="main-container">
-
             <?php include "../../../base/sidebar.php" ?>
-
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -46,11 +41,10 @@ include "../../../base/head.php"
                                 <div class="card-header bg-light">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h4>Adicionar Responsável</h4>
+                                            <h4>Adicionar responsável</h4>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="card-body">
                                     <form action="../controller/insere_resp.php" method="post">
                                         <div class="row">
@@ -63,25 +57,35 @@ include "../../../base/head.php"
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="nome_resp" class="form-control-label">Nome</label>
-                                                    <input class="form-control" type="text" maxlength="30" name="nome_resp" id="nome_resp" />
+                                                    <input class="form-control" type="text" maxlength="30" name="nome_resp" id="nome_resp" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="sobrenome_resp" class="form-control-label">Sobrenome</label>
-                                                    <input class="form-control" type="text" maxlength="70" name="sobrenome_resp" id="sobrenome_resp" />
+                                                    <input class="form-control" type="text" maxlength="70" name="sobrenome_resp" id="sobrenome_resp" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="cpf_resp" class="form-control-label">CPF</label>
-                                                    <input class="form-control" type="text" name="cpf_resp" id="cpf_resp" />
+                                                    <input class="form-control" type="text" name="cpf_resp" id="cpf_resp" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
+                                                <script>
+                                                    function SomenteNumero(e){
+                                                        var tecla=(window.event)?event.keyCode:e.which;   
+                                                        if((tecla>47 && tecla<58)) return true;
+                                                        else{
+                                                            if (tecla==8 || tecla==0) return true;
+                                                        else  return false;
+                                                        }
+                                                    }
+                                                </script>
                                                 <div class="form-group">
                                                     <label for="rg_resp" class="form-control-label">RG</label>
-                                                    <input class="form-control" type="text" maxlength="14" name="rg_resp" id="rg_resp" />
+                                                    <input onkeypress='return SomenteNumero(event)' class="form-control" type="text" maxlength="14" name="rg_resp" id="rg_resp" />
                                                 </div>
                                             </div>
                                         </div>
@@ -101,13 +105,13 @@ include "../../../base/head.php"
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="email_resp">E-mail</label>
-                                                    <input id="email_resp" name="email_resp" maxlength="60" class="form-control" />
+                                                    <input id="email_resp" name="email_resp" maxlength="60" class="form-control" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="matricula_alu" class="form-control-label">Aluno Referente</label>
-                                                    <input class="form-control" type="text" name="matricula_alu" id="matricula_alu" />
+                                                    <input class="form-control" type="text" name="matricula_alu" id="matricula_alu" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -129,15 +133,11 @@ include "../../../base/head.php"
             </div>
         </div>
     </div>
-	<script src="\projeto/assets/js/cep.js"></script>
-    <script src="\projeto/assets/js/popper.min.js"></script>
+
     <script src="\projeto/assets/js/bootstrap.min.js"></script>
 	<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
 	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/chart.min.js"></script>
     <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
-
 </body>
 
 </html>

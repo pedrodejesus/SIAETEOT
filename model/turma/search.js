@@ -1,5 +1,5 @@
 var req;
-function searchDisc(valor) { // Função para buscar aluno
+function searchTurma(valor) { // Função para buscar aluno
  
     if(window.XMLHttpRequest) { // Verificando Browser
        req = new XMLHttpRequest();
@@ -13,11 +13,11 @@ function searchDisc(valor) { // Função para buscar aluno
     req.onreadystatechange = function() { // Quando o objeto recebe o retorno, chamamos a seguinte função;
         
         if(req.readyState == 1) { // Exibe a mensagem "Buscando..." enquanto carrega
-            document.getElementById('tbody_alu').innerHTML = 'Buscando...';
+            document.getElementById('tbody_turma').innerHTML = 'Buscando...';
         }else if(req.readyState == 4 && req.status == 200) { // Verifica se o Ajax realizou todas as operações corretamente
         
         var resposta = req.responseText; // Resposta retornada pelo busca.php        
-        document.getElementById('tbody_disc').innerHTML = resposta; // Abaixo colocamos a(s) resposta(s) na div resultado
+        document.getElementById('tbody_turma').innerHTML = resposta; // Abaixo colocamos a(s) resposta(s) na div resultado
         }
         /*if(!resposta){
             document.getElementById('card-body').innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Aluno não encontrado!</div>";

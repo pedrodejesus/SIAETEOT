@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
 $nivel_necessario = 2;
 
@@ -9,27 +8,29 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
 }
 include "../../../base/head.php"
 ?>
+<style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
+<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
 </head>
+
 <body class="sidebar-fixed header-fixed">
     <div class="page-wrapper">
         <?php include "../../../base/nav.php" ?>
-        <div class="main-container">
-            
+        <div class="main-container"> 
             <?php
                 include "../../../base/sidebar.php";
                 include("../../../base/conexao.php");
+
                 $id_setor = (int) $_GET['id_setor'];
                 $sql = mysql_query("select * from setor where id_setor = '".$id_setor."';");
                 $row = mysql_fetch_array($sql);
             ?>
-
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-light">
-                                    EDITAR SETOR <?php echo $row["id_setor"]." - ".$row["nome_setor"];?>
+                                    <h4>Editar setor <?php echo $row["id_setor"]." - ".$row["nome_setor"];?></h4>
                                 </div>
 
                                 <div class="card-body">
@@ -44,7 +45,7 @@ include "../../../base/head.php"
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="nome_setor" class="form-control-label">Nome</label>
-                                                    <input class="form-control" type="text" maxlength="20" name="nome_setor" id="nome_setor" value="<?php echo $row["nome_setor"];?>" />
+                                                    <input class="form-control" type="text" maxlength="20" name="nome_setor" id="nome_setor" value="<?php echo $row["nome_setor"];?>" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -65,14 +66,9 @@ include "../../../base/head.php"
             </div>
         </div>
     </div>
-    
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/popper.min.js"></script>
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
 
+    <script src="\projeto/assets/js/bootstrap.min.js"></script>
+    <script src="\projeto/assets/js/carbon.js"></script>
 </body>
 
 </html>

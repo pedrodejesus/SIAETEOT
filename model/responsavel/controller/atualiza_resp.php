@@ -28,7 +28,7 @@ if($resultado){
     mysql_close($conexao); 
     header('Location: ../lista_responsavel.php?msg=3');
 }else{
+    mysql_close($conexao); 
     header('Location: ../lista_responsavel.php?msg=4');
-    //echo "Erro na atualização dos dados.<br>".$sql;
 }
 ?>
