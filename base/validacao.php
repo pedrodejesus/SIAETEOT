@@ -4,20 +4,19 @@ if (!empty($_POST) AND (empty($_POST['usuario']) OR empty($_POST['senha']))) {
 	header("Location: ../login.php"); exit;
 }
 
-mysql_connect('localhost', 'root', '') or trigger_error(mysql_error()); // Tenta se conectar ao servidor MySQL
-mysql_select_db('projeto') or trigger_error(mysql_error()); // Tenta se conectar a um banco de dados MySQL
+include "conexao.php";
 
-$usuario = mysql_real_escape_string($_POST['usuario']);
-$senha = mysql_real_escape_string($_POST['senha']);
+$usuario = mysqli_real_escape_string($conexao, $_POST['usuario']);
+$senha = mysqli_real_escape_string($conexao, $_POST['senha']);
 
 // Validação do usuário e senha digitados
 $sql = "SELECT id_usu, nome_usu, nivel, id_func FROM usuario WHERE (usuario = '". $usuario ."') AND (senha = '". sha1($senha) ."') AND (ativo = 1) LIMIT 1";
-$query = mysql_query($sql);
+$query = mysqli_query($conexao, $sql);
 
-if (mysql_num_rows($query) != 1) {
-	echo "Login inválido!", trigger_error(mysql_error()); exit; // Mensagem de erro quando os dados são inválidos e/ou o usuário não foi encontrado
+if (mysqli_num_rows($query) != 1) {
+	echo "Login inválido!", trigger_error(mysqli_error($conexao)); exit; // Mensagem de erro quando os dados são inválidos e/ou o usuário não foi encontrado
 } else {
-	$resultado = mysql_fetch_assoc($query); // Salva os dados encontados na variável $resultado
+	$resultado = mysqli_fetch_assoc($query); // Salva os dados encontados na variável $resultado
 
 	
 ////// 4.0 - Salvando os dados na sessão do PHP ////////
