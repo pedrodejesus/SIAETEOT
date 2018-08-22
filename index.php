@@ -7,7 +7,7 @@ $nivel_necessario = 2;
 // Verifica se não há a variável da sessão que identifica o usuário
 if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necessario)) {
 	session_destroy(); // Destrói a sessão por segurança
-	header("Location: index.php"); exit; // Redireciona o visitante de volta pro login
+	header("Location: login.php"); exit; // Redireciona o visitante de volta pro login
 }
 ?>
 <!DOCTYPE html>

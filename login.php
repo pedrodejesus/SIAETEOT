@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-    
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETEOT - Escola Técnica Estadual Oscar Tenório</title>
-    <link href="assets/css/style.css" rel="stylesheet">
+<?php
+include "base/head.php"
+?>
 </head>
 <body>
     <div class="page-wrapper flex-row align-items-center">
@@ -14,11 +8,39 @@
             <div class="row justify-content-center">
                 <form action="base/validacao.php" method="post" class="col-md-5">
                     <div class="card p-4">
-                        <div class="col-sm-4 offset-sm-4"><img src="assets/img/logo.png" class="img-fluid" /></div>
-                        <div class="card-header text-center text-uppercase h4 font-weight-light">
-                            Login
-                        </div>
+                        <div class="col-sm-4 offset-sm-4"><img src="assets/img/logo.jpg" class="img-fluid" /></div>
+                        <div class="card-header text-center text-uppercase h4 font-weight-light">SISETEOT</div>
+                        <h5 class="text-center">LOGIN</h5>
+                        <?php 
+                            if(isset($_GET['msg'])){
+                                $msg = $_GET['msg'];
 
+                                switch($msg){
+                                    case 1:
+                                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Usuário ou senha incorretos ou inexistentes!
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>';
+                                        break;
+                                    case 2:
+                                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Usuário bloqueado!
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>';
+                                        break;
+                                    case 3:
+                                        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">Usuário inexistente!
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>';
+                                        break;
+                                }
+                                $msg = 0;
+                            }
+                        ?>
                         <div class="card-body py-5">
                             <div class="form-group">
                                 <label class="form-control-label">Usuário</label>
@@ -52,10 +74,9 @@
             </div>
         </div>
     </div>
+    
+    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="\projeto/assets/js/bootstrap.min.js"></script>
 </body>
-<!-- Referenciando as classes com scripts jQuery e bootstrap (http://getbootstrap.com/) -->
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/login.js"></script>
 
 </html>
