@@ -15,6 +15,7 @@ $sql .= "and m.id_disc = d.id_disc ";
 $sql .= "and t.id_turma = '".$id_turma."' ";
 $sql .= "and m.id_disc = '".$id_disc."' ";
 $sql .= "order by nome_alu asc;";
+//$sql = "call select_alunos_turma_disc(".$id_turma.", ".$id_disc.");";
 $query = mysqli_query($conexao, $sql); 
 
 $cont_nota = 1;
@@ -33,8 +34,16 @@ while($row_alu = mysqli_fetch_array($query)){
     $sql_check .= "and b.matricula_alu = '".$row_alu['matricula_alu']."' ";
     $sql_check .= "and b.id_turma = '".$id_turma."' ";
     $sql_check .= "and b.id_disc = '".$id_disc."' ";
+    //$sql_check = "call select_verifica_registro_boletim(".$row_alu['matricula_alu'].", ".$id_turma.", ".$id_disc.");";
     
-    $query_check = mysqli_query($conexao, $sql_check);
+    /*mysqli_free_result($query);
+    mysqli_next_result($conexao);*/
+    $query_check = mysqli_query($conexao, $sql_check) or die("Erro ".mysqli_error($conexao));
+    /*if ($query_check){
+        echo "true";
+    } else{
+        echo "false";
+    }*/
     $query_rows = mysqli_num_rows($query_check);
     
     if($query_rows == 0){
@@ -50,7 +59,7 @@ while($row_alu = mysqli_fetch_array($query)){
     echo "<td><input class='form-control form-control-sm' type='text' maxlength='4' id='recu".$cont_rec++."' name='rec[]' readonly /></td>";
     echo "<td id='resp".$cont_resp++."' ></td>"; 
     echo "<td><input type='hidden' name='matricula_alu[]' id='matricula_alu[]' value='".$row_alu['matricula_alu']."' /></td>";
-    echo "</tr>"; 
+    echo "</tr>";
     
 }  
 ?>

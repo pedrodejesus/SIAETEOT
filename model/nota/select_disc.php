@@ -6,7 +6,7 @@ $sql  = "select dpt.id_disc_pdr_turma, dpt.id_turma, dpt.id_disc, ";
 $sql .= "d.id_disc, d.nome_disc, d.sigla_disc ";
 $sql .= "from disc_pdr_tur dpt, disciplina d ";
 $sql .= "where dpt.id_disc = d.id_disc ";
-$sql .= "and id_turma = '".$id_turma."';";
+$sql .= "and id_turma = '".$id_turma."';"; /* SELECT DE DISCIPLINAS PADRÃO DA TURMA */
       
 $query = mysqli_query($conexao, $sql);
  

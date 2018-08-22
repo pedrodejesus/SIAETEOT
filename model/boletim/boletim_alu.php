@@ -39,28 +39,6 @@ include "../../base/head.php"
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <!--<div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="matricula_alu" class="form-control-label"><strong>Matrícula</strong></label>
-                                                <p class="form-control-plaintext"><?php /*echo $row["matricula_alu"];*/ ?></p>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="nome_alu" class="form-control-label"><strong>Nome</strong></label>
-                                                <p class="form-control-plaintext"><?php /*echo $row["nome_alu"];*/ ?></p>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="sobrenome_alu" class="form-control-label"><strong>Sobrenome</strong></label>
-                                                <p class="form-control-plaintext"><?php /*echo $row["sobrenome_alu"];*/ ?></p>
-                                            </div>
-                                        </div>
-                                    </div>-->
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div id="table-list" class="table-responsive">
@@ -68,19 +46,26 @@ include "../../base/head.php"
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Disciplinas</th>
-                                                            <th scope="col" class="text-center">Nota 1º Tri</th>
-                                                            <th scope="col" class="text-center">Rec</th>
-                                                            <th scope="col" class="text-center">Presença</th>
-                                                            <th scope="col" class="text-center">Nota 2º Tri</th>
-                                                            <th scope="col" class="text-center">Rec</th>
-                                                            <th scope="col" class="text-center">Presença</th>
-                                                            <th scope="col" class="text-center">Nota 3º Tri</th>
-                                                            <th scope="col" class="text-center">Rec</th>
-                                                            <th scope="col" class="text-center">Presença</th>
-                                                            <th scope="col" class="text-center">Resultado</th>
-                                                            <th scope="col" class="text-center">Nota R.F.</th>
-                                                            <th scope="col" class="text-center">Resultado Final</th>
+                                                            <th scope="col" colspan="3" class="text-center">1ª Etapa</th>
+                                                            <th scope="col" colspan="3" class="text-center">2ª Etapa</th>
+                                                            <th scope="col" colspan="3" class="text-center">3ª Etapa</th>
+                                                            <th scope="col" colspan="2" class="text-center">Total Anual</th>
+                                                            <th scope="col" class="text-center">Rec. Final</th>
                                                         </tr>
+                                                        <tr>
+                                                            <th scope="col">Disciplinas</th>
+                                                            <th scope="col" class="text-center">Nota</th>
+                                                            <th scope="col" class="text-center">Rec.</th>
+                                                            <th scope="col" class="text-center">% Faltas</th>
+                                                            <th scope="col" class="text-center">Nota</th>
+                                                            <th scope="col" class="text-center">Rec.</th>
+                                                            <th scope="col" class="text-center">% Faltas</th>
+                                                            <th scope="col" class="text-center">Nota</th>
+                                                            <th scope="col" class="text-center">Rec.</th>
+                                                            <th scope="col" class="text-center">% Faltas</th>
+                                                            <th scope="col" class="text-center">Média</th>
+                                                            <th scope="col" class="text-center">% Faltas</th>
+                                                            <th  scope="row" class="text-center">Rec. Final</th>
                                                     </thead>
                                                     <tbody>
                                                         <?php
