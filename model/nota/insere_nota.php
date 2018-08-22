@@ -29,7 +29,7 @@ foreach($matricula_alu as $index => $matricula){
             $sql  .= "where matricula_alu = '".$matricula."' ";
             $sql  .= "and id_disc = '".$id_disc."' ";
             $sql  .= "and id_turma = '".$id_turma."'; ";
-            $resultado = mysql_query($sql);
+            $resultado = mysqli_query($conexao, $sql);
         break;
         case 2:
             $sql   = "update boletim set ";
@@ -37,7 +37,7 @@ foreach($matricula_alu as $index => $matricula){
             $sql  .= "where matricula_alu = '".$matricula."' ";
             $sql  .= "and id_disc = '".$id_disc."' ";
             $sql  .= "and id_turma = '".$id_turma."'; ";
-            $resultado = mysql_query($sql);
+            $resultado = mysqli_query($conexao, $sql);
         break;
         case 3:
             $sql   = "update boletim set ";
@@ -45,13 +45,13 @@ foreach($matricula_alu as $index => $matricula){
             $sql  .= "where matricula_alu = '".$matricula."' ";
             $sql  .= "and id_disc = '".$id_disc."' ";
             $sql  .= "and id_turma = '".$id_turma."'; ";
-            $resultado = mysql_query($sql);
+            $resultado = mysqli_query($conexao, $sql);
         break;
     } 
 }
 if($resultado){
     //$registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
-    mysql_close($conexao);
+    mysqli_close($conexao);
     header('Location: lanca_nota.php?msg=1');
     
 }else{

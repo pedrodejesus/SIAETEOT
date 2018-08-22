@@ -44,8 +44,8 @@ include "../../../base/head.php"
                 $sql .= "from responsavel r, aluno a ";
                 $sql .= "where r.matricula_alu = a.matricula_alu ";
                 $sql .= "and r.id_resp = '".$id_resp."';";
-                $query = mysql_query($sql);
-                $row = mysql_fetch_array($query);
+                $query = mysqli_query($conexao, $sql);
+                $row = mysqli_fetch_array($query);
             ?>
             <div class="content">
                 <div class="container-fluid">

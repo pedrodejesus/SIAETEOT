@@ -15,13 +15,13 @@ $sql .= "and m.id_disc = d.id_disc ";
 $sql .= "and t.id_turma = '".$id_turma."' ";
 $sql .= "and m.id_disc = '".$id_disc."' ";
 $sql .= "order by nome_alu asc;";
-$query = mysql_query($sql); 
+$query = mysqli_query($conexao, $sql); 
 
 $cont_nota = 1;
 $cont_rec = 1;
 $cont_resp = 1;
 $num_chamada_prov = 1;
-while($row_alu = mysql_fetch_array($query)){ 
+while($row_alu = mysqli_fetch_array($query)){ 
     $sql_check  = "select a.matricula_alu, a.nome_alu, a.sobrenome_alu, ";
     $sql_check .= "t.id_turma, t.numero, t.ano_letivo, ";
     $sql_check .= "d.id_disc, d.nome_disc, ";
@@ -34,12 +34,12 @@ while($row_alu = mysql_fetch_array($query)){
     $sql_check .= "and b.id_turma = '".$id_turma."' ";
     $sql_check .= "and b.id_disc = '".$id_disc."' ";
     
-    $query_check = mysql_query($sql_check);
-    $query_rows = mysql_num_rows($query_check);
+    $query_check = mysqli_query($conexao, $sql_check);
+    $query_rows = mysqli_num_rows($query_check);
     
     if($query_rows == 0){
         $sql_insert = "insert into boletim (id_boletim, matricula_alu, id_turma, id_disc) values (0, '".$row_alu['matricula_alu']."', '".$id_turma."', '".$id_disc."');";
-        $query_insert = mysql_query($sql_insert);
+        $query_insert = mysqli_query($conexao, $sql_insert);
     }
     
     echo "<tr scope='row'>"; 

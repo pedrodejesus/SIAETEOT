@@ -15,14 +15,14 @@ $sql  = "update unidade_estudantil set ";
 $sql .= "nome_ue='".$nome_ue."', tel_ue='".$tel_ue."' ";
 $sql .= "where id_ue = '".$id_ue."';";
 
-$resultado = mysql_query($sql) or die(mysql_error());
+$resultado = mysqli_query($conexao, $sql) or die(mysql_error($conexao));
 
 if($resultado){
-    $registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
-    mysql_close($conexao); 
+    $registra_atv = mysqli_query ($conexao, lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
+    mysqli_close($conexao); 
     header('Location: ../lista_ue.php?msg=3');
 }else{
-    mysql_close($conexao); 
+    mysqli_close($conexao); 
     header('Location: ../lista_disciplina.php?msg=4');
 }
 ?>

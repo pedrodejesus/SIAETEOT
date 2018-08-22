@@ -28,13 +28,13 @@ include "../../../base/head.php"
                 $sql .= "and m.id_turma = t.id_turma  ";
                 $sql .= "and t.id_turma = '".$id_turma."' order by nome_alu asc;";
         
-                $query = mysql_query($sql);
-                $row = mysql_fetch_array($query);
+                $query = mysqli_query($conexao, $sql);
+                $row = mysqli_fetch_array($query);
                     
                 if(empty($row)){ //Query para que, se não houverem alunos matriculados na turma, fazer um select simples ao invés de um completo
                     $sql = "select * from turma where id_turma = '".$id_turma."'";
-                    $query = mysql_query($sql) or die(mysql_error());;
-                    $row = mysql_fetch_array($query);
+                    $query = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));;
+                    $row = mysqli_fetch_array($query);
                 }
             ?>
 
@@ -177,15 +177,15 @@ include "../../../base/head.php"
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>";
-                                                                $query_alu = mysql_query($sql);
-                                                                while($row_alu = mysql_fetch_array($query_alu)){
+                                                                $query_alu = mysqli_query($conexao, $sql);
+                                                                while($row_alu = mysqli_fetch_array($query_alu)){
                                                                 echo "<tr scope='row'>";
                                                                 echo "<td>".$row_alu['matricula_alu']."</td>";
                                                                 echo "<td>".$row_alu['nome_alu']." ".$row_alu['sobrenome_alu']."</td>";
                                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                                         <a class='btn btn-success' href=../../matriculado/view/visualizar_mat.php?matricula_alu=".$row_alu['matricula_alu']."><i class='fa fa-info-circle'></i>&nbsp; Visualizar matrícula</a>
                                                                         
-                                                                        <a class='btn btn-warning' href=view/visualizar_turma.php?matricula_alu=".$info['matricula_alu']."><i class='fa fa-exchange-alt'></i>&nbsp; Transferir de turma</a>
+                                                                        <a class='btn btn-warning' href=view/visualizar_turma.php?matricula_alu=".$row_alu['matricula_alu']."><i class='fa fa-exchange-alt'></i>&nbsp; Transferir de turma</a>
                                                                       </div>
                                                                     </td></tr>";
                                                                 } 
@@ -220,8 +220,8 @@ include "../../../base/head.php"
                                                             $sql_disc .= "from disc_pdr_tur dpt, disciplina d ";
                                                             $sql_disc .= "where dpt.id_disc = d.id_disc ";
                                                             $sql_disc .= "and id_turma = '".$id_turma."' order by nome_disc asc;";
-                                                            $query_disc = mysql_query($sql_disc);
-                                                            while($row_disc = mysql_fetch_array($query_disc)){
+                                                            $query_disc = mysqli_query($conexao, $sql_disc);
+                                                            while($row_disc = mysqli_fetch_array($query_disc)){
                                                                 echo "<tr scope='row'>";
                                                                 echo "<td>".$row_disc['id_disc']."</td>";
                                                                 echo "<td>".$row_disc['nome_disc']."</td>";

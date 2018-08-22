@@ -21,14 +21,14 @@ $sql  = "update responsavel set ";
 $sql .= "id_resp='".$id_resp."', nome_resp='".$nome_resp."', sobrenome_resp='".$sobrenome_resp."', cpf_resp='".$cpf_resp."', rg_resp='".$rg_resp."', cel_resp='".$cel_resp."', tel_resp='".$tel_resp."', email_resp='".$email_resp."', matricula_alu='".$matricula_alu."' ";
 $sql .= "where id_resp = '".$id_resp."';";
 
-$resultado = mysql_query($sql) or die(mysql_error());
+$resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 if($resultado){
-    $registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
-    mysql_close($conexao); 
+    $registra_atv = mysqli_query ($conexao, lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
+    mysqli_close($conexao); 
     header('Location: ../lista_responsavel.php?msg=3');
 }else{
-    mysql_close($conexao); 
+    mysqli_close($conexao); 
     header('Location: ../lista_responsavel.php?msg=4');
 }
 ?>

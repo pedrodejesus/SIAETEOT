@@ -12,9 +12,9 @@ if (!$q) return;
 
 $sql = "select matricula_alu, nome_alu, sobrenome_alu from aluno where nome_alu like '%$q%' or sobrenome_alu like '%$q%'";
 
-$rsd = mysql_query($sql);
+$rsd = mysqli_query($conexao, $sql);
 
-while($rs = mysql_fetch_array($rsd)) {
+while($rs = mysqli_fetch_array($rsd)) {
 	$_SESSION["smatricula_alu"] = $rs['matricula_alu'];
 	echo $rs['matricula_alu']." - ".$rs['nome_alu']." ".$rs['sobrenome_alu']."\n";
 }

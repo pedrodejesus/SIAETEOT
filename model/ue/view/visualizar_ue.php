@@ -20,8 +20,8 @@ include "../../../base/head.php"
                 include("../../../base/conexao.php");
                         
                 $id_ue = (int) $_GET['id_ue'];
-                $sql = mysql_query("select * from unidade_estudantil where id_ue = '".$id_ue."';");
-                $row = mysql_fetch_array($sql);
+                $sql = mysqli_query($conexao, "select * from unidade_estudantil where id_ue = '".$id_ue."';");
+                $row = mysqli_fetch_array($sql);
             ?>
             <div class="content">
                 <div class="container-fluid">

@@ -21,8 +21,8 @@ include "../../../base/head.php"
                 include("../../../base/conexao.php");
 
                 $id_turma = (int) $_GET['id_turma'];
-                $sql = mysql_query("select * from turma where id_turma = '".$id_turma."';");
-                $row = mysql_fetch_array($sql);
+                $sql = mysqli_query($conexao, "select * from turma where id_turma = '".$id_turma."';");
+                $row = mysqli_fetch_array($sql);
             ?>
             <div class="content">
                 <div class="container-fluid">

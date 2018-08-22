@@ -8,9 +8,9 @@ $sql .= "from disc_pdr_tur dpt, disciplina d ";
 $sql .= "where dpt.id_disc = d.id_disc ";
 $sql .= "and id_turma = '".$id_turma."';";
       
-$query = mysql_query($sql);
+$query = mysqli_query($conexao, $sql);
  
-while($data_disc = mysql_fetch_array($query)){
+while($data_disc = mysqli_fetch_array($query)){
     echo "<option value='".$data_disc['id_disc']."'>".$data_disc['nome_disc']."</option>";
 } 
 ?>

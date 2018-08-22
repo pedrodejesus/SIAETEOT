@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
 $nivel_necessario = 2;
 
@@ -7,37 +6,23 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
 	session_destroy(); // Destrói a sessão por segurança
 	header("Location: index.php"); exit; // Redireciona o visitante de volta pro login
 }
+include "../../../base/head.php"
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>ETEOT - Escola Técnica Estadual Oscar Tenório</title>
-
-    <link href="\projeto/assets/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body class="sidebar-fixed header-fixed">
     <div class="page-wrapper">
-
         <?php include "../../../base/nav.php" ?>
-
         <div class="main-container">
-
             <?php include "../../../base/sidebar.php" ?>
-
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-light">
-                                    Adicionar usuário do sistema
+                                    <h4>Adicionar usuário do sistema</h4>
                                 </div>
 
                                 <div class="card-body">
@@ -133,16 +118,9 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
             </div>
         </div>
     </div>
-	<script src="\projeto/assets/js/cep.js"></script>
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/popper.min.js"></script>
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-	<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
-	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/chart.min.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
 
+    <script src="\projeto/assets/js/bootstrap.min.js"></script>
+    <script src="\projeto/assets/js/carbon.js"></script>
 </body>
 
 </html>

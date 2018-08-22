@@ -1,6 +1,6 @@
 <nav class="navbar page-header">
     <a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto" id="resp-side"><i class="fa fa-bars"></i></a>
-    <a class="navbar-brand" href="\projeto/index.php"><img class="img-fluid" width="18%" height="18%" src="\projeto/assets/img/logo_png.png" />&nbsp; E.T.E. Oscar Tenório</a>
+    <a class="navbar-brand" href="\projeto/index.php"><img class="img-fluid" width="20%" height="20%" src="\projeto/assets/img/logo.jpg" />&nbsp; E.T.E. Oscar Tenório</a>
     <a href="#" class="btn btn-link sidebar-toggle d-md-down-none"><i class="fa fa-bars"></i></a>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item d-md-down-none">

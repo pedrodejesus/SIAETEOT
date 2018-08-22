@@ -7,17 +7,15 @@ include("../../../base/conexao.php");
 include("../../../base/logatvusu.php");
 
 $id_usu = (int) @$_GET['id_usu'];
-
 $sql = "delete from usuario where id_usu = '$id_usu';";
-
-$resultado = mysql_query($sql) or die(mysql_error());
+$resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 if($resultado){
-    $registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
-    mysql_close($conexao);
+    $registra_atv = mysqli_query ($conexao, lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
+    mysqli_close($conexao);
     header('Location: ../lista_usuario.php?msg=5');
 }else{
-    mysql_close($conexao);
+    mysqli_close($conexao);
     header('Location: ../lista_usuario.php?msg=6');
 }
 

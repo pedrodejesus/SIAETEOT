@@ -33,15 +33,14 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necess
                 include("../../../base/conexao.php");
                         
                 $id_func = (int) $_GET['id_func'];
-                $sql = mysql_query("select * from funcionario where id_func = '".$id_func."';");
-                $row = mysql_fetch_array($sql);
+                $sql = mysqli_query($conexao, "select * from funcionario where id_func = '".$id_func."';");
+                $row = mysqli_fetch_array($sql);
                     
-                $sql1 = mysql_query("select * from setor where id_setor = '".$row['id_setor']."';");
-                $row1 = mysql_fetch_array($sql1);
+                $sql1 = mysqli_query($conexao, "select * from setor where id_setor = '".$row['id_setor']."';");
+                $row1 = mysqli_fetch_array($sql1);
                 
-                $sql2 = mysql_query("select * from localidade where cep = '".$row["cep"]."';");
-                $row2 = mysql_fetch_array($sql2);
-                header("Content-Type: text/html; charset=utf-8",true); // Acentuação
+                $sql2 = mysqli_query($conexao, "select * from localidade where cep = '".$row["cep"]."';");
+                $row2 = mysqli_fetch_array($sql2);
             ?>
             <div class="content">
                 <div class="container-fluid">

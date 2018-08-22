@@ -6,9 +6,9 @@ $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
 $inicio = ($quantidade * $pagina) - $quantidade;
 
 $valor = $_GET['valor']; // Recebe o valor enviado
-$sql = mysql_query("select * from unidade_estudantil where nome_ue like '%".$valor."%' order by nome_ue asc limit $inicio, $quantidade"); // Procura titulos no banco relacionados ao valor
+$sql = mysqli_query($conexao, "select * from unidade_estudantil where nome_ue like '%".$valor."%' order by nome_ue asc limit $inicio, $quantidade"); // Procura titulos no banco relacionados ao valor
  
-while($info = mysql_fetch_array($sql)){ //Transforma o conteúdo da variável $data em um array na variável $info;
+while($info = mysqli_fetch_array($sql)){ //Transforma o conteúdo da variável $data em um array na variável $info;
                                                                                                 
                                                 echo "<tr scope='row'>";
                                                 echo "<td>".$info['id_ue']."</td>";

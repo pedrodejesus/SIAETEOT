@@ -149,7 +149,7 @@ include "../../base/head.php"
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="btn-group" role="group">
-                                                    <a href="../lista_turma.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>
+                                                    <a href="lanca_nota.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>
                                                     <button type="submit" class="btn btn-success"><i class="fa fa-arrow-right"></i>&nbsp; Lançar notas</button> 
                                                 </div>
                                             </div>

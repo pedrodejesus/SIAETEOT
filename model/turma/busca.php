@@ -6,9 +6,9 @@ $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
 $inicio = ($quantidade * $pagina) - $quantidade;
 
 $valor = $_GET['valor']; // Recebe o valor enviado
-$sql = mysql_query("select * from turma where numero like '%".$valor."%' or ano_letivo LIKE '%".$valor."%' order by numero asc limit $inicio, $quantidade"); // Procura titulos no banco relacionados ao valor
+$sql = mysqli_query($conexao, "select * from turma where numero like '%".$valor."%' or ano_letivo LIKE '%".$valor."%' order by numero asc limit $inicio, $quantidade"); // Procura titulos no banco relacionados ao valor
  
-while($info = mysql_fetch_array($sql)){                                   
+while($info = mysqli_fetch_array($sql)){                                   
                                                 echo "<tr scope='row'>";
                                                 echo "<td>".$info['id_turma']."</td>";
                                                 echo "<td>".$info['numero']."</td>";
@@ -63,5 +63,4 @@ while($info = mysql_fetch_array($sql)){
                                                           </div>
                                                         </td></tr>";
                                             }
-header("Content-Type: text/html; charset=utf-8",true); // Acentuação
 ?>

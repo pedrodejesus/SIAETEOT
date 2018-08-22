@@ -20,10 +20,11 @@ switch ($block_ativa){
 }
 $sql .= "where id_usu = '".$id_usu."';";
 
-$resultado = mysql_query ($sql)or die(mysql_error());
+$resultado = mysqli_query ($conexao, $sql);
 
 if($resultado){
-	$resultado2 = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql)));
+	$resultado2 = mysqli_query ($conexao, lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
+    mysqli_close($conexao);
     switch ($block_ativa){
     case 0:
         header('Location: ../lista_usuario.php?msg=8');
@@ -32,8 +33,8 @@ if($resultado){
         header('Location: ../lista_usuario.php?msg=9');
         break;
     }
-	mysql_close($conexao);
+	
 }else{
-	echo "Erro ao Editar os dados:<br>".$sql;
+	echo "Erro ao editar os dados:<br>".$sql;
 }
 ?>

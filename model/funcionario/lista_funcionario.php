@@ -61,9 +61,9 @@ include "../../base/head.php";
                                             $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
                                             $inicio = ($quantidade * $pagina) - $quantidade;
 
-                                            $data = mysql_query("select * from funcionario order by nome_func asc limit $inicio, $quantidade;") or die(mysql_error());
+                                            $data = mysqli_query($conexao, "select * from funcionario order by nome_func asc limit $inicio, $quantidade;") or die(mysqli_error($conexao));
                                                 
-                                            while($info = mysql_fetch_array($data)){
+                                            while($info = mysqli_fetch_array($data)){
                                                 echo "<tr scope='row'>";
                                                 echo "<td>".$info['id_func']."</td>";
                                                 echo "<td>".$info['nome_func']."</td>";
@@ -88,8 +88,8 @@ include "../../base/head.php";
                                         <?php 
                                             $sqlTotal 		= "select id_func from funcionario;";
                                                 
-                                            $qrTotal  		= mysql_query($sqlTotal) or die (mysql_error());
-                                            $numTotal 		= mysql_num_rows($qrTotal);
+                                            $qrTotal  		= mysqli_query($conexao, $sqlTotal) or die (mysqli_error($conexao));
+                                            $numTotal 		= mysqli_num_rows($qrTotal);
                                             $totalpagina = (ceil($numTotal/$quantidade)<=0) ? 1 : ceil($numTotal/$quantidade);
 
                                             $exibir = 3;

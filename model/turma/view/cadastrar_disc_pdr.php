@@ -22,13 +22,8 @@ include "../../../base/head.php"
 
                 $numero = (int) $_GET['numero'];
                 $ano_letivo = (int) $_GET['ano_letivo'];
-                $sql = mysql_query("select * from turma where numero = '".$numero."' and ano_letivo='".$ano_letivo."';");
-                $row = mysql_fetch_array($sql);
-
-                /*$sql  = mysql_query("select t.numero, t.ano_letivo, d.id_disc, d.sigla_disc, d.id_cur ");
-                $sql .= ("from turma t, disciplina d ")
-                $sql .= ("where d.id_cur='1' or d.id_cur='".$." id_turma = '".$id_turma."';"))
-                $row = mysql_fetch_array($sql); */
+                $sql = mysqli_query($conexao, "select * from turma where numero = '".$numero."' and ano_letivo='".$ano_letivo."';");
+                $row = mysqli_fetch_array($sql);
             ?>
             <div class="content">
                 <div class="container-fluid">
@@ -73,8 +68,8 @@ include "../../../base/head.php"
                                         </div>
                                         <div class="row">
                                             <?php
-                                                $sql2 = mysql_query("select * from disciplina where id_cur='1';");
-                                                while($row2 = mysql_fetch_array($sql2)){
+                                                $sql2 = mysqli_query($conexao, "select * from disciplina where id_cur='1';");
+                                                while($row2 = mysqli_fetch_array($sql2)){
                                                     echo "<div class='col-md-1'>
                                                             <div class='form-check form-check-inline'>
                                                                 <input class='form-check-input checkbox' type='checkbox' id='disc_pdr_tur' name='disc_pdr_tur[]' value='".$row2['id_disc']."' data-toggle='tooltip' data-placement='top' title='".$row2['nome_disc']."'>
@@ -128,16 +123,16 @@ include "../../../base/head.php"
                                         </div>
                                         <div class="row">
                                             <?php
-                                                $sql3 = mysql_query("select * from disciplina where id_cur='".$row['id_cur']."';");
+                                                $sql3 = mysqli_query($conexao, "select * from disciplina where id_cur='".$row['id_cur']."';");
                                                 
-                                                while($row3 = mysql_fetch_array($sql3)){
+                                                while($row3 = mysqli_fetch_array($sql3)){
                                                     echo "<div class='col-md-1'>
                                                             <div class='form-check form-check-inline'>
                                                                 <input class='form-check-input checkbox_tecnico' type='checkbox' id='disc_pdr_tur' name='disc_pdr_tur[]' value='".$row3['id_disc']."' data-toggle='tooltip' data-placement='top' title='".$row3['nome_disc']."'>
                                                                 <label class='form-check-label' for='checkbox' data-toggle='tooltip' data-placement='top' title='".$row3['nome_disc']."'>".$row3['sigla_disc']."</label>
                                                             </div>
                                                           </div>";
-                                                    echo "<input type='hidden' name='id_turma' id='id_turma' value='".$id_turma."' />";
+                                                    //echo "<input type='hidden' name='id_turma' id='id_turma' value='".$id_turma."' />"; ??????????
                                                 }
                                             ?>
                                         </div>
@@ -147,7 +142,6 @@ include "../../../base/head.php"
                                             <div class="col-md-4">
                                                 <div class="btn-group" role="group"> 
                                                     <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp; Salvar</button>
-                                                    <!--<a href="../lista_turma.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -161,14 +155,8 @@ include "../../../base/head.php"
         </div>
     </div>
     
-    <script src="\projeto/assets/js/popper.min.js"></script>
     <script src="\projeto/assets/js/bootstrap.min.js"></script>
-	<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
-	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/chart.min.js"></script>
     <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
-
 </body>
 
 </html>

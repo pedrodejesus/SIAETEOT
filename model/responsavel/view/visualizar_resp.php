@@ -26,8 +26,8 @@ include "../../../base/head.php"
                 $sql .= "from responsavel r, aluno a ";
                 $sql .= "where r.matricula_alu = a.matricula_alu ";
                 $sql .= "and r.id_resp = '".$id_resp."';";
-                $query = mysql_query($sql);
-                $row = mysql_fetch_array($query);
+                $query = mysqli_query($conexao, $sql);
+                $row = mysqli_fetch_array($query);
             ?>
             <div class="content">
                 <div class="container-fluid">
@@ -106,7 +106,7 @@ include "../../../base/head.php"
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="btn-group" role="group">
-                                                <a class='btn btn-warning' href='editar_alu.php?matricula_alu=<?php echo $id_resp ?>'><i class='fa fa-edit'></i>&nbsp; Editar</a>   
+                                                <a class='btn btn-warning' href='editar_resp.php?id_resp=<?php echo $id_resp ?>'><i class='fa fa-edit'></i>&nbsp; Editar</a>   
                                                 
                                                 <a class='btn btn-danger' onclick='deletaResp(<?php echo $id_resp ?>)' data-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
                                                 

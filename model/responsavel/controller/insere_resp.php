@@ -20,13 +20,13 @@ $matricula_alu      = substr($_POST["matricula_alu"],0, strpos($_POST["matricula
 $sql   = "insert into responsavel values ";
 $sql  .= "('0', '$nome_resp', '$sobrenome_resp', '$cpf_resp', '$rg_resp', '$cel_resp', '$tel_resp', '$email_resp', '$matricula_alu');";
 
-$resultado = mysql_query($sql);
+$resultado = mysqli_query($conexao, $sql);
 if($resultado){
-    $registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
-    mysql_close($conexao);
+    $registra_atv = mysqli_query ($conexao, lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
+    mysqli_close($conexao);
     header('Location: ../lista_responsavel.php?msg=1');
 }else{
-    mysql_close($conexao);
+    mysqli_close($conexao);
     header('Location: ../lista_responsavel.php?msg=2');
 }
 
