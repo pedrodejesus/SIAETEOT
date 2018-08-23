@@ -16,7 +16,7 @@ include "../../base/head.php";
 <script type="text/javascript" src="search.js"></script>
 </head>
 <body class="sidebar-fixed header-fixed">
-    <?php include "modal.php" ?>
+    <?php //include "modal.php" ?>
     <div class="page-wrapper">
     <?php include "../../base/nav.php" ?>
         <div class="main-container">
@@ -32,8 +32,8 @@ include "../../base/head.php";
                 $sql .= "and m.id_func = f.id_func ";
                 $sql .= "and f.id_func = '".$id_func."';";
     
-                $query = mysql_query($sql);
-                $row = mysql_fetch_array($query);
+                $query = mysqli_query($conexao, $sql);
+                $row = mysqli_fetch_array($query);
             ?>
             <div class="content">
                 <div class="row">
