@@ -190,6 +190,8 @@ include "../../base/head.php"
 				});
 			});
     </script>
+    <!--<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
+	<script src="\projeto/assets/js/script_mask.js"></script>-->
     <script src="\projeto/assets/js/carbon.js"></script>
 </body>
 

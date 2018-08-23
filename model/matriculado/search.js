@@ -1,5 +1,5 @@
 var req;
-function searchAlu(valor) { // Função para buscar aluno
+function searchMatriculado(valor) { // Função para buscar aluno
  
     if(window.XMLHttpRequest) { // Verificando Browser
        req = new XMLHttpRequest();
@@ -13,12 +13,12 @@ function searchAlu(valor) { // Função para buscar aluno
     req.onreadystatechange = function() { // Quando o objeto recebe o retorno, chamamos a seguinte função;
         
         if(req.readyState == 1) { // Exibe a mensagem "Buscando..." enquanto carrega
-            document.getElementById('tbody_alu').innerHTML = 'Buscando...';
+            document.getElementById('tbody_mat').innerHTML = 'Buscando...';
         }else if(req.readyState == 4 && req.status == 200) { // Verifica se o Ajax realizou todas as operações corretamente
         
             var resposta = req.responseText; // Resposta retornada pelo busca.php        
             if(resposta){
-                document.getElementById('tbody_alu').innerHTML = resposta; // Abaixo colocamos a(s) resposta(s) na div resultado
+                document.getElementById('tbody_mat').innerHTML = resposta; // Abaixo colocamos a(s) resposta(s) na div resultado
             } else{
                 document.getElementById('nf_alu').innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Aluno não encontrado! <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
             } /*A FAZER: IMPLEMENTAR AVISO DE REGISTRO NÃO ENCONTRADO*/

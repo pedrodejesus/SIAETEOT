@@ -146,7 +146,30 @@ include "../../base/head.php"
                                                                 TestaNota('nota_rec_3t');*/
                                                                 
                                                                 echo "<td></td>";
-                                                                $resultado_decimal = ($row_bol['nota_1t'] + $row_bol['nota_2t'] + $row_bol['nota_3t']) / 3;
+                                                                
+                                                                if  (empty($row_bol['nota_rec_1t'])){
+                                                                    $nota_final_1 = $row_bol['nota_1t'];
+                                                                }else if ($row_bol['nota_rec_1t'] >= $row_bol['nota_1t']){
+                                                                    $nota_final_1 = $row_bol['nota_rec_1t'];
+                                                                }else if ($row_bol['nota_rec_1t'] < $row_bol['nota_1t']){
+                                                                    $nota_final_1 = $row_bol['nota_1t'];
+                                                                }
+                                                                if  (empty($row_bol['nota_rec_2t'])){
+                                                                    $nota_final_2 = $row_bol['nota_2t'];
+                                                                }else if ($row_bol['nota_rec_2t'] >= $row_bol['nota_2t']){
+                                                                    $nota_final_2 = $row_bol['nota_rec_2t'];
+                                                                }else if ($row_bol['nota_rec_2t'] < $row_bol['nota_2t']){
+                                                                    $nota_final_2 = $row_bol['nota_2t'];
+                                                                }
+                                                                if  (empty($row_bol['nota_rec_3t'])){
+                                                                    $nota_final_3 = $row_bol['nota_3t'];
+                                                                }else if ($row_bol['nota_rec_3t'] >= $row_bol['nota_3t']){
+                                                                    $nota_final_3 = $row_bol['nota_rec_3t'];
+                                                                }else if ($row_bol['nota_rec_3t'] < $row_bol['nota_3t']){
+                                                                    $nota_final_3 = $row_bol['nota_3t'];
+                                                                }
+                                                                
+                                                                $resultado_decimal = ($nota_final_1 + $nota_final_2 + $nota_final_3) / 3;
                                                                 
                                                                 $resultado = number_format($resultado_decimal,1,",",".");
                                                                 //$resultado = round($resultado_decimal, 1);
@@ -169,7 +192,7 @@ include "../../base/head.php"
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="btn-group" role="group"> 
-                                                <a class='btn btn-primary' href='editar_mat.php?matricula_alu=<?php echo $matricula_alu ?>'><i class='fal fa-print'></i>&nbsp; Imprimir</a>   
+                                                <a class='btn btn-primary' href='pdf_boletim_alu.php'><i class='fal fa-print'></i>&nbsp; Imprimir</a>   
                                                 
                                                 <a class='btn btn-light' href='../lista_matriculado.php'><i class='fa fa-undo'></i>&nbsp; Voltar</a>
                                             </div>
