@@ -14,21 +14,23 @@ $tipo_matricula     = $_POST["tipo_matricula"];
 $dt_matricula = date('Y-m-d');
 
 $sql = "select id_disc from disc_pdr_tur where id_turma = '".$id_turma."';";
-$consulta = mysql_query($sql);
+$consulta = mysqli_query($conexao, $sql);
 
-while ($disciplinas = mysql_fetch_array($consulta)){
+while ($disciplinas = mysqli_fetch_array($consulta)){
     
     $id_disciplinas = $disciplinas['id_disc'];
     
     $sql2   = "insert into matriculado values ";
-    $sql2  .= "(0, '$tipo_matricula', '$dt_matricula', '$ano_letivo', '$matricula_alu', '$id_turma', '$id_disciplinas'); ";
+    $sql2  .= "(0, '$tipo_matricula', '$dt_matricula', '$ano_letivo', 0, '$matricula_alu', '$id_turma', '$id_disciplinas'); ";
+    $resultado = mysqli_query($conexao, $sql2);
     
-    $resultado = mysql_query($sql2);
+    $sql3 = "insert into boletim (id_boletim, matricula_alu, id_turma, id_disc) values (0, '".$matricula_alu."', '".$id_turma."', '".$id_disciplinas."');";
+    $resultado2 = mysqli_query($conexao, $sql3);  
 }
 
-if($resultado){
+if($resultado && $resultado2){
     //$registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
-    mysql_close($conexao);
+    mysqli_close($conexao);
     header('Location: ../lista_matriculado.php?msg=1');
 }else{
     echo $sql2;

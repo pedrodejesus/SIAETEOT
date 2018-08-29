@@ -51,6 +51,7 @@ include "../../base/head.php"
                                                             <th scope="col" colspan="3" class="text-center">3ª Etapa</th>
                                                             <th scope="col" colspan="2" class="text-center">Total Anual</th>
                                                             <th scope="col" rowspan="2" class="text-center align-middle">Rec. Final</th>
+                                                            <th scope="col" rowspan="2" class="text-center align-middle">Sit. Final</th>
                                                         </tr>
                                                         <tr>
                                                             <th scope="col" class="text-center">Nota</th>
@@ -71,7 +72,7 @@ include "../../base/head.php"
                                                             mysqli_next_result($conexao);
                                                 
                                                             $sql_bol = "call select_disciplinas_aluno_boletim(".$matricula_alu.", ".$id_turma.")";
-                                                            $query_bol = mysqli_query($conexao, $sql_bol) or die(mysqli_error($conexao));;
+                                                            $query_bol = mysqli_query($conexao, $sql_bol) or die(mysqli_error($conexao));
                                                 
                                                             while($row_bol = mysqli_fetch_array($query_bol)){                                                                
                                                                 $disc_len = strlen($row_bol['nome_disc']);
@@ -181,6 +182,15 @@ include "../../base/head.php"
                                                                 echo "<td><center>".$resultado."</center></td>";
                                                                 echo "<td></td>";
                                                                 echo "<td></td>";
+                                                                /*if($resultado > 6){
+                                                                    $sit_fin = "APR";
+                                                                }else if(empty($resultado)) {
+                                                                    $sit_fin = "-";
+                                                                }else{
+                                                                    $sit_fin = "REP";
+                                                                }
+                                                                echo "<td>".$sit_fin."</td>";*/
+                                                                echo "<td></tr>";
                                                             }
                                                         ?>
                                                     </tbody>

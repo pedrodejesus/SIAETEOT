@@ -67,9 +67,10 @@ include "../../base/head.php";
                                             $sql .= ("from matriculado m, aluno a, turma t ");
                                             $sql .= ("where m.matricula_alu = a.matricula_alu ");
                                             $sql .= ("and m.id_turma = t.id_turma ");
+                                            $sql .= ("and m.remat = 0 ");
                                             $sql .= ("order by a.nome_alu asc limit $inicio, $quantidade;");
                                             
-                                            $data = mysqli_query($conexao, $sql) or die(mysqli_error());
+                                            $data = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
                                                 
                                             while($info = mysqli_fetch_array($data)){
                                                 echo "<tr scope='row'>";

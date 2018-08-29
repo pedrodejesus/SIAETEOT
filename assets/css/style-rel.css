@@ -1,0 +1,25 @@
+.logo_rj{
+    float: left;
+    height: 10%;
+    width: 10%;
+    display: inline;
+}
+.logo_eteot{
+    float: right;
+    height: 170px;
+    width: 120px;
+    display: inline !important;
+    margin-top:-130px;
+}
+.titulo_bol{
+    text-align: center;
+    font-weight: bold;
+    margin-left:-170px;
+}
+.rodape{
+	width:100%;
+	bottom:0;
+	text-align:right;
+	font-size:10px !important;
+	font-family:'Arial';
+}

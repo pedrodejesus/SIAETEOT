@@ -11,9 +11,9 @@ if (!$q) return;
 
 $sql = "select id_turma, numero, ano_letivo from turma where numero like '%$q%'";
 
-$rsd = mysql_query($sql);
+$rsd = mysqli_query($conexao, $sql);
 
-while($rs = mysql_fetch_array($rsd)) {
+while($rs = mysqli_fetch_array($rsd)) {
 	$_SESSION["sid_turma"] = $rs['id_turma'];
 	echo $rs['id_turma']." - ".$rs['numero']."/".$rs['ano_letivo']."\n";
 }

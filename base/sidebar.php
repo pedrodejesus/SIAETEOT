@@ -13,6 +13,9 @@
                                     <li class="nav-item ml-3">
                                         <a href="\projeto/model/matriculado/lista_matriculado.php" class="nav-link"><i class="fa fa-clipboard-list"></i> Matículas</a>
                                     </li>
+                                    <li class="nav-item ml-3">
+                                        <a href="\projeto/model/remanejamento/remaneja_alu.php" class="nav-link"><i class="far fa-sync-alt"></i> Remanejamento</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">

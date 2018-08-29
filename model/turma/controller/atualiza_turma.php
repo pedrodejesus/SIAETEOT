@@ -26,11 +26,11 @@ if (empty($dt_fim)){
     $sql .= "where id_turma = '".$id_turma."';";
 }
 
-$resultado = mysql_query($sql) or die(mysql_error());
+$resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 if($resultado){
-    $registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
-    mysql_close($conexao); 
+    $registra_atv = mysqli_query ($conexao, lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
+    mysqli_close($conexao); 
     header('Location: ../lista_turma.php?msg=3');
 }else{
     echo $sql;
