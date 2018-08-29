@@ -6,7 +6,7 @@ $id_turma = $_GET['id_turma'];
 
 $sql = "call select_alunos_turma_sem_remat(".$id_turma.");";
 $query = mysqli_query($conexao, $sql); 
-mysqli_next_result($conexao);
+//mysqli_next_result($conexao);
 
 
 $cont_nota = 1;
