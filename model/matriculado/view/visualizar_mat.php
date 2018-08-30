@@ -27,6 +27,7 @@ include "../../../base/head.php"
                 $sql .= "where m.matricula_alu = a.matricula_alu ";
                 $sql .= "and m.id_disc = d.id_disc ";
                 $sql .= "and m.id_turma = t.id_turma ";
+                $sql .= "and m.remat = '0' ";
                 $sql .= "and m.matricula_alu = '".$matricula_alu."' ";
                 $query = mysqli_query($conexao, $sql);
                 $row = mysqli_fetch_array($query);

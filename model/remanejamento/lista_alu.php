@@ -8,11 +8,14 @@ $sql = "call select_alunos_turma_sem_remat(".$id_turma.");";
 $query = mysqli_query($conexao, $sql); 
 //mysqli_next_result($conexao);
 
-
 $cont_nota = 1;
 $cont_rec = 1;
 $cont_resp = 1;
 $num_chamada_prov = 1;
+
+echo "<tr scope='row'>"; 
+echo "<td><div class='form-check form-check-inline'><input class='form-check-input checkbox' type='checkbox' name='checkTodos' id='checkTodos' /> Marcar/Desmarcar Todos</div></td>"; 
+echo "</tr>";
 
 while($row_alu = mysqli_fetch_array($query)){ 
     echo "<tr scope='row'>"; 

@@ -52,14 +52,14 @@ include "../../base/head.php"
 
                                             switch($msg){
                                                 case 1:
-                                                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">Notas lançadas com sucesso!
+                                                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">Alunos remanejados com sucesso!
                                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                           </div>';
                                                     break;
                                                 case 2:
-                                                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Erro no lançamento das notas!
+                                                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Erro no remanejamento de alunos!
                                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
@@ -103,6 +103,21 @@ include "../../base/head.php"
                                                     <div id="table-list" class="table-responsive">
                                                         <table id="tabela_turma" class="table table-sm table-hover">
                                                             <thead>
+                                                                <script>
+                                                                    $(document).ready(function() {
+                                                                        $('#checkTodos').click(function() {
+                                                                            if(this.checked) {
+                                                                                $('.checkbox').each(function() {
+                                                                                    this.checked = true;
+                                                                                });
+                                                                            } else {
+                                                                                $('.checkbox').each(function() {
+                                                                                    this.checked = false;
+                                                                                });
+                                                                            }
+                                                                        });
+                                                                    });
+                                                                </script>
                                                                 <tr>
                                                                     <th scope='col'>Aluno</th>
                                                                     <th scope='col'>Situação</th>
@@ -123,7 +138,7 @@ include "../../base/head.php"
                                                         <table id="tabela_turma" class="table table-sm">
                                                             <thead>
                                                                 <tr>
-                                                                    <th scope='col'>Turmas</th>
+                                                                    <th scope='col'>Selecione próxima turma</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="tbody_turma">

@@ -15,8 +15,8 @@ $sql = "select id_disc from disc_pdr_tur where id_turma = '".$id_turma."';";
 $consulta = mysqli_query($conexao, $sql);
 
 foreach($matricula_alu as /*$index =>*/ $matricula){
-    /*$sql_update = "update matriculado set remat = 1 where matricula_alu = '".$matricula."' and id_turma = '".$id_turma_antiga."';";
-    $query_update = mysqli_query($conexao, $sql_update);*/
+    $sql_update = "update matriculado set remat = 1 where matricula_alu = '".$matricula."' and id_turma = '".$id_turma_antiga."';";
+    $query_update = mysqli_query($conexao, $sql_update);
     
     $sql2 = "select distinct tipo_matricula, dt_matricula from matriculado where matricula_alu = ".$matricula." and id_turma = ".$id_turma_antiga.";";
     $consulta2 = mysqli_query($conexao, $sql2) or die(mysqli_error($conexao));
@@ -26,7 +26,7 @@ foreach($matricula_alu as /*$index =>*/ $matricula){
     }
     
     while ($disciplinas = mysqli_fetch_array($consulta)){
-        $sql_insert = "insert into matriculado values (0, '".$tipo."', ".$data.", '".$proximo_ano_letivo."', '0', '".$matricula."', '".$id_turma."',  '".$disciplinas['id_disc']."');";
+        $sql_insert = "insert into matriculado values (0, '".$tipo."', '".$data."', '".$proximo_ano_letivo."', '0', '".$matricula."', '".$id_turma."',  '".$disciplinas['id_disc']."');";
         $resultado = mysqli_query($conexao, $sql_insert);
         //echo $sql_insert."<br>";
     }
