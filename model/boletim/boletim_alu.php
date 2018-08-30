@@ -22,6 +22,7 @@ include "../../base/head.php"
                 $id_turma = (int) $_GET['id_turma'];
                 $sql = "call select_disciplinas_aluno_boletim(".$matricula_alu.", ".$id_turma.")";
                 $query = mysqli_query($conexao, $sql);
+                mysqli_next_result($conexao);
                 $row = mysqli_fetch_array($query);
             ?>
 
@@ -68,12 +69,12 @@ include "../../base/head.php"
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                            mysqli_free_result($query);
-                                                            mysqli_next_result($conexao);
+                                                            //mysqli_free_result($query);
                                                 
                                                             $sql_bol = "call select_disciplinas_aluno_boletim(".$matricula_alu.", ".$id_turma.")";
                                                             $query_bol = mysqli_query($conexao, $sql_bol) or die(mysqli_error($conexao));
-                                                
+                                                            mysqli_next_result($conexao);
+                                                            
                                                             while($row_bol = mysqli_fetch_array($query_bol)){                                                                
                                                                 $disc_len = strlen($row_bol['nome_disc']);
                                                                 if($disc_len > 15){
@@ -170,18 +171,43 @@ include "../../base/head.php"
                                                                     $nota_final_3 = $row_bol['nota_3t'];
                                                                 }
                                                                 
-                                                                $resultado_decimal = ($nota_final_1 + $nota_final_2 + $nota_final_3) / 3;
+                                                                $media_final_decimal = ($nota_final_1 + $nota_final_2 + $nota_final_3) / 3;
                                                                 
-                                                                $resultado = number_format($resultado_decimal,1,",",".");
+                                                                $media_final = number_format($media_final_decimal,1,",",".");
                                                                 //$resultado = round($resultado_decimal, 1);
                                                                 
                                                                 if((empty($row_bol['nota_1t']))||(empty($row_bol['nota_2t']))||(empty($row_bol['nota_3t']))){
-                                                                    $resultado = "<i class='fa fa-exclamation-triangle' style='color:red;'></i>";
+                                                                    $media_final = "<i class='fa fa-exclamation-triangle' style='color:red;'></i>";
                                                                 }
                                                                 
-                                                                echo "<td><center>".$resultado."</center></td>";
+                                                                echo "<td><center>".$media_final."</center></td>";
+                                                                
                                                                 echo "<td></td>";
-                                                                echo "<td></td>";
+                                                                
+                                                                if($media_final == "<i class='fa fa-exclamation-triangle' style='color:red;'></i>"){
+                                                                    echo "<td class='text-center'>-</td>";
+                                                                    echo "<td class='text-center'>-</td>";
+                                                                }else{
+                                                                    if ($media_final >= 6){
+                                                                        $sql_insert_sf     = "update boletim set " ;
+                                                                        $sql_insert_sf    .= "situacao_pre_rf='APR', nota_rf=NULL, situacao_pos_rf='APR' ";
+                                                                        $sql_insert_sf    .= "where matricula_alu = '".$matricula_alu."' ";
+                                                                        $sql_insert_sf    .= "and id_disc = '".$row_bol['id_disc']."' ";
+                                                                        $sql_insert_sf    .= "and id_turma = '".$row_bol['id_turma']."'; ";
+
+                                                                        $query_insert_sf   = mysqli_query($conexao, $sql_insert_sf) /*or die(mysqli_error($conexao))*/;
+                                                                        
+                                                                        echo "<td class='text-center'>-</td>";
+                                                                        //echo "<td class='text-center'>".$row_bol['situacao_pos_rf']."</td>";  
+                                                                        if ($query_insert_sf){
+                                                                            echo "<td class='text-center'>".$row_bol['situacao_pos_rf']."</td>"; 
+                                                                        }else{
+                                                                           echo "<td class='text-center'>ERRO</td>"; 
+                                                                        }
+                                                                        
+                                                                    }
+                                                                }
+                                                                
                                                                 /*if($resultado > 6){
                                                                     $sit_fin = "APR";
                                                                 }else if(empty($resultado)) {
@@ -190,7 +216,7 @@ include "../../base/head.php"
                                                                     $sit_fin = "REP";
                                                                 }
                                                                 echo "<td>".$sit_fin."</td>";*/
-                                                                echo "<td></tr>";
+                                                                //echo "<td></td></tr>";
                                                             }
                                                         ?>
                                                     </tbody>

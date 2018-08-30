@@ -12,6 +12,7 @@ $sql .= ("t.id_turma, t.numero, t.ano_letivo ");
 $sql .= ("from matriculado m, aluno a, turma t ");
 $sql .= ("where m.matricula_alu = a.matricula_alu ");
 $sql .= ("and m.id_turma = t.id_turma ");
+$sql .= ("and m.remat = 0 ");
 $sql .= ("and (a.nome_alu like '%".$valor."%' or sobrenome_alu like '%".$valor."%') order by nome_alu asc limit $inicio, $quantidade"); // Procura titulos no banco relacionados ao valor
 $query = mysqli_query($conexao, $sql);
  

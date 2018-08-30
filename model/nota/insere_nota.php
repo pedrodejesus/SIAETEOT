@@ -20,7 +20,12 @@ foreach($matricula_alu as $index => $matricula){
         if(empty($rec[$index_rec])){
             $rec[$index_rec] = "NULL";
         }
-    } //Seta as recuperações sem notas como null para serem inputadas no sql 
+    } //Seta as recuperações vazias como null para serem inputadas no sql 
+    foreach ($nota as $index_nota => $nota_nota){
+        if(empty($nota[$index_nota])){
+            $nota[$index_nota] = "NULL";
+        }
+    } //Seta as recuperações vazias como null para serem inputadas no sql 
     
     switch ($trimestre){
         case 1:

@@ -13,8 +13,25 @@ $cont_rec = 1;
 $cont_resp = 1;
 $num_chamada_prov = 1;
 
+echo "
+    <tr><td><script>
+                                                                    $(document).ready(function() {
+                                                                        $('#checkTodos').click(function() {
+                                                                            if(this.checked) {
+                                                                                $('.checkbox').each(function() {
+                                                                                    this.checked = true;
+                                                                                });
+                                                                            } else {
+                                                                                $('.checkbox').each(function() {
+                                                                                    this.checked = false;
+                                                                                });
+                                                                            }
+                                                                        });
+                                                                    });
+                                                                </script></tr></td>
+";
 echo "<tr scope='row'>"; 
-echo "<td><div class='form-check form-check-inline'><input class='form-check-input checkbox' type='checkbox' name='checkTodos' id='checkTodos' /> Marcar/Desmarcar Todos</div></td>"; 
+echo "<td><div class='form-check form-check-inline'><input class='form-check-input' type='checkbox' name='checkTodos' id='checkTodos' /> Marcar/Desmarcar Todos</div></td>"; 
 echo "</tr>";
 
 while($row_alu = mysqli_fetch_array($query)){ 

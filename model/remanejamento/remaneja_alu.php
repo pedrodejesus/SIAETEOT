@@ -103,21 +103,6 @@ include "../../base/head.php"
                                                     <div id="table-list" class="table-responsive">
                                                         <table id="tabela_turma" class="table table-sm table-hover">
                                                             <thead>
-                                                                <script>
-                                                                    $(document).ready(function() {
-                                                                        $('#checkTodos').click(function() {
-                                                                            if(this.checked) {
-                                                                                $('.checkbox').each(function() {
-                                                                                    this.checked = true;
-                                                                                });
-                                                                            } else {
-                                                                                $('.checkbox').each(function() {
-                                                                                    this.checked = false;
-                                                                                });
-                                                                            }
-                                                                        });
-                                                                    });
-                                                                </script>
                                                                 <tr>
                                                                     <th scope='col'>Aluno</th>
                                                                     <th scope='col'>Situação</th>
@@ -128,7 +113,7 @@ include "../../base/head.php"
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="tbody_alu">
-
+                                                                
                                                             </tbody>
                                                         </table>
                                                     </div>
