@@ -17,6 +17,11 @@ $(document).ready(function () {
         e.preventDefault();
         $('body').toggleClass('sidebar-hidden');
     });
+    
+     /*$('.sidebar-toggle').on('swipeleft', function (e) {
+        e.preventDefault();
+        $('body').toggleClass('sidebar-hidden');
+    });*/
 
     /**
      * Mobile Sidebar Toggle
@@ -24,4 +29,12 @@ $(document).ready(function () {
     $('.sidebar-mobile-toggle').on('click', function () {
         $('body').toggleClass('sidebar-mobile-show');
     });
+    
+   
+    
+    /*$(document).on("pagecreate",function(){    
+        $(document).on('swiperight', function () {
+            $('body').toggleClass('sidebar-mobile-show');
+        });
+    });*/
 });

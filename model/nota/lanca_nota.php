@@ -24,8 +24,8 @@ include "../../base/head.php"
         });
     });
     $(document).ready(function(){
-        $('#id_disc').change(function(){
-            $('#tbody_alu').load('lista_alu.php?id_turma='+$('#id_turma').val()+'&id_disc='+$('#id_disc').val());
+        $('#trimestre').change(function(){
+            $('#tbody_alu').load('lista_alu.php?id_turma='+$('#id_turma').val()+'&id_disc='+$('#id_disc').val()+'&trimestre='+$('#trimestre').val());
         });
     });
 </script>
@@ -105,6 +105,7 @@ include "../../base/head.php"
                                                 <div class="form-group">
                                                     <label for="trimestre" class="form-control-label">Trimestre</label>
                                                     <select class="form-control" type="text" name="trimestre" id="trimestre">
+                                                        <option value="">Selecione</option>
                                                         <option value="1">Primeiro Trimestre</option>
                                                         <option value="2">Segundo Trimestre</option>
                                                         <option value="3">Terceiro Trimestre</option>

@@ -20,12 +20,13 @@ include "../../../base/head.php"
                 include("../../../base/conexao.php");
                         
                 $id_turma = (int) $_GET['id_turma'];
-                $sql  = "select distinct m.matricula_alu, m.id_turma, ";
+                $sql  = "select distinct m.matricula_alu, m.id_turma, m.remat, ";
                 $sql .= "a.matricula_alu, a.nome_alu, a.sobrenome_alu, ";
                 $sql .= "t.id_turma, t.numero, t.ano_letivo, t.situacao, t.turno, t.dt_inicio, t.dt_fim, t.id_cur ";
                 $sql .= "from matriculado m, aluno a, turma t ";
                 $sql .= "where m.matricula_alu = a.matricula_alu ";
                 $sql .= "and m.id_turma = t.id_turma  ";
+                //$sql .= "and and m.remat = 0 ";
                 $sql .= "and t.id_turma = '".$id_turma."' order by nome_alu asc;";
         
                 $query = mysqli_query($conexao, $sql);

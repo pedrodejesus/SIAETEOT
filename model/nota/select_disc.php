@@ -9,7 +9,8 @@ $sql .= "where dpt.id_disc = d.id_disc ";
 $sql .= "and id_turma = '".$id_turma."';"; /* SELECT DE DISCIPLINAS PADRÃO DA TURMA */
       
 $query = mysqli_query($conexao, $sql);
- 
+
+echo "<option value=''>Selecione</option>";  
 while($data_disc = mysqli_fetch_array($query)){
     echo "<option value='".$data_disc['id_disc']."'>".$data_disc['nome_disc']."</option>";
 } 

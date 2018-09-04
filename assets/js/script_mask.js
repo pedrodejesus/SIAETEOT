@@ -16,6 +16,9 @@ $(document).ready(function(){
 	$('#placacarro').inputmask("aaa-9999");
 	$('#numero_cartao').inputmask("9999 9999 9999 9999");
 	$('#cnpj').inputmask("99.999.999/9999-99");
+    
+    $('#nota').inputmask("9[9].9");
+    $('#recu').inputmask("9[9].9");
 });
 
 

@@ -4,42 +4,42 @@ if(isset($_GET['msg'])){
 	
 	switch($msg){
 		case 1:
-			echo '<div class="alert alert-success alert-dismissible fade show" role="alert">Aluno cadastrado com sucesso!
+			echo '<div class="alert alert-success alert-dismissible fade show" role="alert">Aluno matriculado com sucesso!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                   </div>';
 			break;
         case 2:
-			echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">Erro ao cadastrar aluno!
+			echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">Erro ao matricular aluno aluno!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                   </div>';
 			break;
 		case 3:
-			echo '<div class="alert alert-info alert-dismissible fade show" role="alert">Aluno editado com sucesso!
+			echo '<div class="alert alert-info alert-dismissible fade show" role="alert">Matrícula editada com sucesso!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                   </div>';
 			break;
         case 4:
-			echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">Erro na edição do aluno!
+			echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">Erro na edição da matrícula do aluno!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                   </div>';
 			break;
 		case 5:
-			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Aluno excluído com sucesso!
+			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Matrícula excluída excluído com sucesso!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                   </div>';
 			break;
         case 6:
-			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Erro na exclusão do aluno!
+			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Erro na exclusão da matrícula!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

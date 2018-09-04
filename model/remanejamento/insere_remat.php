@@ -29,6 +29,9 @@ foreach($matricula_alu as /*$index =>*/ $matricula){
         $sql_insert = "insert into matriculado values (0, '".$tipo."', '".$data."', '".$proximo_ano_letivo."', '0', '".$matricula."', '".$id_turma."',  '".$disciplinas['id_disc']."');";
         $resultado = mysqli_query($conexao, $sql_insert);
         //echo $sql_insert."<br>";
+        
+        $sql_insert_bol = "insert into boletim (id_boletim, matricula_alu, id_turma, id_disc) values (0, '".$matricula."', '".$id_turma."', '".$disciplinas['id_disc']."');";
+        $resultado_insert_bol = mysqli_query($conexao, $sql_insert_bol); 
     }
 }
 if($resultado){

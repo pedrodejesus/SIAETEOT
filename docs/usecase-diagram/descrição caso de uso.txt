@@ -1,15 +1,28 @@
 Inserir aluno
+
 Objetivo: Cadastrar dados dados de um novo aluno
+
 Pré condição: CPF e uma matrícula da FAETEC
+
 Ator: Secretaria
 
+
 Cenário principal
+
 1 - O usuário (secretaria) insere os dados do aluno na tela de cadastro;
+
 2 - Include: verificação de dados
+
 3 - Os dados inseridos são registrados na base de dados;
+
 4 - O sistema lista todos os dados da tabela e notifica o usuário do sucesso ou falha da operação;
 
-Cenários alternativos
+
+
+Cenários alternativo
+
+
 
 Se dados já pré-existirem:
+
 1 - Cancela a operação e notifica o usuário;
