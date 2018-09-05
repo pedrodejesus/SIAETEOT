@@ -99,10 +99,12 @@ include "../../../base/head.php"
 
                                                         $("#cpf_alu").blur(function(){
                                                             $("#validacpftxt").html(CPF.valida($(this).val()));
-                                                            /*var validacpftxt = $('#validacpftxt').html().length;
+                                                            var validacpftxt = $('#validacpftxt').html().length;
                                                             if ($.trim($('#validacpftxt').html()) === "<b>CPF Inválido</b>"){
                                                                 $("#teste").attr('disabled', 'disabled');
-                                                            }*/
+                                                            }else{
+                                                                $("#teste").removeAttr('disabled');
+                                                            }
                                                         });
                                                     </script>
                                                 </div>
