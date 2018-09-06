@@ -8,7 +8,7 @@ include("../../../base/logatvusu.php");
 
 $id_turma = (int) @$_GET['id_turma'];
 $sql = "delete from turma where id_turma = '$id_turma';";
-$resultado = mysqli_query($conexao, $sql) or die(mysql_error());
+$resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 if($resultado){
     $registra_atv = mysqli_query ($conexao, lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));

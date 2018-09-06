@@ -22,6 +22,7 @@ include "../../../base/head.php"
 
                 $numero = (int) $_GET['numero'];
                 $ano_letivo = (int) $_GET['ano_letivo'];
+                $ano_modulo = (int) $_GET['ano_modulo'];
                 $sql = mysqli_query($conexao, "select * from turma where numero = '".$numero."' and ano_letivo='".$ano_letivo."';");
                 $row = mysqli_fetch_array($sql);
             ?>
@@ -68,8 +69,16 @@ include "../../../base/head.php"
                                         </div>
                                         <div class="row">
                                             <?php
-                                                $sql2 = mysqli_query($conexao, "select * from disciplina where id_cur='1';");
-                                                while($row2 = mysqli_fetch_array($sql2)){
+                                                $sql2 = "select * from disciplina where id_cur='1' ";
+                                                if ($ano_modulo == 1){
+                                                    $sql2 .= "and nome_disc like '% I';";
+                                                }elseif ($ano_modulo == 2){
+                                                     $sql2 .= "and nome_disc like '% II';";
+                                                }elseif ($ano_modulo == 3){
+                                                     $sql2 .= "and nome_disc like '% III';";
+                                                }
+                                                $query2 = mysqli_query($conexao, $sql2) or die(mysqli_error($conexao));
+                                                while($row2 = mysqli_fetch_array($query2)){
                                                     echo "<div class='col-md-1'>
                                                             <div class='form-check form-check-inline'>
                                                                 <input class='form-check-input checkbox' type='checkbox' id='disc_pdr_tur' name='disc_pdr_tur[]' value='".$row2['id_disc']."' data-toggle='tooltip' data-placement='top' title='".$row2['nome_disc']."'>

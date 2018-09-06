@@ -63,7 +63,7 @@ include "../../base/head.php";
                                             $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
                                             $inicio = ($quantidade * $pagina) - $quantidade;
 
-                                            $data = mysqli_query($conexao, "select * from turma order by numero asc limit $inicio, $quantidade;") or die(mysql_error());
+                                            $data = mysqli_query($conexao, "select * from turma order by ano_letivo desc, numero asc limit $inicio, $quantidade;") or die(mysql_error());
                                                 
                                             while($info = mysqli_fetch_array($data)){                                   
                                                 echo "<tr scope='row'>";

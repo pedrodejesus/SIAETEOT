@@ -35,9 +35,19 @@ include "../../../base/head.php"
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
+                                                <script>
+                                                    function SomenteNumero(e){
+                                                        var tecla=(window.event)?event.keyCode:e.which;   
+                                                        if((tecla>47 && tecla<58)) return true;
+                                                        else{
+                                                            if (tecla==8 || tecla==0) return true;
+                                                        else  return false;
+                                                        }
+                                                    }
+                                                </script>
                                                 <div class="form-group">
                                                     <label for="numero" class="form-control-label">Número</label>
-                                                    <input class="form-control" type="text" maxlength="4" name="numero" id="numero" required />
+                                                    <input onkeypress='return SomenteNumero(event)' class="form-control" type="text" maxlength="4" name="numero" id="numero" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -82,7 +92,7 @@ include "../../../base/head.php"
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="dt_inicio" class="form-control-label">Data de início</label>
-                                                    <input class="form-control" type="date" name="dt_inicio" id="dt_inicio" />
+                                                    <input class="form-control" type="date" name="dt_inicio" id="dt_inicio" required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">

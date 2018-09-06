@@ -63,7 +63,7 @@ include "../../base/head.php";
                                             $sql .= "c.id_cur, c.nome_cur  ";
                                             $sql .= "from disciplina d, curso c ";
                                             $sql .= "where d.id_cur = c.id_cur ";
-                                            $sql .= "order by id_disc asc limit $inicio, $quantidade;";
+                                            $sql .= "order by nome_disc asc limit $inicio, $quantidade;";
                                             
                                             $data = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
                                                 
