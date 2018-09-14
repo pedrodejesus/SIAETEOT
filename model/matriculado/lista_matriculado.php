@@ -46,10 +46,11 @@ include "../../base/head.php";
                                             <tr>
                                                 <th scope="col">Matrícula</th>
                                                 <th scope="col">Nome</th>
-                                                <th scope="col">Data de Matrícula</th>
-                                                <th scope="col">Tipo</th>
+                                                <!--<th scope="col">Data de Matrícula</th>-->
                                                 <th scope="col">Turma</th>
                                                 <th scope="col">Ano letivo</th>
+                                                <th scope="col">Situação</th>
+                                                <th scope="col">Modalidade</th>
                                                 <th scope="col">Ações</th>
                                             </tr>
                                         </thead>
@@ -62,13 +63,13 @@ include "../../base/head.php";
                                             $inicio = ($quantidade * $pagina) - $quantidade;
                                             
                                             $sql  = ("select distinct m.tipo_matricula, m.dt_matricula, m.matricula_alu, m.id_turma, ");
-                                            $sql .= ("a.matricula_alu, a.nome_alu, a.sobrenome_alu, ");
+                                            $sql .= ("a.matricula_alu, a.nome_alu, a.sobrenome_alu, a.situacao, ");
                                             $sql .= ("t.id_turma, t.numero, t.ano_letivo ");
                                             $sql .= ("from matriculado m, aluno a, turma t ");
                                             $sql .= ("where m.matricula_alu = a.matricula_alu ");
                                             $sql .= ("and m.id_turma = t.id_turma ");
                                             $sql .= ("and m.remat = 0 ");
-                                            $sql .= ("order by a.nome_alu asc limit $inicio, $quantidade;");
+                                            $sql .= ("order by t.ano_letivo desc, a.nome_alu asc, a.sobrenome_alu asc limit $inicio, $quantidade;");
                                             
                                             $data = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
                                                 
@@ -76,7 +77,26 @@ include "../../base/head.php";
                                                 echo "<tr scope='row'>";
                                                 echo "<td>".$info['matricula_alu']."</td>";
                                                 echo "<td>".$info['nome_alu']." ".$info['sobrenome_alu']."</td>";
-                                                echo "<td>".implode("/", array_reverse(explode("-", $info['dt_matricula'])))."</td>";
+                                                echo "<td>".$info['numero']."</td>";
+                                                echo "<td>".$info['ano_letivo']."</td>";
+                                                //echo "<td>".implode("/", array_reverse(explode("-", $info['dt_matricula'])))."</td>";
+                                                switch($info['situacao']){
+                                                    case 1:
+                                                        echo "<td>Cursando</td>";
+                                                        break;
+                                                    case 2:
+                                                        echo "<td>Desistente</td>";
+                                                        break;
+                                                    case 3:
+                                                        echo "<td>Trancado</td>";
+                                                        break;
+                                                    case 4:
+                                                        echo "<td>Concluinte</td>";
+                                                        break;
+                                                    case 5:
+                                                        echo "<td>Desistente</td>";
+                                                        break;
+                                                }
                                                 switch($info['tipo_matricula']){
                                                     case "1";
                                                         echo "<td>Integrado</td>";
@@ -85,14 +105,14 @@ include "../../base/head.php";
                                                         echo "<td>Subsequente</td>";
                                                         break;
                                                 }
-                                                echo "<td>".$info['numero']."</td>";
-                                                echo "<td>".$info['ano_letivo']."</td>";
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                             <a class='btn btn-success' href=view/visualizar_mat.php?matricula_alu=".$info['matricula_alu']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
+                                                            
+                                                            <a class='btn btn-info' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='far fa-print'></i>&nbsp; Declaração</a>
                                                                 
-                                                            <a class='btn btn-warning' href=view/editar_mat.php?matricula_mat=".$info['matricula_alu']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
+                                                            <!--<a class='btn btn-warning' href=view/editar_mat.php?matricula_mat=".$info['matricula_alu']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
                                                                 
-                                                            <a class='btn btn-danger' onclick='deletaAlu(".$info['matricula_alu'].")' sql-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
+                                                            <a class='btn btn-danger' onclick='deletaAlu(".$info['matricula_alu'].")' sql-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>-->
                                                           </div>
                                                         </td></tr>";
                                             }

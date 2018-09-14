@@ -1,28 +1,95 @@
-Inserir aluno
-
-Objetivo: Cadastrar dados dados de um novo aluno
-
-Pré condição: CPF e uma matrícula da FAETEC
-
-Ator: Secretaria
-
-
-Cenário principal
-
-1 - O usuário (secretaria) insere os dados do aluno na tela de cadastro;
-
-2 - Include: verificação de dados
-
-3 - Os dados inseridos são registrados na base de dados;
-
-4 - O sistema lista todos os dados da tabela e notifica o usuário do sucesso ou falha da operação;
+Os seguintes casos de uso servem para os CRUDS: 
+*Cargo
+*Disciplina
+*Função
+*Responsável
+*Sala
+*Unidade estudantil
 
 
 
-Cenários alternativo
+Inserir dados:
+
+Objetivo: inserir novos dados na tabela
+
+Pré-condição: nenhuma
+
+Ator: secretaria/rh
 
 
 
-Se dados já pré-existirem:
+Cenário principal:
+
+
+1 - O usuário insere os dados na tela de cadastro;
+2 - Os dados inseridos são registrados na base de dados;
+
+3 - O sistema lista todos os dados da tabela e notifica o usuário do sucesso ou falha da operação;
+
+
+
+
+
+Cenários alternativos (se os dados já pré-existirem):
+
 
 1 - Cancela a operação e notifica o usuário;
+
+
+
+
+Edição de dados:
+
+
+Objetivo: editar dados já pré-existentes.
+Pré-condição: a existência de dados a serem editados.
+Ator: secretaria/rh.
+
+
+Cenário principal:
+
+1 - O usuário escolhe os dados a serem editados;
+2 - O usuário faz as alterações desejadas;
+3 - O sistema atualiza os dados no banco;
+4 - Os dados são listados;
+
+Cenário alternativo:
+
+1 - 
+
+
+
+
+Visualização de dados:
+
+
+Objetivo: listar, detalhadamente, todos os dados de um registro.
+Pré-condição: a existência de dados a serem detalhados.
+Ator: secretaria/rh
+
+Cenário principal:
+
+1 - O usuário abre a tela de visualização de dados;
+2 - O sistema mostra todos os dados do registro;
+
+
+
+Exclusão de dados:
+
+Objetivo: excluir um registro.
+Pré-condição: a existência de um registro a ser excluído.
+Ator: secretaria/rh.
+
+
+Cenário principal: 
+
+1 - O usuário solicita a exclusão do registro;
+2 - O sistema requisita confirmação da exclusão;
+3 - O sistema deleta os dados do banco;
+4 - O sistema redireciona o usuário para a tela de listagem.
+
+
+Cenário alternativo:
+
+1 - O usuário cancela a operação. 
+

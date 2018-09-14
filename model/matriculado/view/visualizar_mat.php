@@ -19,8 +19,8 @@ include "../../../base/head.php"
                 include("../../../base/conexao.php");
         
                 $matricula_alu = (int) $_GET['matricula_alu'];
-                $sql  = "select m.tipo_matricula, m.dt_matricula, m.ano_letivo, m.matricula_alu, m.id_turma, m.id_disc, m.dt_matricula,  ";
-                $sql .= "a.matricula_alu, a.nome_alu, a.sobrenome_alu, ";
+                $sql  = "select m.tipo_matricula, m.dt_matricula, m.ano_letivo, m.matricula_alu, m.id_turma, m.id_disc, m.dt_matricula, m.situacao as sit_pdg, ";
+                $sql .= "a.matricula_alu, a.nome_alu, a.sobrenome_alu, a.situacao as sit_adm, ";
                 $sql .= "d.id_disc, d.nome_disc, ";
                 $sql .= "t.id_turma, t.numero, t.ano_letivo ";
                 $sql .= "from matriculado m, aluno a, disciplina d, turma t ";
@@ -31,12 +31,6 @@ include "../../../base/head.php"
                 $sql .= "and m.matricula_alu = '".$matricula_alu."' ";
                 $query = mysqli_query($conexao, $sql);
                 $row = mysqli_fetch_array($query);
-                
-                /*$sql2 = mysql_query("select upper(tp_logradouro) as tp_logradouro, upper(logradouro) as logradouro, upper(bairro) as bairro, upper(cidade) as cidade, uf from localidade where cep = '".$row["cep"]."';");
-                $row2 = mysql_fetch_array($sql2);
-        
-                $sexo_alu = $row["sexo_alu"];
-                $tipo_alu = $row["tipo_alu"];*/
             ?>
 
             <div class="content">
@@ -53,27 +47,52 @@ include "../../../base/head.php"
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="matricula_alu" class="form-control-label"><strong>Matrícula</strong></label>
                                                 <p class="form-control-plaintext"><?php echo $row["matricula_alu"]; ?></p>
                                             </div>
                                         </div>
-
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="nome_alu" class="form-control-label"><strong>Nome</strong></label>
                                                 <p class="form-control-plaintext"><?php echo $row["nome_alu"]; ?></p>
                                             </div>
                                         </div>
-
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="sobrenome_alu" class="form-control-label"><strong>Sobrenome</strong></label>
                                                 <p class="form-control-plaintext"><?php echo $row["sobrenome_alu"]; ?></p>
                                             </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="sobrenome_alu" class="form-control-label"><strong>Situação</strong></label>
+                                                <p class="form-control-plaintext">
+                                                    <?php 
+                                                        switch($row['sit_adm']){
+                                                                    case 1:
+                                                                        echo "Cursando";
+                                                                        break;
+                                                                    case 2:
+                                                                        echo "Desistente";
+                                                                        break;
+                                                                    case 3:
+                                                                        echo "Trancado";
+                                                                        break;
+                                                                    case 4:
+                                                                        echo "Concluinte";
+                                                                        break;
+                                                                    case 5:
+                                                                        echo "Desistente";
+                                                                        break;
+                                                                }
+                                                    ?>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
+                                    
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -89,7 +108,7 @@ include "../../../base/head.php"
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="rg_alu" class="form-control-label"><strong>Tipo da matricula</strong></label>
+                                                <label for="rg_alu" class="form-control-label"><strong>Modalidade</strong></label>
                                                 <p class="form-control-plaintext">
                                                     <?php
                                                         switch($row['tipo_matricula']){
@@ -114,7 +133,7 @@ include "../../../base/head.php"
                                     
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h5>Disciplinas realizadas por <?php echo $row["matricula_alu"]." - ".$row["nome_alu"]." ".$row["sobrenome_alu"].":" ?></h5>
+                                            <h5>Disciplinas realizadas por <?php echo $row["nome_alu"]." ".$row["sobrenome_alu"].":" ?></h5>
                                         </div>
                                     </div> 
                                 
@@ -126,7 +145,7 @@ include "../../../base/head.php"
                                                         <tr>
                                                             <th scope="col">ID</th>
                                                             <th scope="col">Nome</th>
-                                                            <!--<th scope="col">Ações</th>-->
+                                                            <th scope="col">Situação</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -136,7 +155,18 @@ include "../../../base/head.php"
                                                                 echo "<tr scope='row'>";
                                                                 echo "<td>".$row_disc['id_disc']."</td>";
                                                                 echo "<td>".$row_disc['nome_disc']."</td>";
-                                                                /*echo "<td>1</td>";
+                                                                switch($row_disc['sit_pdg']){
+                                                                    case 1:
+                                                                        echo "<td>Regular</td>";
+                                                                        break;
+                                                                    case 2:
+                                                                        echo "<td>Progressão Parcial (PPA)</td>";
+                                                                        break;
+                                                                    case 3:
+                                                                        echo "<td>Aproveitamento de Estudos (APE)</td>";
+                                                                        break;
+                                                                }
+                                                                /*echo "<td>".$row_disc['nome_disc']."</td>"; "<td>1</td>";
                                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                                         <a class='btn btn-success' href=view/visualizar_turma.php?matricula_alu=".$info['matricula_alu']."><i class='fa fa-info-circle'></i>&nbsp; Visualizar matrícula</a>
                                                                         

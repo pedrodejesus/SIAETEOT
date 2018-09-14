@@ -22,9 +22,9 @@ $complemento_alu     = $_POST["complemento_alu"];
 $tipo_alu            = $_POST["tipo_alu"];
 
 $sql  = "insert into aluno values ";
-$sql .= "('$matricula_alu', '$nome_alu', '$sobrenome_alu', '$cpf_alu', '$rg_alu', '$dt_nasc_alu', '$nome_pai', '$nome_mae', '$sexo_alu', NULL, '$tipo_alu', NULL, NULL, NULL, NULL, '$cep', '$num_resid_alu', '$complemento_alu');";
+$sql .= "('$matricula_alu', '$nome_alu', '$sobrenome_alu', '$cpf_alu', '$rg_alu', '$dt_nasc_alu', '$nome_pai', '$nome_mae', '$sexo_alu', NULL, 1, '$tipo_alu', NULL, NULL, NULL, NULL, '$cep', '$num_resid_alu', '$complemento_alu');";
 
-$resultado = mysqli_query($conexao, $sql);
+$resultado = mysqli_query($conexao, $sql) or die (mysqli_error($conexao));
 
 if($resultado){
     $registra_atv = mysqli_query ($conexao, lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));

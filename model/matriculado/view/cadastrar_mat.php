@@ -25,18 +25,12 @@ include "../../../base/head.php"
             selectFirst: false
         });
     });
-    $().ready(function() {
-        $("#id_turma").autocomplete("filtra_turma.php", {
-            width: 150,
-            matchContains: true,
-            //mustMatch: true,
-            //minChars: 0,
-            //multiple: true,
-            //highlight: false,
-            //multipleSeparator: ",",
-            selectFirst: false
+    $(document).ready(function(){
+        $('#ano_letivo').change(function(){
+            $('#id_turma').load('select_turma.php?ano_letivo='+$('#ano_letivo').val()+'&id_cur='+$('#id_cur').val());
         });
     });
+    
 </script>
 </head>
 
@@ -56,34 +50,60 @@ include "../../../base/head.php"
                                 <div class="card-body">
                                     <form action="../controller/insere_mat.php" method="post">
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="matricula_alu" class="form-control-label">Nome do aluno</label>
                                                 <input class="form-control" type="text" name="matricula_alu" id="matricula_alu" required />
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="id_turma" class="form-control-label">Turma</label>
-                                                <input class="form-control" type="text" maxlength="30" name="id_turma" id="id_turma" required />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label for="ano_letivo" class="form-control-label">Ano letivo</label>
-                                                <input class="form-control" type="text" maxlength="4" name="ano_letivo" id="ano_letivo" required/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label for="tipo_matricula" class="form-control-label">Tipo de matrícula</label>
-                                                <select id="tipo_matricula" name="tipo_matricula" class="form-control">
-                                                    <option value="1">Ensino Integrado</option>
-                                                    <option value="2">Ensino Subsequente</option>
+                                                <label for="id_cur" class="form-control-label">Curso</label>
+                                                <select class="form-control" type="text" name="id_cur" id="id_cur">
+                                                    <option value="">Selecione</option>
+                                                    <option value="0">Administração</option>
+                                                    <option value="3">Análises Clínicas</option>
+                                                    <option value="4">Gerência em Saúde</option>
+                                                    <option value="5">Informática para Internet</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="ano_letivo" class="form-control-label">Ano letivo</label>
+                                                <select class="form-control" type="text" name="ano_letivo" id="ano_letivo">
+                                                    <option value="">Selecione</option>
+                                                    <?php
+                                                        $ano_atual = date("Y");
+                                                        $ano_anterior = $ano_atual - 1;
+                                                        $proximo_ano = $ano_atual + 1;
+                                                        echo "<option value='".$ano_atual."'>".$ano_atual."</option>";
+                                                        echo "<option value='".$ano_anterior."'>".$ano_anterior."</option>";
+                                                        echo "<option value='".$proximo_ano."'>".$proximo_ano."</option>";
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="id_turma" class="form-control-label">Turma</label>
+                                                <select class="form-control" type="text" name="id_turma" id="id_turma">
+                                                    <option value="">Selecione</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="tipo_matricula" class="form-control-label">Modalidade</label>
+                                                <select id="tipo_matricula" name="tipo_matricula" class="form-control">
+                                                    <option value="1">Integrado</option>
+                                                    <option value="2">Subsequente</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="dt_matricula" class="form-control-label">Data da matrícula</label>
                                                 <input class="form-control" type="text" name="dt_matricula" value="<?php echo date('d/m/Y'); ?> " id="dt_matricula" readonly />
@@ -94,7 +114,7 @@ include "../../../base/head.php"
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="btn-group" role="group"> 
-                                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp; Salvar</button>
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp; Matricular</button>
                                                 <a href="../lista_matriculado.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>
                                             </div>
                                         </div>

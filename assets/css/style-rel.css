@@ -5,21 +5,26 @@
     display: inline;
 }
 .logo_eteot{
-    float: right;
-    height: 170px;
-    width: 120px;
+    height: 100px;
+    width: 100px;
     display: inline !important;
-    margin-top:-130px;
 }
-.titulo_bol{
-    text-align: center;
-    font-weight: bold;
-    margin-left:-170px;
+.total-bol{
+	text-align:center;
+	/*border-collapse: collapse;*/
 }
+.info-alu{/*margin-top:80px;*/}
+.ref{background:#e4e4e4}
+.red-not{background-color:rgb(255,199,206); color:rgb(156,0,6);}
 .rodape{
 	width:100%;
 	bottom:0;
-	text-align:right;
 	font-size:10px !important;
-	font-family:'Arial';
+}
+.rodape .pag{
+	width:20%;
+	float:left;
+}
+.rodape .emiss{
+	text-align:right;
 }

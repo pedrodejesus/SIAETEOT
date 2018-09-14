@@ -3,7 +3,7 @@ include "../../base/conexao.php";
 
 $ano_letivo = $_GET['ano_letivo_corrente'] + 1;
 
-$sql = "select * from turma where ano_letivo = ".$ano_letivo;
+$sql = "select * from turma where ano_letivo = ".$ano_letivo." order by numero asc";
 $query = mysqli_query($conexao, $sql); 
 //mysqli_next_result($conexao);
 

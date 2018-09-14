@@ -8,19 +8,19 @@
                                 </a>
                                 <ul class="nav-dropdown-items">
                                     <li class="nav-item ml-3">
-                                        <a href="\projeto/model/aluno/lista_aluno.php" class="nav-link"><i class="fa fa-user-graduate"></i> Listar Alunos</a>
+                                        <a href="\projeto/model/aluno/lista_aluno.php" class="nav-link"><i class="fa fa-user-graduate"></i> Dados Pessoais</a>
                                     </li>
                                     <li class="nav-item ml-3">
-                                        <a href="\projeto/model/matriculado/lista_matriculado.php" class="nav-link"><i class="fa fa-clipboard-list"></i> Matículas</a>
+                                        <a href="\projeto/model/matriculado/lista_matriculado.php" class="nav-link"><i class="fa fa-user-graduate"></i> Matrículas</a>
                                     </li>
                                     <li class="nav-item ml-3">
                                         <a href="\projeto/model/remanejamento/remaneja_alu.php" class="nav-link"><i class="far fa-sync-alt"></i> Remanejamento</a>
                                     </li>
-                                    <li class="nav-item ml-3">
+                                    <!--<li class="nav-item ml-3">
                                         <a href="\projeto/model/ppa/lista_matriculado.php" class="nav-link"><i class="fa fa-clipboard-list"></i> PPA</a>
-                                    </li>
+                                    </li>-->
                                     <li class="nav-item ml-3">
-                                        <a href="\projeto/model/ape/remaneja_alu.php" class="nav-link"><i class="fa fa-clipboard-list"></i> APE</a>
+                                        <a href="\projeto/model/ape/lista_ape.php" class="nav-link"><i class="fa fa-clipboard-list"></i> APE</a>
                                     </li>
                                 </ul>
                             </li>

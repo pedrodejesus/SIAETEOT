@@ -1,0 +1,22 @@
+Login do usuário:
+
+Objetivo: logar o usuário no sistema.
+Pré-condição: o usuário ser cadastrado no sistema.
+Ator: todos.
+
+Cenário principal:
+
+1 - O usuário fornece os dados requisitados pelo sistema;
+2 - O sistema valida o nível de acesso do usuário.
+
+Cenários alternativos: 
+
+  *Caso o usuário não seja cadastrado:
+
+1 - O sistema cancela a operação;
+2 - O sistema redireciona o usuário para a tela de cadastro. 
+
+  *Caso o usuário informe os dados de acesso incorretos:
+
+1 - O sistema informa o erro;
+2 - O sistema solicita que informe os dados corretos.

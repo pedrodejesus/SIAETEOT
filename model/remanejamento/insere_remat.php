@@ -26,7 +26,7 @@ foreach($matricula_alu as /*$index =>*/ $matricula){
     }
     
     while ($disciplinas = mysqli_fetch_array($consulta)){
-        $sql_insert = "insert into matriculado values (0, '".$tipo."', '".$data."', '".$proximo_ano_letivo."', '0', '".$matricula."', '".$id_turma."',  '".$disciplinas['id_disc']."');";
+        $sql_insert = "insert into matriculado values (0, '".$tipo."', '".$data."', '".$proximo_ano_letivo."', 1, '0', '".$matricula."', '".$id_turma."',  '".$disciplinas['id_disc']."');";
         $resultado = mysqli_query($conexao, $sql_insert);
         //echo $sql_insert."<br>";
         
