@@ -2,8 +2,9 @@
 include "../../base/conexao.php";
 
 $ano_letivo = $_GET['ano_letivo_corrente'] + 1;
+$id_cur = $_GET['id_cur'];
 
-$sql = "select * from turma where ano_letivo = ".$ano_letivo." order by numero asc";
+$sql = "select * from turma where ano_letivo = ".$ano_letivo." and id_cur =".$id_cur." order by numero asc";
 $query = mysqli_query($conexao, $sql); 
 //mysqli_next_result($conexao);
 

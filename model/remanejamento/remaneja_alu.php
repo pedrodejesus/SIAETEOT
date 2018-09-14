@@ -14,19 +14,18 @@ include "../../base/head.php"
 <script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
 <script>
     $(document).ready(function(){
-        $('#ano_letivo_corrente').change(function(){
-            $('#id_turma').load('select_turma.php?ano_letivo_corrente='+$('#ano_letivo_corrente').val());
+        $('#id_cur').change(function(){
+            $('#id_turma').load('select_turma.php?ano_letivo_corrente='+$('#ano_letivo_corrente').val()+'&id_cur='+$('#id_cur').val());
         });
     });
     $(document).ready(function(){
         $('#id_turma').change(function(){
             $('#tbody_alu').load('lista_alu.php?id_turma='+$('#id_turma').val());
-            //$('#tbody_turma').load('lista_turma.php?ano_letivo='+$('#ano_letivo_corrente').val());
         });
     });
     $(document).ready(function(){
         $('#id_turma').change(function(){
-            $('#tbody_turma').load('lista_turma.php?ano_letivo_corrente='+$('#ano_letivo_corrente').val());
+            $('#tbody_turma').load('lista_turma.php?ano_letivo_corrente='+$('#ano_letivo_corrente').val()+'&id_cur='+$('#id_cur').val());
         });
     });
 </script>
@@ -71,7 +70,7 @@ include "../../base/head.php"
                                     ?>
                                     <form action="insere_remat.php" method="post">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="id_cur" class="form-control-label">Ano letivo</label>
                                                     <select class="form-control" type="text" name="ano_letivo_corrente" id="ano_letivo_corrente">
@@ -87,7 +86,19 @@ include "../../base/head.php"
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="id_turma" class="form-control-label">Curso</label>
+                                                    <select class="form-control" type="text" name="id_cur" id="id_cur">
+                                                        <option value="">Selecione</option>
+                                                        <option value="0">Administração</option>
+                                                        <option value="3">Análises Clínicas</option>
+                                                        <option value="4">Gerência em Saúde</option>
+                                                        <option value="5">Informática para Internet</option>
+                                                    </select>
+                                                </div> 
+                                            </div>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="id_turma" class="form-control-label">Turma</label>
                                                     <select class="form-control" type="text" name="id_turma_ano_letivo_corrente" id="id_turma">
