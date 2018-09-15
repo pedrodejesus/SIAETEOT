@@ -28,29 +28,30 @@ include "../../../base/head.php"
                                 <div class="card-body">
                                     <form action="../controller/insere_alu.php" method="post">
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <script>
-                                                    function SomenteNumero(e){
-                                                        var tecla=(window.event)?event.keyCode:e.which;   
-                                                        if((tecla>47 && tecla<58)) return true;
-                                                        else{
-                                                            if (tecla==8 || tecla==0) return true;
-                                                        else  return false;
-                                                        }
+                                            <script>
+                                                function SomenteNumero(e){
+                                                    var tecla=(window.event)?event.keyCode:e.which;   
+                                                    if((tecla>47 && tecla<58)) return true;
+                                                    else{
+                                                        if (tecla==8 || tecla==0) return true;
+                                                    else  return false;
                                                     }
-                                                </script>
+                                                }
+                                            </script>
+                                            <!--<div class="col-md-4">
+                                                
                                                 <div class="form-group">
                                                     <label for="matricula_alu" class="form-control-label">Matrícula</label>
                                                     <input onkeypress='return SomenteNumero(event)' class="form-control" type="text" maxlength="18" name="matricula_alu" id="matricula_alu" required />
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
+                                            </div>-->
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="nome_alu" class="form-control-label">Nome</label>
                                                     <input class="form-control" type="text" maxlength="30" name="nome_alu" id="nome_alu" required />
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="sobrenome_alu" class="form-control-label">Sobrenome</label>
                                                     <input class="form-control" type="text" maxlength="70" name="sobrenome_alu" id="sobrenome_alu" required />
@@ -124,19 +125,19 @@ include "../../../base/head.php"
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="nome_pai" class="form-control-label">Nome do pai</label>
                                                     <input class="form-control" type="text" maxlength="100" name="nome_pai" id="nome_pai" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="nome_mae" class="form-control-label">Nome da mãe</label>
                                                     <input class="form-control" type="text" maxlength="100" name="nome_mae" id="nome_mae" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="sexo_alu">Sexo</label>
                                                     <select id="sexo_alu" name="sexo_alu" class="form-control">
@@ -145,15 +146,7 @@ include "../../../base/head.php"
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="tipo_alu">Tipo do aluno</label>
-                                                    <select id="tipo_alu" name="tipo_alu" class="form-control">
-                                                        <option value="I">Ensino Integrado</option>
-                                                        <option value="S">Ensino Subsequente</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
 
                                         <div class="row">
@@ -203,6 +196,46 @@ include "../../../base/head.php"
                                                 <div class="form-group">
                                                     <label for="uf">UF</label>
                                                     <input id="uf" name="uf" class="form-control" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <h4>Informações para matrícula</h4>
+                                        <hr>                                        
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="tipo_alu">Modalidade</label>
+                                                    <select id="tipo_alu" name="tipo_alu" class="form-control">
+                                                        <option value="I">Ensino Integrado</option>
+                                                        <option value="S">Ensino Subsequente</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="id_cur" class="form-control-label">Curso</label>
+                                                    <select class="form-control" type="text" name="id_cur" id="id_cur">
+                                                        <option value="0">Administração</option>
+                                                        <option value="3">Análises Clínicas</option>
+                                                        <option value="4">Gerência em Saúde</option>
+                                                        <option value="5">Informática para Internet</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="cidade">Ano Letivo</label>
+                                                    <input onkeypress='return SomenteNumero(event)' maxlength="4" id="ano_letivo" name="ano_letivo" class="form-control" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="uf">Semestre</label>
+                                                    <select class="form-control" type="text" name="semestre" id="semestre">
+                                                        <option value="1">1º semestre</option>
+                                                        <option value="2">2º semestre</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>

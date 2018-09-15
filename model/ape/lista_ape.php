@@ -116,6 +116,7 @@ include "../../base/head.php"
                                                                 <tr>
                                                                     <th scope='col'>Aluno</th>
                                                                     <th scope='col'>Situação</th>
+                                                                    <th scope='col'>Ações</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="tbody_alu">
@@ -129,7 +130,7 @@ include "../../base/head.php"
                                             <div class="col-md-4">
                                                 <div class="btn-group" role="group">
                                                     <a href="remaneja_alu.php"><button type="button" class="btn btn-light"><i class="fa fa-undo"></i>&nbsp; Cancelar</button></a>
-                                                    <button type="submit" class="btn btn-success"><i class="far fa-sync-alt"></i>&nbsp; Remanejar alunos</button> 
+                                                    <!--<button type="submit" class="btn btn-success"><i class="far fa-sync-alt"></i>&nbsp; Remanejar alunos</button> -->
                                                 </div>
                                             </div>
                                         </div>

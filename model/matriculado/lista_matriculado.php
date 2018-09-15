@@ -108,7 +108,9 @@ include "../../base/head.php";
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                             <a class='btn btn-success' href=view/visualizar_mat.php?matricula_alu=".$info['matricula_alu']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
                                                             
-                                                            <a class='btn btn-info' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='far fa-print'></i>&nbsp; Declaração</a>
+                                                            <a class='btn btn-primary' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='far fa-print'></i>&nbsp; Declaração</a>
+                                                            
+                                                            <a class='btn btn-light' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='fal fa-id-card'></i>&nbsp; Documentos</a>
                                                                 
                                                             <!--<a class='btn btn-warning' href=view/editar_mat.php?matricula_mat=".$info['matricula_alu']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
                                                                 

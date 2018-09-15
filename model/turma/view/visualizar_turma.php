@@ -21,8 +21,8 @@ include "../../../base/head.php"
                         
                 $id_turma = (int) $_GET['id_turma'];
                 $sql  = "select distinct m.matricula_alu, m.id_turma, m.remat, ";
-                $sql .= "a.matricula_alu, a.nome_alu, a.sobrenome_alu, ";
-                $sql .= "t.id_turma, t.numero, t.ano_letivo, t.situacao, t.turno, t.dt_inicio, t.dt_fim, t.id_cur ";
+                $sql .= "a.matricula_alu, a.nome_alu, a.sobrenome_alu, a.situacao as situacao_aluno, ";
+                $sql .= "t.id_turma, t.numero, t.ano_letivo, t.situacao as situacao_turma, t.turno, t.dt_inicio, t.dt_fim, t.id_cur ";
                 $sql .= "from matriculado m, aluno a, turma t ";
                 $sql .= "where m.matricula_alu = a.matricula_alu ";
                 $sql .= "and m.id_turma = t.id_turma  ";
@@ -77,7 +77,7 @@ include "../../../base/head.php"
                                                 <strong>Situação</strong>
                                                 <p class="form-control-plaintext">
                                                     <?php
-                                                        switch($row["situacao"]){
+                                                        switch($row["situacao_turma"]){
                                                             case 1:
                                                                 echo "Ativa";
                                                                 break;
@@ -174,21 +174,41 @@ include "../../../base/head.php"
                                                                         <tr>
                                                                             <th scope='col'>Matrícula</th>
                                                                             <th scope='col''>Nome</th>
+                                                                            <th scope='col'>Situação</th>
                                                                             <th scope='col'>Ações</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>";
                                                                 $query_alu = mysqli_query($conexao, $sql);
                                                                 while($row_alu = mysqli_fetch_array($query_alu)){
-                                                                echo "<tr scope='row'>";
-                                                                echo "<td>".$row_alu['matricula_alu']."</td>";
-                                                                echo "<td>".$row_alu['nome_alu']." ".$row_alu['sobrenome_alu']."</td>";
-                                                                echo "<td><div class='btn-group btn-group-sm' role='group'>
-                                                                        <a class='btn btn-success' href=../../matriculado/view/visualizar_mat.php?matricula_alu=".$row_alu['matricula_alu']."><i class='fa fa-info-circle'></i>&nbsp; Visualizar matrícula</a>
-                                                                        
-                                                                        <a class='btn btn-warning' href=view/visualizar_turma.php?matricula_alu=".$row_alu['matricula_alu']."><i class='fa fa-exchange-alt'></i>&nbsp; Transferir de turma</a>
-                                                                      </div>
-                                                                    </td></tr>";
+                                                                    echo "<tr scope='row'>";
+                                                                    echo "<td>".$row_alu['matricula_alu']."</td>";
+                                                                    echo "<td>".$row_alu['nome_alu']." ".$row_alu['sobrenome_alu']."</td>";
+                                                                    echo "<td>";
+                                                                    switch($row_alu['situacao_aluno']){
+                                                                        case 1:
+                                                                            echo "Cursando";
+                                                                            break;
+                                                                        case 2:
+                                                                            echo "Desistente";
+                                                                            break;
+                                                                        case 3:
+                                                                            echo "Trancado";
+                                                                            break;
+                                                                        case 4:
+                                                                            echo "Concluinte";
+                                                                            break;
+                                                                        case 5:
+                                                                            echo "Transferido";
+                                                                            break; 
+                                                                    }
+                                                                    echo "</td>";
+                                                                    echo "<td><div class='btn-group btn-group-sm' role='group'>
+                                                                            <a class='btn btn-success' href=../../matriculado/view/visualizar_mat.php?matricula_alu=".$row_alu['matricula_alu']."><i class='fa fa-info-circle'></i>&nbsp; Visualizar matrícula</a>";
+                                                                    if  (($row_alu['situacao_aluno'] == 1 || $row_alu['situacao_aluno'] == 3) && $row['situacao_turma'] == 1) {
+                                                                        echo"<a class='btn btn-warning' href=view/visualizar_turma.php?matricula_alu=".$row_alu['matricula_alu']."><i class='fa fa-exchange-alt'></i>&nbsp; Transferir de turma</a>"; 
+                                                                    } 
+                                                                    echo "</div></td></tr>";  
                                                                 } 
                                                             }
                                                         ?>
@@ -226,13 +246,10 @@ include "../../../base/head.php"
                                                                 echo "<tr scope='row'>";
                                                                 echo "<td>".$row_disc['id_disc']."</td>";
                                                                 echo "<td>".$row_disc['nome_disc']."</td>";
-                                                                echo "<td>1</td>";
-                                                                /*echo "<td><div class='btn-group btn-group-sm' role='group'>
-                                                                        <a class='btn btn-success' href=view/visualizar_turma.php?matricula_alu=".$info['matricula_alu']."><i class='fa fa-info-circle'></i>&nbsp; Visualizar matrícula</a>
-                                                                        
-                                                                        <a class='btn btn-warning' href=view/visualizar_turma.php?matricula_alu=".$info['matricula_alu']."><i class='fa fa-exchange-alt'></i>&nbsp; Transferir de turma</a>
-                                                                      </div>
-                                                                    </td></tr>";*/
+                                                                echo "<td><div class='btn-group btn-group-sm' role='group'>
+                                                                        <a class='btn btn-danger' href=''><i class='fa fa-trash'></i>&nbsp; Excluir disciplina</a>";
+                                                                echo "</div></td></tr>";
+                                                                    
                                                             }
                                                         ?>
                                                     </tbody>
@@ -248,13 +265,6 @@ include "../../../base/head.php"
                                                 <a class='btn btn-danger' onclick='deletaTurma(<?php echo $id_turma ?>)' data-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
                                                 
                                                 <a class='btn btn-light' href='../lista_turma.php'><i class='fa fa-undo'></i>&nbsp; Voltar</a>
-                                                <?php
-                                                    /*echo "<a class='btn btn-warning' href=editar_disc.php?id_turma=".$row['id_turma']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
-                                                                
-                                                           <a class='btn btn-danger' href='../controller/exclui_disc.php?id_turma=".$row['id_turma']."'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
-                                                           
-                                                           <a class='btn btn-light' href='../lista_turma.php'><i class='fa fa-undo'></i>&nbsp; Voltar</a>";*/
-                                                ?>
                                             </div>
                                         </div>
                                     </div>

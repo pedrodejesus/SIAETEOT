@@ -18,7 +18,14 @@ while($alunos = mysqli_fetch_array($query)){
     mysqli_next_result($conexao);
     
     if($query_array[0]>3){
-        echo "<tr scope'row'><td>".$alunos['nome_alu']." ".$alunos['sobrenome_alu']."</td></tr>";
+        echo "<tr scope'row'><td>".$alunos['nome_alu']." ".$alunos['sobrenome_alu']."</td>";
+        echo "<td>Não matriculado</td>";
+        echo "<td><div class='btn-group btn-group-sm' role='group'>
+                <a class='btn btn-success' href='view/visualizar_mat.php?matricula_alu=".$alunos['matricula_alu']."'><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
+                                                            
+                <a class='btn btn-primary' href='rel/declaracao.php?matricula_alu='".$alunos['matricula_alu']."'><i class='far fa-arrow-right'></i>&nbsp; Matricular</a>
+               </div>
+              </td></tr>";
     }
 }
 
