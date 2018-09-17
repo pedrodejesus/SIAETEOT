@@ -9,7 +9,7 @@ include("../../../base/conexao.php");
 $q = strtolower($_GET["q"]);
 if (!$q) return;
 
-$sql = "select matricula_alu, nome_alu, sobrenome_alu from aluno where nome_alu like '%$q%'";
+$sql = "select matricula_alu, nome_alu, sobrenome_alu from aluno where concat(nome_alu, sobrenome_alu) like '%$q%' order by nome_alu asc, sobrenome_alu asc";
 
 $rsd = mysqli_query($conexao, $sql);
 

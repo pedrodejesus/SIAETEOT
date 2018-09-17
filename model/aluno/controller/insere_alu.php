@@ -64,10 +64,10 @@ if(($ano <> $ultimo_ano) || empty($ultimo_ano)){ //Se ano for diferente do ultim
     $mat_sequencial = str_pad(1, 4, 0, STR_PAD_LEFT); 
 }elseif($ano == $ultimo_ano){ //Senão, puxa do banco as matrículas daquele ano, pega os últimos 4 dígitos e faz um incremento para gerar a próxima matrícula;
     $sql_check  = "select distinct max(substring(matricula_alu, 9, 4)) as mat_sequencial ";
-    $sql_check .= "from matriculado where matricula_alu like '$ano%'";
+    $sql_check .= "from aluno where matricula_alu like '$ano%'";
     $query_check = mysqli_query($conexao, $sql_check);
-    $array_check = mysqli_fetch_array($query_check);
-    //$array_check[0] = '9992';
+    //$array_check = mysqli_fetch_array($query_check);
+    $array_check[0] = '0999';
     
     $ultimo_numero = (int) $array_check[0];
     $proximo_numero = $ultimo_numero + 1;

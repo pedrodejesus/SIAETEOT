@@ -76,10 +76,12 @@ include "../../../base/head.php"
                                                     <?php
                                                         $ano_atual = date("Y");
                                                         $ano_anterior = $ano_atual - 1;
+                                                        $ano_preanterior = $ano_atual - 2;
                                                         $proximo_ano = $ano_atual + 1;
                                                         echo "<option value='".$ano_atual."'>".$ano_atual."</option>";
                                                         echo "<option value='".$ano_anterior."'>".$ano_anterior."</option>";
                                                         echo "<option value='".$proximo_ano."'>".$proximo_ano."</option>";
+                                                        echo "<option value='".$ano_preanterior."'>".$ano_preanterior."</option>";
                                                     ?>
                                                 </select>
                                             </div>
@@ -110,7 +112,9 @@ include "../../../base/head.php"
                                             </div>
                                         </div>
                                     </div>
-                                                                    
+                                    <div id='teste' class="row">
+                                        
+                                    </div>                          
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="btn-group" role="group"> 

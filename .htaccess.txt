@@ -1,5 +1,0 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /projeto/
-  RewriteRule ^pagina-inicial$ /index.php [NC,L,R]
-</IfModule>
