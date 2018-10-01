@@ -37,6 +37,13 @@ include "base/head.php"
                                                 </button>
                                               </div>';
                                         break;
+                                    case 3:
+                                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Usuário sem permissão de acesso!
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>';
+                                        break;
                                 }
                                 $msg = 0;
                             }

@@ -70,7 +70,7 @@ include "../../base/head.php"
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                            //mysqli_free_result($query);
+                                                            mysqli_free_result($query);
                                                 
                                                             $sql_bol = "call select_disciplinas_aluno_boletim(".$matricula_alu.", ".$id_turma.")";
                                                             $query_bol = mysqli_query($conexao, $sql_bol) or die(mysqli_error($conexao));

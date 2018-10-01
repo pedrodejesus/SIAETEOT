@@ -1,3 +1,4 @@
+/* Boletim */
 .logo_rj{
     float: left;
     height: 10%;
@@ -27,4 +28,36 @@
 }
 .rodape .emiss{
 	text-align:right;
+}
+
+/* Declaração */
+.logo_rj_dec{
+    float: left;
+    height: 12%;
+    width: 12%;
+    display: inline;
+}
+.topo-declaracao{
+    text-align: left;
+    padding: -50px !important;
+    line-height: 20px;
+}
+.dec_tit{
+    padding: 110px 0px 25px;
+    text-align: center;
+}
+.dec_txt{
+    font-size: 15px;
+    line-height: 30px;
+}
+.dec_nome{
+    text-align: center;
+    font-style: italic;
+}
+.num_mat{
+    font-size: 15px;
+    line-height: 5px;
+}
+.data{
+    text-align: center;
 }
