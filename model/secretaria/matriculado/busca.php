@@ -56,9 +56,6 @@ while($info = mysqli_fetch_array($query)){
                                                             
                                                             <a class='btn btn-light' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='fal fa-id-card'></i>&nbsp; Documentos</a>
                                                                 
-                                                            <!--<a class='btn btn-warning' href=view/editar_mat.php?matricula_mat=".$info['matricula_alu']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
-                                                                
-                                                            <a class='btn btn-danger' onclick='deletaAlu(".$info['matricula_alu'].")' sql-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>-->
                                                           </div>
                                                         </td></tr>";
                                             }

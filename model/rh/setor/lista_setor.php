@@ -70,7 +70,7 @@ include "../../../base/head.php";
                                                 echo "<td>".$info['id_setor']."</td>";
                                                 echo "<td>".$info['nome_setor']."</td>";
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
-                                                            <a class='btn btn-success' href=view/visualizar_setor.php?id_setor=".$info['id_setor']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
+                                                            <!--<a class='btn btn-success' href=view/visualizar_setor.php?id_setor=".$info['id_setor']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>-->
                                                                 
                                                             <a class='btn btn-warning' href=view/editar_setor.php?id_setor=".$info['id_setor']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
                                                                 

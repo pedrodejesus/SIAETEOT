@@ -1,22 +1,28 @@
 <?php
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
-$nivel_necessario = 2;
 
-if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necessario)) { // Verifica se não há a variável da sessão que identifica o usuário
-	session_destroy(); // Destrói a sessão por segurança 
-	header("Location: index.php"); exit; // Redireciona o visitante de volta pro login
+if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 3)) { // Verifica se não há a variável da sessão que identifica o usuário
+	session_destroy(); // Destrói a sessão por segurança
+	header("Location: ../../../login.php?msg=4"); exit; // Redireciona o visitante de volta pro login
 }
-include "../../base/head.php";
+$page = 'cargo';
+include "../../../base/head.php";
 ?>
 </head>
 
 <body class="sidebar-fixed header-fixed">
     <?php include "modal.php" ?>
     <div class="page-wrapper">
-    <?php include "../../base/nav.php" ?>
+    <?php include "../../../base/nav.php" ?>
         <div class="main-container">
-        <?php include "../../base/sidebar.php" ?>
+        <?php include "../../../base/sidebar/3_sidebar_rh.php" ?>
             <div class="content">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-light">
+                        <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Cargos</li>
+                    </ol>
+                </nav>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -51,21 +57,20 @@ include "../../base/head.php";
                                         </thead>
                                         <tbody id="tbody_cargo">
                                         <?php
-                                            include("../../base/conexao.php");
+                                            include("../../../base/conexao.php");
                                                     
-                                            $quantidade = 10;
-							
+                                            $quantidade = 10;	
                                             $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
                                             $inicio = ($quantidade * $pagina) - $quantidade;
 
-                                            $data = mysql_query("select * from cargo order by id_cargo asc limit $inicio, $quantidade;") or die(mysql_error());
+                                            $data = mysqli_query($conexao, "select * from cargo order by id_cargo asc limit $inicio, $quantidade;") or die(mysql_error());
                                                 
-                                            while($info = mysql_fetch_array($data)){                                                 
+                                            while($info = mysqli_fetch_array($data)){                                                 
                                                 echo "<tr scope='row'>";
                                                 echo "<td>".$info['id_cargo']."</td>";
                                                 echo "<td>".$info['nome_cargo']."</td>";
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
-                                                            <a class='btn btn-success' href=view/visualizar_cargo.php?id_cargo=".$info['id_cargo']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
+                                                            <!--<a class='btn btn-success' href=view/visualizar_cargo.php?id_cargo=".$info['id_cargo']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>-->
                                                                 
                                                             <a class='btn btn-warning' href=view/editar_cargo.php?id_cargo=".$info['id_cargo']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
                                                                 
@@ -81,8 +86,8 @@ include "../../base/head.php";
                                         <?php 
                                             $sqlTotal 		= "select id_cargo from cargo;";
                                                 
-                                            $qrTotal  		= mysql_query($sqlTotal) or die (mysql_error());
-                                            $numTotal 		= mysql_num_rows($qrTotal);
+                                            $qrTotal  		= mysqli_query($conexao, $sqlTotal);
+                                            $numTotal 		= mysqli_num_rows($qrTotal);
                                             $totalpagina = (ceil($numTotal/$quantidade)<=0) ? 1 : ceil($numTotal/$quantidade);
 
                                             $exibir = 3;

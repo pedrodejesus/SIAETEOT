@@ -1,23 +1,29 @@
 <?php
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
-$nivel_necessario = 2;
 
-if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necessario)) { // Verifica se não há a variável da sessão que identifica o usuário
+if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 3)) { // Verifica se não há a variável da sessão que identifica o usuário
 	session_destroy(); // Destrói a sessão por segurança
-	header("Location: index.php"); exit; // Redireciona o visitante de volta pro login
+	header("Location: ../../../../login.php?msg=4"); exit; // Redireciona o visitante de volta pro login
 }
-include "../../../base/head.php"
+$page = 'setor';
+include "../../../../base/head.php";
 ?>
 <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
 <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
 </head>
 <body class="sidebar-fixed header-fixed">
     <div class="page-wrapper">
-        <?php include "../../../base/nav.php" ?>
+        <?php include "../../../../base/nav.php" ?>
         <div class="main-container">
-            <?php include "../../../base/sidebar.php" ?>
+            <?php include "../../../../base/sidebar/3_sidebar_rh.php" ?>
             <div class="content">
-                <div class="container-fluid">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-light">
+                            <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="\projeto/model/rh/setor/lista_setor.php">Setores</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Adicionar</li>
+                        </ol>
+                    </nav>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -55,7 +61,6 @@ include "../../../base/head.php"
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
