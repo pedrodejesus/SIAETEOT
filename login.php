@@ -60,8 +60,8 @@ include "base/head.php"
                             </div>
 
                             <div class="custom-control custom-checkbox mt-4">
-                                <input type="checkbox" class="custom-control-input" id="login">
-                                <label class="custom-control-label" for="login">Lembre-me</label>
+                                <input type="checkbox" class="custom-control-input" id="aluno" name="aluno">
+                                <label class="custom-control-label" for="aluno">Sou aluno</label>
                             </div>
                         </div>
 
