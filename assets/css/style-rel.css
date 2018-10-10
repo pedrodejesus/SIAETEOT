@@ -29,6 +29,10 @@
 .rodape .emiss{
 	text-align:right;
 }
+.table-sm td,
+.table-sm th {
+    padding: .3rem
+}
 
 /* Declaração */
 .logo_rj_dec{
@@ -60,4 +64,10 @@
 }
 .data{
     text-align: center;
+}
+
+/* Alunos por turma */
+
+.table th, .table td, .table tr {
+    margin: 0px 0px 0px 0px;    
 }

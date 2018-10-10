@@ -1,8 +1,8 @@
 <script src="https://use.fontawesome.com/5c09ce9350.js"></script>
 <?php
-require_once '../../assets/vendor/autoload.php';
+require_once '../../../assets/vendor/autoload.php';
 //if (!isset($_SESSION)) session_start();
-include "../../base/conexao.php";
+include "../../../base/conexao.php";
 
 $mpdf = new \Mpdf\Mpdf([
     'mode' => 'utf-8',
@@ -14,9 +14,9 @@ $mpdf = new \Mpdf\Mpdf([
 
 $mpdf->DefHTMLHeaderByName('MyHeader1',
   '<div><table width="100%"><tr>
-	<td width="20%"><img class="logo_rj" src="../../assets/img/logo_rj.jpg" /></td>
+	<td width="20%"><img class="logo_rj" src="../../../assets/img/logo_rj.jpg" /></td>
 	<td width="60%" align="center"><h2>ESCOLA TÉCNICA ESTADUAL OSCAR TENÓRIO <br> FICHA INDIVIDUAL DE RENDIMENTOS 2018</h2></td>
-	<td width="20%" align="right"><img class="logo_eteot" class="logo_eteot" src="../../assets/img/logo.jpg" /></td>
+	<td width="20%" align="right"><img class="logo_eteot" class="logo_eteot" src="../../../assets/img/logo.jpg" /></td>
 	</tr></table></div>');
 
 $mpdf->DefHTMLFooterByName('MyFooter1',
@@ -25,7 +25,7 @@ $mpdf->DefHTMLFooterByName('MyFooter1',
 $mpdf->SetHTMLHeaderByName('MyHeader1');
 $mpdf->SetHTMLFooterByName('MyFooter1');
 
-$css = file_get_contents('../../assets/css/style-rel.css');
+$css = file_get_contents('../../../assets/css/style-rel.css');
 $mpdf->WriteHTML($css,1);
 
 $matricula_alu = $_GET['matricula_alu'];

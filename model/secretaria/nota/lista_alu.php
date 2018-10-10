@@ -40,10 +40,10 @@ while($row_alu = mysqli_fetch_array($query)){
 
 echo'
 <script type="text/javascript">
-        $(document).ready(function(){
+        /*$(document).ready(function(){
             $("#nota1").inputmask("9[9].9");
             $("#recu1").inputmask("9[9].9");
-        });
+        });*/
     </script>
 ';
 ?>

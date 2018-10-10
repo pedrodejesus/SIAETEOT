@@ -35,11 +35,24 @@
                             </li>
                             <li class="nav-item nav-dropdown">
                                 <a href="" class="nav-link nav-dropdown-toggle">
+                                    <i class="far fa-clipboard-list"></i> Relatórios <i class="fa fa-caret-left"></i>
+                                </a>
+                                <ul class="nav-dropdown-items">
+                                    <li class="nav-item ml-3">
+                                        <a href="\projeto/model/secretaria/rel/alunos_turma/alunos_turma.php" class="nav-link <?php if($page=='rel_alunos_turma'){echo'active';} ?>"><i class="far fa-clipboard-list"></i> Alunos por turma</a>
+                                    </li>
+                                    <li class="nav-item ml-3">
+                                        <a href="\projeto/model/secretaria/rel/boletim_geral/boletim_geral.php" class="nav-link <?php if($page=='rel_alunos_turma'){echo'active';} ?>"><i class="far fa-clipboard-list"></i> Boletim geral</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item nav-dropdown">
+                                <a href="" class="nav-link nav-dropdown-toggle">
                                     <i class="far fa-exchange-alt"></i> Transferências <i class="fa fa-caret-left"></i>
                                 </a>
                                 <ul class="nav-dropdown-items">
                                     <li class="nav-item ml-3">
-                                        <a href="\projeto/model/secretaria/transf_turma/lista_aluno.php" class="nav-link <?php if($page=='transf_tur'){echo'active';} ?>"><i class="far fa-exchange-alt"></i> Transferência de turma</a>
+                                        <a href="#" class="nav-link <?php if($page=='transf_tur'){echo'active';} ?>"><i class="far fa-exchange-alt"></i> Transferência de turma</a>
                                     </li>
                                     <li class="nav-item ml-3">
                                         <a href="\projeto/model/secretaria/transf_ue/lista_transf_ue.php" class="nav-link <?php if($page=='transf_ue'){echo'active';} ?>"><i class="far fa-exchange-alt"></i> Transferência de U.E.</a>
@@ -54,8 +67,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="\projeto/model/secretaria/sala/lista_sala.php" class="nav-link"><i class="far fa-door-closed"></i> Salas</a>
-                            </li>
-                            
+                            </li>                            
                         </ul>
                     </nav>
                 </div>

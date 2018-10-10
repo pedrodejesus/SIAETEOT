@@ -111,7 +111,6 @@ include "../../../base/head.php";
                                                     <select class="form-control" type="text" name="id_turma_ano_letivo_corrente" id="id_turma">
                                                         <option value="">Selecione</option>
                                                     </select>
-                                                    <input type="hidden" name="proximo_ano_letivo" id="proximo_ano_letivo" value="<?php echo $proximo_ano; ?>" />
                                                 </div> 
                                             </div>
                                         </div> 

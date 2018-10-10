@@ -19,7 +19,7 @@ include "../../../../base/head.php";
                 include "../../../../base/sidebar/8_sidebar_secretaria.php";
                 include("../../../../base/conexao.php");
         
-                $matricula_alu = (int) $_GET['matricula_alu'];
+                $matricula_alu = $_GET['matricula_alu'];
                 $sql  = "select m.tipo_matricula, m.ano_letivo, m.matricula_alu, m.id_turma, m.id_disc, m.dt_matricula, m.situacao as sit_pdg, ";
                 $sql .= "a.matricula_alu, a.nome_alu, a.sobrenome_alu, a.situacao as sit_adm, ";
                 $sql .= "d.id_disc, d.nome_disc, ";
@@ -140,13 +140,16 @@ include "../../../../base/head.php";
                                     <script> 
                                         $(document).ready(function(){
                                             $("#clicar").click(function(){
-                                                $("#slide").slideToggle("slow");
+                                                $("#slide").slideToggle(400, function(){
+                                                    $("#icon").toggleClass("fa-plus");
+                                                    $("#icon").toggleClass("fa-minus");
+                                                });
                                             });
                                         });
                                     </script>
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
-                                            <h5><button id='clicar' class="btn btn-rounded btn-sm btn-primary "><i class="fa fa-plus"></i></button>&nbsp;Visualizar disciplinas <?php //echo $row["nome_alu"]." ".$row["sobrenome_alu"].":" ?></h5>
+                                            <h5><button id='clicar' class="btn btn-rounded btn-sm btn-primary "><i id="icon" class="fa fa-plus"></i></button>&nbsp;Visualizar disciplinas <?php //echo $row["nome_alu"]." ".$row["sobrenome_alu"].":" ?></h5>
                                         </div>
                                     </div> 
                                 

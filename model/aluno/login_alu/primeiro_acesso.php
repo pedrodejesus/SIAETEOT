@@ -20,11 +20,10 @@ include "../../../base/head.php";
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                
                                 <div class="card-body">
                                     <h3>Olá <?php echo $_SESSION['nome_alu'] ?>, este é o seu primeiro acesso. Seja bem vindo a ETEOT :)</h3>
                                     <p><h5>Por favor, complete os campos abaixo com seus dados. Após, você será redirecionado para a tela inicial.</h5></p>
-                                <p><h5>Futuramente, você poderá acessar o sistema utilizando a sua matrícula, seu nome de usuário ou o seu e-mail, em conjunto com a senha definida aqui.<br><br></h5></p>
+                                    <p><h5>Futuramente, você poderá acessar o sistema utilizando a sua matrícula, seu nome de usuário ou o seu e-mail, em conjunto com a senha definida aqui.<br><br></h5></p>
                                     <form action="atualiza_login.php" method="post">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -36,7 +35,7 @@ include "../../../base/head.php";
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="sobrenome_alu" class="form-control-label">E-mail</label>
-                                                    <input class="form-control" type="text" maxlength="40" name="email_alu" id="email_alu" required />
+                                                    <input class="form-control" type="email" maxlength="40" name="email_alu" id="email_alu" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -45,9 +44,25 @@ include "../../../base/head.php";
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="nome_alu" class="form-control-label">Nome de usuário</label>
-                                                    <input class="form-control" type="text" name="usuario_alu" id="usuario_alu" />
+                                                    <input class="form-control" type="text" name="usuario_alu" id="usuario_alu" value="<?php echo $_SESSION['matricula_alu'] ?>" required />
                                                 </div>
                                             </div>
+                                            <script>
+                                                function Verifica(){
+                                                    val1 = document.getElementById("senha_alu").value;
+                                                    val2 = document.getElementById("confirma_senha_alu").value;
+                                                    
+                                                    if(val1!=val2){
+                                                        document.getElementById("confirma_senha_alu").style.borderColor="#f00";
+                                                        document.getElementById("aviso_senha").innerHTML = "As senhas não conferem!";
+                                                        $("#teste").attr('disabled', 'disabled');
+                                                    } else{
+                                                        document.getElementById("confirma_senha_alu").style.borderColor="";
+                                                        document.getElementById("aviso_senha").innerHTML = " ";
+                                                        $("#teste").removeAttr('disabled');
+                                                    }
+                                                }
+                                            </script>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="sobrenome_alu" class="form-control-label">Senha</label>
@@ -57,7 +72,8 @@ include "../../../base/head.php";
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="sobrenome_alu" class="form-control-label">Confirmar senha</label>
-                                                    <input class="form-control" type="password" name="confirma_senha_alu" id="confirma_senha_alu" required />
+                                                    <input onblur="Verifica()" class="form-control" type="password" name="confirma_senha_alu" id="confirma_senha_alu" required />
+                                                    <small id="aviso_senha" class="form-text text-danger"></small>
                                                 </div>
                                             </div>
                                         </div>

@@ -29,7 +29,13 @@ include "../../../../base/head.php";
                 $row = mysqli_fetch_array($query);
             ?>
             <div class="content">
-                <div class="container-fluid">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-light">
+                            <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="\projeto/model/secretaria/disciplina/lista_disciplina.php">Disciplinas</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Detalhes</li>
+                        </ol>
+                    </nav>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -83,7 +89,6 @@ include "../../../../base/head.php";
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 8)) { // Ver
 $page = 'turma';
 include "../../../../base/head.php";
 ?>
+<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body class="sidebar-fixed header-fixed">
@@ -165,7 +166,7 @@ include "../../../../base/head.php";
                                     <br>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h5>Alunos da turma <?php echo $row["numero"]." / ".$row["ano_letivo"].":"; ?></h5>
+                                            <h5>Alunos da turma <?php //echo $row["numero"]." / ".$row["ano_letivo"].":"; ?></h5>
                                         </div>
                                     </div> 
                                     <div class="row">
@@ -174,7 +175,9 @@ include "../../../../base/head.php";
                                                 <table id="tabela_turma" class="table table-sm table-hover">
                                                         <?php
                                                             if ($sql == "select id_turma, numero, ano_letivo, situacao as situacao_turma, turno, dt_inicio, dt_fim, id_cur from turma where id_turma = '".$id_turma."'"){
-                                                                echo "Ainda não há alunos matriculados nesta turma!";
+                                                                echo "<div class='alert alert-danger' role='alert'>
+                                                                          Ainda não há alunos matriculados nesta turma!
+                                                                        </div>";
                                                             }else{
                                                                 echo "<thead>
                                                                         <tr>
@@ -224,12 +227,22 @@ include "../../../../base/head.php";
                                         </div>
                                     </div>
                                     <br>
+                                    <script> 
+                                        $(document).ready(function(){
+                                            $("#clicar").click(function(){
+                                                $("#slide").slideToggle(400, function(){
+                                                    $("#icon").toggleClass("fa-plus");
+                                                    $("#icon").toggleClass("fa-minus");
+                                                });
+                                            });
+                                        });
+                                    </script>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h5>Disciplinas padrão da turma <?php echo $row["numero"]." / ".$row["ano_letivo"].":"; ?></h5>
+                                            <h5><button id='clicar' class="btn btn-rounded btn-sm btn-primary "><i id="icon" class="fa fa-plus"></i></button>&nbsp; Visualizar disciplinas da turma <?php //echo $row["numero"]." / ".$row["ano_letivo"].":"; ?></h5>
                                         </div>
                                     </div> 
-                                    <div class="row">
+                                    <div class="row" id="slide" style="display:none !important;">
                                         <div class="col-md-12">
                                             <div id="table-list" class="table-responsive">
                                                 <table id="tabela_turma" class="table table-sm table-striped table hover">
@@ -263,6 +276,7 @@ include "../../../../base/head.php";
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="btn-group" role="group"> 
@@ -282,7 +296,6 @@ include "../../../../base/head.php";
         </div>
     </div>
     
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
     <script src="\projeto/assets/js/bootstrap.min.js"></script>
     <script src="\projeto/assets/js/function-delete.js"></script>
     <script src="\projeto/assets/js/carbon.js"></script>

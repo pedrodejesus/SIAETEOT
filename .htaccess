@@ -1,5 +1,4 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /test/
-  RewriteRule ^pagina-inicial$ index.php [NC,L,R]
+  RewriteRule ^pagina-inicial\/$ index.php [QSA,L,NC]
 </IfModule>

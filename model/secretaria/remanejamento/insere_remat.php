@@ -6,10 +6,12 @@ $id_usuario = $_SESSION['UsuarioID'];
 include("../../../base/conexao.php");
 include("../../../base/logatvusu.php");
 
-$matricula_alu      = $_POST["matricula_alu"];
-$id_turma_antiga    = $_POST["id_turma_ano_letivo_corrente"];
-$proximo_ano_letivo = $_POST["proximo_ano_letivo"];
-$id_turma           = $_POST["id_turma"];
+$matricula_alu          = $_POST["matricula_alu"];
+$id_turma_antiga        = $_POST["id_turma_ano_letivo_corrente"];
+$ano_letivo_corrente    = $_POST["ano_letivo_corrente"];
+//$proximo_ano_letivo   = $_POST["proximo_ano_letivo"];
+$proximo_ano_letivo     = $ano_letivo_corrente + 1;
+$id_turma               = $_POST["id_turma"];
 
 foreach($matricula_alu as /*$index =>*/ $matricula){ //Para cada aluno selecionado, faça:
     $sql_update = "update matriculado set remat = 1 where matricula_alu = '".$matricula."' and id_turma = '".$id_turma_antiga."';";

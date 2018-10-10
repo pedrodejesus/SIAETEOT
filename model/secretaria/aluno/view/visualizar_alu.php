@@ -19,7 +19,7 @@ include "../../../../base/head.php";
                 include "../../../../base/sidebar/8_sidebar_secretaria.php";
                 include "../../../../base/conexao.php";
                         
-                $matricula_alu = (int) $_GET['matricula_alu'];
+                $matricula_alu = $_GET['matricula_alu'];
                 $sql   = "select a.matricula_alu, a.nome_alu, a.sobrenome_alu, a.cpf_alu, a.rg_alu, a.dt_nasc_alu, ";
                 $sql  .= "a.nome_pai, a.nome_mae, a.sexo_alu, a.tipo_alu, a.cep, a.num_resid_alu, a.complemento_alu, ";
                 $sql  .= "l.cep, upper(l.tp_logradouro) as tp_logradouro, upper(l.logradouro) as logradouro, upper(l.bairro) as bairro, upper(l.cidade) as cidade, upper(l.uf) as uf ";

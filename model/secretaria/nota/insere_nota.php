@@ -62,6 +62,7 @@ if($resultado){
 }else{
     //echo $sql;
     echo "Erro na inserção de dados!<br>".$sql;
+    echo mysqli_error($conexao);
 	//echo trigger_error(mysql_error());
 }
 

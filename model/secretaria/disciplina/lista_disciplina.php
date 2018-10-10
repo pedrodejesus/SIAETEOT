@@ -17,6 +17,12 @@ include "../../../base/head.php";
         <div class="main-container">
         <?php include "../../../base/sidebar/8_sidebar_secretaria.php" ?>
             <div class="content">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-light">
+                        <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Disciplinas</li>
+                    </ol>
+                </nav>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
