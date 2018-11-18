@@ -32,7 +32,7 @@ echo "<tr scope='row'>";
 echo "<td><div class='form-check form-check-inline'><input class='form-check-input' name='id_turma' value='desistente' type='radio' required />Desistente(s)</div></td>"; 
 echo "</tr>";
 echo "<tr scope='row'>"; 
-echo "<td><div class='form-check form-check-inline'><input class='form-check-input' name='id_turma' value='desistente' type='radio' required />Concluinte(s)</div></td>"; 
+echo "<td><div class='form-check form-check-inline'><input class='form-check-input' name='id_turma' value='concluinte' type='radio' required />Concluinte(s)</div></td>"; 
 echo "</tr>";
 
 ?>

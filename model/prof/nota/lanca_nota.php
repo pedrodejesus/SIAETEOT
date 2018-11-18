@@ -191,6 +191,11 @@ include "../../../base/head.php";
                                 document.getElementById("resp"+num).innerHTML = "<i class='fa fa-times ml-4' style='color:red;'></i>";
                             }
 						}
+                        if(val_nota > 10){
+                            document.getElementById("nota"+num).value = 10;
+                        }else if(val_rec > 10){
+                            document.getElementById("recu"+num).value = 10;
+                        }
 					
 					});
 				});

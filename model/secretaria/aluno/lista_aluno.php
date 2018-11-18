@@ -6,6 +6,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 8)) { // Ver
 	header("Location: ../../../login.php?msg=4"); exit; // Redireciona o visitante de volta pro login
 }
 $page = 'aluno';
+require "../../../base/function.php";
 include "../../../base/head.php";
 ?>
 </head>
@@ -55,7 +56,7 @@ include "../../../base/head.php";
                                                 <th scope="col">Sobrenome&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                                 <th scope="col">CPF</th>
                                                 <th scope="col">Nascimento&nbsp;&nbsp;&nbsp;</th>
-                                                <th scope="col">Tipo</th>
+                                                <th scope="col">Modalidade</th>
                                                 <th scope="col">CEP</th>
                                                 <th scope="col">Ações</th>
                                             </tr>
@@ -69,7 +70,6 @@ include "../../../base/head.php";
                                             $inicio = ($quantidade * $pagina) - $quantidade;
 
                                             $data = mysqli_query($conexao, "select * from aluno order by nome_alu asc limit $inicio, $quantidade;")/* or die(mysql_error())*/;
-                                            $num = mysqli_num_rows(mysqli_query($conexao, "select * from aluno"));
                                                 
                                             while($info = mysqli_fetch_array($data)){
                                                 echo "<tr scope='row'>";
@@ -101,36 +101,9 @@ include "../../../base/head.php";
                                     </table>
                                     <nav aria-label="Paginação">
                                         <ul class="pagination">
-                                        <?php 
-                                            $sqlTotal 		= "select matricula_alu from aluno;";
-                                                
-                                            $qrTotal  		= mysqli_query($conexao, $sqlTotal) or die (mysql_error());
-                                            $numTotal 		= mysqli_num_rows($qrTotal);
-                                            $totalpagina = (ceil($numTotal/$quantidade)<=0) ? 1 : ceil($numTotal/$quantidade);
-
-                                            $exibir = 3;
-                                            $anterior = (($pagina-1) <= 0) ? 1 : $pagina - 1;
-                                            $posterior = (($pagina+1) >= $totalpagina) ? $totalpagina : $pagina+1;
-
-                                            echo "<li class='page-item'><a class='page-link' href='?pagina=1'> Primeira</a></li> "; 
-                                            echo "<li class='page-item'><a class='page-link' href=\"?pagina=$anterior\">&laquo;</a></li> ";
-                                                
-                                            echo '<li class="page-item"><a class="page-link" href="?pagina='.$pagina.'"><strong>'.$pagina.'</strong></a></li> ';
-
-                                            for($i = $pagina+1; $i < $pagina+$exibir; $i++){
-                                                if($i <= $totalpagina){
-                                                    echo '<li class="page-item"><a class="page-link" href="?pagina='.$i.'"> '.$i.' </a></li> '; 
-                                                }    
-                                            }
-
-                                            echo "<li class='page-item'><a class='page-link' href=\"?pagina=$posterior\">&raquo;</a></li> ";
-                                            echo "<li class='page-item'><a class='page-link' href=\"?pagina=$totalpagina\">Última</a></li>";
-                                            
-                                            
-                                        ?>
+                                            <?php pagination("matricula_alu", "aluno"); ?>
                                         </ul>
                                     </nav>
-                                    <?php echo '<div clas="pull-right">'.$num.'</div>'; ?>
                                 </div>
                             </div>
                         </div>

@@ -13,6 +13,9 @@
                                     <li class="nav-item ml-3">
                                         <a href="\projeto/model/secretaria/aluno/lista_aluno.php" class="nav-link <?php if($page=='aluno'){echo'active';} ?>"><i class="far fa-user-graduate"></i> Dados Pessoais</a>
                                     </li>
+                                    <!--<li class="nav-item ml-3">
+                                        <a href="#" class="nav-link <?php if($page=='aluno'){echo'active';} ?>"><i class="far fa-user-graduate"></i> Dados Complementares</a>
+                                    </li>-->
                                     <li class="nav-item ml-3">
                                         <a href="\projeto/model/secretaria/matriculado/lista_matriculado.php" class="nav-link <?php if($page=='matricula'){echo'active';} ?>"><i class="far fa-user-graduate"></i> Matrículas</a>
                                     </li>
@@ -35,6 +38,19 @@
                             </li>
                             <li class="nav-item nav-dropdown">
                                 <a href="" class="nav-link nav-dropdown-toggle">
+                                    <i class="far fa-exchange-alt"></i> Transferências <i class="fa fa-caret-left"></i>
+                                </a>
+                                <ul class="nav-dropdown-items">
+                                    <li class="nav-item ml-3">
+                                        <a href="\projeto/model/secretaria/transf_turma/lista_transf_turma.php" class="nav-link <?php if($page=='transf_tur'){echo'active';} ?>"><i class="far fa-exchange-alt"></i> Transferência de turma</a>
+                                    </li>
+                                    <li class="nav-item ml-3">
+                                        <a href="\projeto/model/secretaria/transf_ue/lista_transf_ue.php" class="nav-link <?php if($page=='transf_ue'){echo'active';} ?>"><i class="far fa-exchange-alt"></i> Transferência de U.E.</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item nav-dropdown">
+                                <a href="" class="nav-link nav-dropdown-toggle">
                                     <i class="far fa-clipboard-list"></i> Relatórios <i class="fa fa-caret-left"></i>
                                 </a>
                                 <ul class="nav-dropdown-items">
@@ -46,28 +62,15 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item nav-dropdown">
-                                <a href="" class="nav-link nav-dropdown-toggle">
-                                    <i class="far fa-exchange-alt"></i> Transferências <i class="fa fa-caret-left"></i>
-                                </a>
-                                <ul class="nav-dropdown-items">
-                                    <li class="nav-item ml-3">
-                                        <a href="#" class="nav-link <?php if($page=='transf_tur'){echo'active';} ?>"><i class="far fa-exchange-alt"></i> Transferência de turma</a>
-                                    </li>
-                                    <li class="nav-item ml-3">
-                                        <a href="\projeto/model/secretaria/transf_ue/lista_transf_ue.php" class="nav-link <?php if($page=='transf_ue'){echo'active';} ?>"><i class="far fa-exchange-alt"></i> Transferência de U.E.</a>
-                                    </li>
-                                </ul>
-                            </li>
                             <li class="nav-item">
                                 <a href="\projeto/model/secretaria/disciplina/lista_disciplina.php" class="nav-link <?php if($page=='disciplina'){echo'active';} ?>"><i class="far fa-books"></i> Disciplinas</a>
                             </li>                            
                             <li class="nav-item">
                                 <a href="\projeto/model/secretaria/ue/lista_ue.php" class="nav-link <?php if($page=='ue'){echo'active';} ?>"><i class="far fa-school"></i> Unidades Escolares</a>
                             </li>
-                            <li class="nav-item">
+                            <!--<li class="nav-item">
                                 <a href="\projeto/model/secretaria/sala/lista_sala.php" class="nav-link"><i class="far fa-door-closed"></i> Salas</a>
-                            </li>                            
+                            </li> -->                           
                         </ul>
                     </nav>
                 </div>

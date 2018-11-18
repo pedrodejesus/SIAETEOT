@@ -6,27 +6,11 @@ include "../../../base/conexao.php";
 
 $mpdf = new \Mpdf\Mpdf([
     'mode' => 'utf-8',
-    'orientation' => 'L',
+    'orientation' => 'P',
 	'default_font_size' => 10,
 	'default_font' => 'arial'
     //'debug' => true
 ]);
-
-$mpdf->DefHTMLHeaderByName('MyHeader1',
-  '<div><table width="100%"><tr>
-	<td width="20%"><img class="logo_rj" src="../../../assets/img/logo_rj.jpg" /></td>
-	<td width="60%" align="center"><h2>ESCOLA TÉCNICA ESTADUAL OSCAR TENÓRIO <br> FICHA INDIVIDUAL DE RENDIMENTOS 2018</h2></td>
-	<td width="20%" align="right"><img class="logo_eteot" class="logo_eteot" src="../../../assets/img/logo.jpg" /></td>
-	</tr></table></div>');
-
-$mpdf->DefHTMLFooterByName('MyFooter1',
-  '<div class="rodape"><div class="pag">Página {PAGENO} de {nbpg}</div><div class="emiss">Emissão: '.date("d/m/Y  -  H:i:s").' </div></div>');
-
-$mpdf->SetHTMLHeaderByName('MyHeader1');
-$mpdf->SetHTMLFooterByName('MyFooter1');
-
-$css = file_get_contents('../../../assets/css/style-rel.css');
-$mpdf->WriteHTML($css,1);
 
 $matricula_alu = $_GET['matricula_alu'];
 $id_turma = $_GET['id_turma'];
@@ -35,6 +19,24 @@ $query = mysqli_query($conexao, $sql);
 mysqli_next_result($conexao);
 $row = mysqli_fetch_array($query);
 
+$mpdf->DefHTMLHeaderByName('MyHeader1',
+  '<div><table width="100%"><tr>
+	<td width="20%"><img class="logo_rj" src="../../../assets/img/logo_rj.jpg" /></td>
+	<td width="60%" align="center"><h3>ESCOLA TÉCNICA ESTADUAL OSCAR TENÓRIO <br> FICHA INDIVIDUAL DE RENDIMENTOS '.$row['ano_letivo'].'</h3></td>
+	<td width="20%" align="right"><img class="logo_eteot" class="logo_eteot" src="../../../assets/img/logo.jpg" /></td>
+	</tr></table></div>');
+
+$mpdf->DefHTMLFooterByName('MyFooter1',
+  '<div class="rodape"><!--<div class="pag">Página {PAGENO} de {nbpg}</div>--><div class="emiss">Emissão: '.date("d/m/Y  -  H:i:s").' </div></div>');
+
+$mpdf->SetHTMLHeaderByName('MyHeader1');
+$mpdf->SetHTMLFooterByName('MyFooter1');
+
+$css = file_get_contents('../../../assets/css/style-rel.css');
+$mpdf->WriteHTML($css,1);
+
+$titulo = 'BOLETIM '.$row['nome_alu'].$row['sobrenome_alu'].' - '.$row['numero'];
+$mpdf->SetTitle($titulo);
 
 // Área do html PDF
 $html ='<table class="info-alu" width="100%" cellpadding="7">
@@ -42,7 +44,7 @@ $html ='<table class="info-alu" width="100%" cellpadding="7">
 		<tr style="background:#CFCFCF"><td colspan="2">Matrícula: <b>'.$row['matricula_alu'].'</b></td><td> Ano Letivo: <b>'.$row['ano_letivo'].'</b></td></tr>
 	</table>';
 
-$html .= '<table width="100%" class="total-bol" cellpadding="5">
+$html .= '<table width="100%" id="body_bol" class="total-bol" cellpadding="5">
 	<thead>
 		<tr class="ref">
 			<th scope="col" rowspan="2">DISCIPLINAS</th>
@@ -259,5 +261,5 @@ $mpdf->AddPage(
     1, 1, 0, 0
 );
 $mpdf->WriteHTML($html,2);
-$mpdf->Output();
+$mpdf->Output('boletim.pdf', 'I');
 ?>

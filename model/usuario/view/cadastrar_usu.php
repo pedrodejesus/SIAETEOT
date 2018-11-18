@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION)) session_start(); // A sessão precisa ser iniciada em cada página diferente
-$nivel_necessario = 2;
+$nivel_necessario = 0;
 
 if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necessario)) { // Verifica se não há a variável da sessão que identifica o usuário
 	session_destroy(); // Destrói a sessão por segurança
@@ -68,13 +68,14 @@ include "../../../base/head.php"
                                             <div class="form-group">
                                                 <label for="nivel" class="form-control-label">Nível</label>
                                                 <select class="form-control" name="nivel" id="nivel">
-                                                    <option value="1" >Secretaria</option>
-                                                    <option value="2" >Administrador</option>
-                                                    <option value="3">Docente</option>		
-                                                    <option value="4">Aluno</option>		
-                                                    <option value="5">Supervisão</option>		
+                                                    <option value="8" >Secretaria</option>
+                                                    <option value="0" >Administrador</option>
+                                                    <option value="8">Docente</option>		
+                                                    <!--<option value="4">Aluno</option>-->		
+                                                    <option value="">Supervisão</option>		
                                                     <option value="6">Coordenação</option>		
-                                                    <option value="7">Orientação Educacional</option>		
+                                                    <option value="">Orientação Educacional</option>		
+                                                    <option value="3">RH</option>		
                                                 </select>
                                             </div>
                                         </div>

@@ -31,11 +31,11 @@
                                     }
 
                                     function MostreCalendario($mes){ //Exibe o calendário de um mês específico
-                                        $conexao = mysqli_connect("Localhost", "root", "", "cal");
-                                        mysqli_query($conexao, "SET NAMES 'utf8'");
-                                        mysqli_query($conexao, 'SET character_set_connection=utf8');
-                                        mysqli_query($conexao, 'SET character_set_client=utf8');
-                                        mysqli_query($conexao, 'SET character_set_results=utf8');
+                                        include "../../../../base/conexao.php";
+                                        $sql_tur = "select distinct id_turma from matriculado where remat = 0 and matricula_alu = ".$_SESSION['matricula_alu'];
+                                        $query_tur = mysqli_query($conexao, $sql_tur);
+                                        $array_tur = mysqli_fetch_array($query_tur);
+                                        $id_turma = $array_tur[0];
                                         
                                         $numero_dias = GetNumeroDias($mes);	//Retorna o número de dias que tem o mês desejado
                                         $nome_mes = GetNomeMes($mes); //Retorna o nome do mês desejado
@@ -93,9 +93,14 @@
                                                             echo " ";
                                                         }else{
                                                             //echo "<input type = 'button' id = 'dia_comum' name = 'dia".($diacorrente+1)."'  value = '".++$diacorrente."' onclick = 'acao(this.value)'>";
-                                                            echo "<a href = ".$_SERVER["PHP_SELF"]."?mes=$mes&dia=".($diacorrente+1).">".++$diacorrente."</a>";
+                                                            //echo "<a href = ".$_SERVER["PHP_SELF"]."?mes=$mes&dia=".($diacorrente+1).">".++$diacorrente."</a>";
+                                                            echo "<p>".++$diacorrente."</p>";
                                                             echo "<br>";
-                                                            $sql = "select * from evento where data_evento like '".date('Y')."-".$mes."-";
+                                                            $sql  = "select e.id_evento_av, e.dt_evento, e.tipo, e.cor, d.nome_disc, d.sigla_disc, t.numero, t.ano_letivo "; 
+                                                            $sql .= "from evento_avaliativo e, funcionario f, disciplina d, turma t "; 
+                                                            $sql .= "WHERE e.id_func = f.id_func AND e.id_disc = d.id_disc AND e.id_turma = t.id_turma ";
+                                                            $sql .= "and e.id_turma = $id_turma ";
+                                                            $sql .= "and dt_evento like '".date('Y')."-".$mes."-";
                                                             if(strlen(++$dia_corrente) == 1){
                                                                 $sql .= "0".$dia_corrente."'";
                                                             }else{
@@ -106,7 +111,22 @@
                                                             if(mysqli_num_rows($query) > 0){
                                                                 while($array = mysqli_fetch_array($query)){
                                                                     //echo "<p>".$array['tipo']." de ".$array['id_disc']."</p>";
-                                                                    echo "<a href='#' data-toggle='modal' data-target='#modal-event' data-event='".$array['id_evento']."'><p style='font-size:18px;'><span class='badge badge-info'>".$array['tipo']." de Inglês</span></p></a>";
+                                                                    echo "<a href='#' data-toggle='modal' data-target='#modal-event' data-event='".$array['id_evento_av']."'><p style='font-size:18px;'><span class='badge badge-info' style='background-color: ".$array['cor'].";'>";
+                                                                    switch($array['tipo']){
+                                                                        case 1:
+                                                                            echo "Trabalho ";
+                                                                            break;
+                                                                        case 2:
+                                                                            echo "Teste ";
+                                                                            break;
+                                                                        case 3:
+                                                                            echo "Prova ";
+                                                                            break;
+                                                                        case 4:
+                                                                            echo "Seminário ";
+                                                                            break;
+                                                                    }
+                                                                    echo " de ".$array['sigla_disc']."</span></p></a>";
                                                                     //echo "<p><span class='badge badge-info'>".$array['tipo']." de Inglês</span></p>";
                                                                     //echo'Trabalho de IS';
                                                                 }

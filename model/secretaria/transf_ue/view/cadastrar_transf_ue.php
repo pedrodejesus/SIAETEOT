@@ -61,8 +61,15 @@ include "../../../../base/head.php";
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
+                                                <?php
+                                                    if(isset($_GET['matricula_alu'])){
+                                                        $matricula_alu = $_GET['matricula_alu'];
+                                                        $query_alu = mysqli_query($conexao, "select nome_alu, sobrenome_alu from aluno where matricula_alu = $matricula_alu limit 1;");
+                                                        $alu = mysqli_fetch_array($query_alu);
+                                                    }
+                                                ?>
                                                 <label for="matricula_alu" class="form-control-label">Nome do aluno</label>
-                                                <input class="form-control" type="text" name="matricula_alu" id="matricula_alu" required />
+                                                <input class="form-control" type="text" name="matricula_alu" value="<?php echo $matricula_alu.' - '.$alu['nome_alu'].$alu['sobrenome_alu'] ?>" id="matricula_alu" required />
                                             </div>
                                         </div>
                                         <div class="col-md-3">

@@ -36,14 +36,17 @@
             </li>
             <li class="nav-item nav-dropdown">
                 <a href="" class="nav-link nav-dropdown-toggle">
-                    <i class="far fa-reply"></i> Requisições <i class="fa fa-caret-left"></i>
+                    <i class="far fa-reply"></i> Requerimentos <i class="fa fa-caret-left"></i>
                 </a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item ml-3">
-                        <a href="#" class="nav-link <?php if($page=='aluno'){echo'active';} ?>"><i class="far fa-reply"></i> Alteração de nota</a>
+                        <a href="#" class="nav-link <?php if($page=='matricula'){echo'active';} ?>"><i class="far fa-reply"></i> Declaração</a>
                     </li>
                     <li class="nav-item ml-3">
-                        <a href="#" class="nav-link <?php if($page=='matricula'){echo'active';} ?>"><i class="far fa-reply"></i> Comunicados gerais</a>
+                        <a href="#" class="nav-link <?php if($page=='matricula'){echo'active';} ?>"><i class="far fa-reply"></i> Histórico</a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a href="#" class="nav-link <?php if($page=='aluno'){echo'active';} ?>"><i class="far fa-reply"></i> Alteração de nota</a>
                     </li>
                 </ul>
             </li>

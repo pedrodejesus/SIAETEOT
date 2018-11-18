@@ -38,31 +38,16 @@ include "../../../../base/head.php";
         word-wrap:break-word !important;
     }
     p{
-        margin-bottom: -5px !important;
+        margin-bottom: -2px !important;
+    }
+    span{
+        border-radius: 5px 5px 5px 5px;
+        padding-bottom: 5px !important;
     }
 </style>
 </head>
 <body class="sidebar-fixed header-fixed">
-    <div class="modal fade" id="modal-event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Evento avaliativo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">                
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include "modal.php"; ?>
     <div class="page-wrapper">
     <?php include "../../../../base/nav.php" ?>
         <div class="main-container">

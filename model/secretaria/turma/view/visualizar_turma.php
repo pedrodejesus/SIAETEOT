@@ -266,7 +266,7 @@ include "../../../../base/head.php";
                                                                 echo "<td>".$row_disc['id_disc']."</td>";
                                                                 echo "<td>".$row_disc['nome_disc']."</td>";
                                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
-                                                                        <a class='btn btn-danger' href=''><i class='fa fa-trash'></i>&nbsp; Excluir disciplina</a>";
+                                                                        <a class='btn btn-danger' href='../controller/exclui_disc_pdr_tur.php?id_turma=$id_turma&id_disc=".$row_disc['id_disc']."'><i class='fa fa-trash'></i>&nbsp; Excluir disciplina</a>";
                                                                 echo "</div></td></tr>";
                                                                     
                                                             }

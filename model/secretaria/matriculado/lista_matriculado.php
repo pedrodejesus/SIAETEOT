@@ -116,7 +116,7 @@ include "../../../base/head.php";
                                                             
                                                             <a target='_blank' class='btn btn-primary' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='far fa-print'></i>&nbsp; Declaração</a>
                                                             
-                                                            <a class='btn btn-light' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='fal fa-id-card'></i>&nbsp; Documentos</a>
+                                                            <a class='btn btn-danger' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='fa fa-lock'></i>&nbsp; Trancar Matrícula</a>
                                                                 
                                                             <!--<a class='btn btn-warning' href=view/editar_mat.php?matricula_mat=".$info['matricula_alu']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
                                                                 

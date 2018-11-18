@@ -3,21 +3,27 @@ session_start();
 $usuario = $_SESSION['UsuarioNome'];
 $id_usuario = $_SESSION['UsuarioID'];
 
-include("../../../base/conexao.php");
-include("../../../base/logatvusu.php");
+include("../../../../base/conexao.php");
+include("../../../../base/logatvusu.php");
 
-$id_turma = (int) @$_GET['id_turma'];
+$id_turma = $_GET['id_turma'];
+$id_disc =  $_GET['id_disc'];
 
-$sql = "delete from turma where id_turma = '$id_turma';";
+$sql1 = "delete from disc_pdr_tur where id_turma = $id_turma and id_disc = $id_disc;";
+$sql2 = "delete from boletim where id_turma = $id_turma and id_disc = $id_disc;";
+$sql3 = "delete from matriculado where id_turma = $id_turma and id_disc = $id_disc;";
 
-$resultado = mysql_query($sql) or die(mysql_error());
+$resultado1 = mysqli_query($conexao, $sql1);
+$resultado2 = mysqli_query($conexao, $sql2);
+$resultado3 = mysqli_query($conexao, $sql3);
 
-if($resultado){
-    $registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
-    mysql_close($conexao);
-    header('Location: ../lista_turma.php?msg=5');
+
+if($resultado1 && $resultado2 && $resultado3){
+    //$registra_atv = mysql_query (lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));
+    mysqli_close($conexao);
+    header('Location: ../view/visualizar_turma.php?id_turma='.$id_turma);
 }else{
-    header('Location: ../lista_turma.php?msg=6');
+    header('Location: ../view/visualizar_turma.php?id_turma='.$id_turma);
 }
 
 ?>

@@ -1,8 +1,8 @@
 /* Boletim */
 .logo_rj{
     float: left;
-    height: 10%;
-    width: 10%;
+    height: 14%;
+    width: 14%;
     display: inline;
 }
 .logo_eteot{
@@ -14,6 +14,11 @@
 	text-align:center;
 	/*border-collapse: collapse;*/
 }
+/*table#body_bol td{
+	border:solid 1px black !important;
+    margin-bottom: 70px !important;
+}*/
+
 .info-alu{/*margin-top:80px;*/}
 .ref{background:#e4e4e4}
 .red-not{background-color:rgb(255,199,206); color:rgb(156,0,6);}

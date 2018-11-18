@@ -6,6 +6,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 8)) { // Ver
 	header("Location: ../../../login.php?msg=4"); exit; // Redireciona o visitante de volta pro login
 }
 $page = 'remanejamento';
+require "../../../base/function.php";
 include "../../../base/head.php";
 ?>
 <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
@@ -98,10 +99,7 @@ include "../../../base/head.php";
                                                     <label for="id_turma" class="form-control-label">Curso</label>
                                                     <select class="form-control" type="text" name="id_cur" id="id_cur">
                                                         <option value="">Selecione</option>
-                                                        <option value="0">Administração</option>
-                                                        <option value="3">Análises Clínicas</option>
-                                                        <option value="4">Gerência em Saúde</option>
-                                                        <option value="5">Informática para Internet</option>
+                                                        <?php curso() ?>
                                                     </select>
                                                 </div> 
                                             </div>
@@ -136,18 +134,18 @@ include "../../../base/head.php";
                                                     </div>
                                             </div>
                                             <div class="col-md-6">
-                                                    <div id="table-list" class="table-responsive">
-                                                        <table id="tabela_turma" class="table table-sm">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th scope='col'>Selecione próxima turma</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="tbody_turma">
+                                                <div id="table-list" class="table-responsive">
+                                                    <table id="tabela_turma" class="table table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope='col'>Selecione próxima turma</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbody_turma">
 
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">

@@ -1,4 +1,3 @@
-<script src="https://use.fontawesome.com/5c09ce9350.js"></script>
 <?php
 require_once '../../../../assets/vendor/autoload.php';
 include "../../../../base/conexao.php";
@@ -7,13 +6,14 @@ $mpdf = new \Mpdf\Mpdf([
     'mode' => 'utf-8',
     'orientation' => 'P',
 	'default_font_size' => 10,
-	'default_font' => 'arial'
-    //'debug' => true
+	'default_font' => 'arial'/*,
+    'debug' => true,
+    'allow_output_buffering' => true*/
 ]);
 
 $ano_letivo = $_POST['ano_letivo'];
 
-//$mpdf->DefHTMLHeaderByName('MyHeader1', '<h1 style="text-align:center">Relatório de alunos por turma - '.$ano_letivo.'</h1>');
+$mpdf->DefHTMLHeaderByName('MyHeader1', '<h1 style="text-align:center">Relatório de alunos por turma - '.$ano_letivo.'</h1>');
 //$mpdf->DefHTMLFooterByName('MyFooter1','');
 
 $mpdf->SetHTMLHeaderByName('MyHeader1');
@@ -23,9 +23,9 @@ $css = file_get_contents('../../../../assets/css/style-rel.css');
 $mpdf->WriteHTML($css,1);
 
 $sql_turma = "select distinct m.id_turma, t.numero from matriculado m, turma t where m.id_turma = t.id_turma and m.ano_letivo = $ano_letivo order by t.numero asc";
-$query_turma = mysqli_query($conexao, $sql_turma) or die (mysqli_error($conexao));
+$query_turma = mysqli_query($conexao, $sql_turma) or die(mysqli_error($conexao));
 
-$html  = '<table style="width:100%; text-align:center;" cellpadding="6">';
+$html  = '<br><br><table style="width:100%; text-align:center;" cellpadding="6">';
 
 $html .= '<thead><tr><th style="background:#CFCFCF; border:solid 1px black;" colspan="4">ETEOT - QUANTIDADE DE ALUNOS POR TURMA - '.$ano_letivo.'</th></tr>';
 $html .= '<tr><th style="background:#CFCFCF; border:solid 1px black;" colspan="2">INTEGRADO</th><th style="background:#CFCFCF; border:solid 1px black;" colspan="2">SUBSEQUENTE</th></tr>';

@@ -53,6 +53,43 @@ include "../../../../base/head.php";
                                     </div>
                                 </div>
                                 <div class="card-body">
+                                    <?php 
+                                        if(isset($_GET['msg'])){
+                                            $msg = $_GET['msg'];
+
+                                            switch($msg){
+                                                case 1:
+                                                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">Matrícula trancada com sucesso!
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                          </div>';
+                                                    break;
+                                                case 2:
+                                                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">Matrícula destrancada com sucesso!
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                          </div>';
+                                                    break;
+                                                case 3:
+                                                    echo '<div class="alert alert-info alert-dismissible fade show" role="alert">Aluno marcado como concluinte!
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                          </div>';
+                                                    break;
+                                                case 4:
+                                                    echo '<div class="alert alert-secondary alert-dismissible fade show" role="alert">Aluno marcado como desistente!
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                          </div>';
+                                                    break;
+                                                $msg = 0;
+                                            }
+                                        }
+                                    ?>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -195,40 +232,6 @@ include "../../../../base/head.php";
                                                 </table>
                                             </div>
                                         </div>
-<!--                                        <div class="col-md-6">
-                                            <div id="table-list" class="table-responsive">
-                                                <table id="tabela_turma" class="table table-sm table-striped table hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">ID</th>
-                                                            <th scope="col">Nome</th>
-                                                            <th scope="col">Situação</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-//                                                            $query_disc = mysqli_query($conexao, $sql);
-//                                                            while($row_disc = mysqli_fetch_array($query_disc)){
-//                                                                echo "<tr scope='row'>";
-//                                                                echo "<td>".$row_disc['id_disc']."</td>";
-//                                                                echo "<td>".$row_disc['nome_disc']."</td>";
-//                                                                switch($row_disc['sit_pdg']){
-//                                                                    case 1:
-//                                                                        echo "<td>Regular</td>";
-//                                                                        break;
-//                                                                    case 2:
-//                                                                        echo "<td>Progressão Parcial (PPA)</td>";
-//                                                                        break;
-//                                                                    case 3:
-//                                                                        echo "<td>Aproveitamento de Estudos (APE)</td>";
-//                                                                        break;
-//                                                                }
-//                                                            }
-                                                        ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>-->
                                     </div>
                                     
                                     <div class="row">
@@ -238,20 +241,22 @@ include "../../../../base/head.php";
                                                 
                                                 <a class='btn btn-warning' href='../../aluno/view/visualizar_alu.php?matricula_alu=<?php echo $matricula_alu ?>'><i class='fa fa-user-graduate'></i>&nbsp; Dados Pessoais</a>   
                                                 
-                                                <a class='btn btn-danger' onclick='deletaAlu(<?php echo $matricula_alu ?>)' data-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
-                                                
-                                                <a class='btn btn-light' href='../lista_matriculado.php'><i class='fa fa-undo'></i>&nbsp; Voltar</a>
+                                                <a class='btn btn-light' onclick="window.history.back();" ><i class='fa fa-undo'></i>&nbsp; Voltar</a>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="btn-group" role="group"> 
-                                                <a class='btn btn-warning' onclick='deletaAlu(<?php echo $matricula_alu ?>)' data-toggle='modal' href='#delete-modal'><i class='fa fa-exchange'></i>&nbsp; Transferir</a>
+                                                <a class='btn btn-warning' href='../../transf_ue/view/cadastrar_transf_ue.php?matricula_alu=<?php echo $matricula_alu ?>'><i class='fa fa-exchange'></i>&nbsp; Transferir</a>
                                                 
-                                                <a class='btn btn-danger' href='../../boletim/boletim_alu.php?matricula_alu=<?php echo $matricula_alu ?>&id_turma=<?php echo $row["id_turma"] ?>'><i class='fa fa-lock'></i>&nbsp; Trancar matrícula</a> 
+                                                <?php if($row['sit_adm'] <> 3){   ?>
+                                                    <a class='btn btn-danger' href='../controller/update_status.php?matricula_alu=<?php echo $matricula_alu ?>&id_turma=<?php echo $row["id_turma"] ?>&acao=trancar'><i class='fa fa-lock'></i>&nbsp; Trancar matrícula</a> 
+                                                <?php }else{  ?>
+                                                    <a class='btn btn-success' href='../controller/update_status.php?matricula_alu=<?php echo $matricula_alu ?>&id_turma=<?php echo $row["id_turma"] ?>&acao=destrancar'><i class='fa fa-unlock'></i>&nbsp; Destrancar matrícula</a>
+                                                <?php } ?>
                                                 
-                                                <a class='btn btn-secondary' href='../../aluno/view/visualizar_alu.php?matricula_alu=<?php echo $matricula_alu ?>'><i class='fa fa-times'></i>&nbsp; Desistente</a>   
+                                                <a class='btn btn-secondary' href='../controller/update_status.php?matricula_alu=<?php echo $matricula_alu ?>&id_turma=<?php echo $row["id_turma"] ?>&acao=desistir'><i class='fa fa-times'></i>&nbsp; Desistente</a>   
                                                 
-                                                <a class='btn btn-info' href='../lista_matriculado.php'><i class='fa fa-redo'></i>&nbsp; Concluinte</a>
+                                                <a class='btn btn-info' href='../controller/update_status.php?matricula_alu=<?php echo $matricula_alu ?>&id_turma=<?php echo $row["id_turma"] ?>&acao=concluir'><i class='fa fa-redo'></i>&nbsp; Concluinte</a>
                                             </div>
                                         </div>
                                     </div>

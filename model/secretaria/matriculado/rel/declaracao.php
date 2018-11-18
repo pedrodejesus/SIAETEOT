@@ -1,4 +1,3 @@
-<script src="https://use.fontawesome.com/5c09ce9350.js"></script>
 <?php
 require_once '../../../../assets/vendor/autoload.php';
 include "../../../../base/conexao.php";
@@ -7,8 +6,8 @@ $mpdf = new \Mpdf\Mpdf([
     'mode' => 'utf-8',
     'orientation' => 'P',
 	'default_font_size' => 10,
-	'default_font' => 'arial'
-    //'debug' => true
+	'default_font' => 'arial',
+    'debug' => true
 ]);
 
 $mpdf->DefHTMLHeaderByName('MyHeader1',
@@ -28,7 +27,7 @@ $mpdf->DefHTMLHeaderByName('MyHeader1',
   '<div class="rodape"><div class="emiss">Emissão: '.date("d/m/Y  -  H:i:s").' </div></div>');*/
 
 $mpdf->SetHTMLHeaderByName('MyHeader1');
-$mpdf->SetHTMLFooterByName('MyFooter1');
+//$mpdf->SetHTMLFooterByName('MyFooter1');
 
 $css = file_get_contents('../../../../assets/css/style-rel.css');
 $mpdf->WriteHTML($css,1);

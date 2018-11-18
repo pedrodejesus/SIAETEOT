@@ -6,6 +6,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 8)) { // Ver
 	header("Location: ../../../login.php?msg=4"); exit; // Redireciona o visitante de volta pro login
 }
 $page = 'turma';
+require "../../../base/function.php";
 include "../../../base/head.php";
 ?>
 </head>
@@ -15,7 +16,10 @@ include "../../../base/head.php";
     <div class="page-wrapper">
     <?php include "../../../base/nav.php" ?>
         <div class="main-container">
-        <?php include "../../../base/sidebar/8_sidebar_secretaria.php" ?>
+            <?php 
+                include "../../../base/sidebar/8_sidebar_secretaria.php" ;
+                include("../../../base/conexao.php");
+            ?>
             <div class="content">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-light">
@@ -28,49 +32,51 @@ include "../../../base/head.php";
                         <div class="card">
                             <div class="card-header bg-light">
                                 <div class="row">
-                                    <div class="col-md-1">
+                                    <div class="col-md-2">
                                         <h3>Turmas</h3>
                                     </div>
-                                    <div class="col-md-2">
-                                    <!--<div class="input-group">
+                                    <!--<div class="col-md-8">
+                                    <div class="input-group">
                                             <input type="text" id="busca" onkeyup="searchTurma(this.value)" class="form-control">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp; Pesquisar</button>
                                             </span>
-                                        </div>-->
-                                        <select class="form-control" type="date" name="turno" id="turno">
-                                            <option value="">Ano Letivo</option>
-                                            <option value="1">2018</option>
-                                            <option value="2">2019</option>
-                                            <option value="3">2020</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <select class="form-control" type="date" name="turno" id="turno">
-                                            <option value="">Curso</option>
-                                            <option value="1">2018</option>
-                                            <option value="2">2019</option>
-                                            <option value="3">2020</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <select class="form-control" type="date" name="turno" id="turno">
-                                            <option value="">Modalidade</option>
-                                            <option value="1">2018</option>
-                                            <option value="2">2019</option>
-                                            <option value="3">2020</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <select class="form-control" type="date" name="turno" id="turno">
-                                            <option value="">Situação</option>
-                                            <option value="1">2018</option>
-                                            <option value="2">2019</option>
-                                            <option value="3">2020</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <a href="view/cadastrar_turma.php"><button id='add' type="button" class="btn btn-primary col-sm-12"><i class="fa fa-filter"></i>&nbsp; Filtrar</button></a>
+                                        </div>
+                                    </div>-->
+                                    <div class="col-md-8">
+                                        <form method="get" action="lista_turma.php">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <select class="form-control form-inline" name="ano_letivo" id="ano_letivo">
+                                                            <option value="">Ano letivo</option>
+                                                            <?php ano_letivo() ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <select class="form-control" name="id_cur" id="id_cur">
+                                                            <option value="">Curso</option>
+                                                            <?php curso() ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <select class="form-control" name="modulo" id="modulo">
+                                                            <option value="">Módulo/Ano</option>
+                                                            <option value="1">1º</option>
+                                                            <option value="2">2º</option>
+                                                            <option value="3">3º</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <a href="view/cadastrar_turma.php"><button id='add' type="submit" class="btn btn-primary col-sm-12"><i class="fa fa-filter"></i>&nbsp; Filtrar</button></a>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="col-md-2">
                                         <a href="view/cadastrar_turma.php"><button id='add' type="button" class="btn btn-primary col-sm-12"><i class="fa fa-plus-circle"></i>&nbsp; Adicionar</button></a>
@@ -96,13 +102,32 @@ include "../../../base/head.php";
                                         </thead>
                                         <tbody id="tbody_turma">
                                         <?php
-                                            include("../../../base/conexao.php");
                                                     
                                             $quantidade = 10;
                                             $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
                                             $inicio = ($quantidade * $pagina) - $quantidade;
-
-                                            $data = mysqli_query($conexao, "select * from turma order by ano_letivo desc, numero asc limit $inicio, $quantidade;") or die(mysql_error());
+                                            
+                                            $sql = "select * from turma order by ano_letivo desc, numero asc limit $inicio, $quantidade;";
+                                            
+                                            if((isset($_GET['ano_letivo'])) and ($_GET['ano_letivo'] <> "")){
+                                                $sql = "select * from turma where ano_letivo = ".$_GET['ano_letivo']." order by numero asc limit $inicio, $quantidade";
+                                            }elseif((isset($_GET['id_cur'])) and ($_GET['id_cur'] <> "")){
+                                                $sql = "select * from turma where id_cur = ".$_GET['id_cur']." order by numero asc limit $inicio, $quantidade";
+                                            }elseif((isset($_GET['modulo'])) and ($_GET['modulo'] <> "")){
+                                                $sql = "select * from turma where numero like '".$_GET['modulo']."%' order by numero asc limit $inicio, $quantidade";
+                                            }
+                                            if((isset($_GET['ano_letivo'])) and ($_GET['ano_letivo'] <> "") and (isset($_GET['id_cur'])) and ($_GET['id_cur'] <> "")){
+                                                $sql = "select * from turma where ano_letivo = ".$_GET['ano_letivo']." and id_cur = ".$_GET['id_cur']." order by numero asc limit $inicio, $quantidade";
+                                            }elseif((isset($_GET['modulo'])) and ($_GET['modulo'] <> "") and (isset($_GET['id_cur'])) and ($_GET['id_cur'] <> "")){
+                                                $sql = "select * from turma where numero like '".$_GET['modulo']."%' and id_cur = ".$_GET['id_cur']." order by numero asc limit $inicio, $quantidade";
+                                            }elseif((isset($_GET['modulo'])) and ($_GET['modulo'] <> "") and (isset($_GET['ano_letivo'])) and ($_GET['ano_letivo'] <> "")){
+                                                $sql = "select * from turma where numero like '".$_GET['modulo']."%' and ano_letivo = ".$_GET['ano_letivo']." order by numero asc limit $inicio, $quantidade";
+                                            }
+                                            if((isset($_GET['ano_letivo'])) and ($_GET['ano_letivo'] <> "") and (isset($_GET['id_cur'])) and ($_GET['id_cur'] <> "") and (isset($_GET['modulo'])) and ($_GET['modulo'] <> "")){
+                                                $sql = "select * from turma where numero like '".$_GET['modulo']."%' and ano_letivo = ".$_GET['ano_letivo']." and id_cur = ".$_GET['id_cur']." order by numero asc limit $inicio, $quantidade";
+                                            }
+                                            
+                                            $data = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
                                                 
                                             while($info = mysqli_fetch_array($data)){                                   
                                                 echo "<tr scope='row'>";
@@ -125,7 +150,7 @@ include "../../../base/head.php";
                                                         echo "<td>Tarde</td>";
                                                         break;
                                                     case 3:
-                                                        echo "<td>Noite/td>";
+                                                        echo "<td>Noite</td>";
                                                         break;
                                                 }
                                                 switch($info['id_cur']){
@@ -164,31 +189,7 @@ include "../../../base/head.php";
                                     </table>
                                     <nav aria-label="Paginação">
                                         <ul class="pagination">
-                                        <?php 
-                                            $sqlTotal 		= "select id_turma from turma;";
-                                                
-                                            $qrTotal  		= mysqli_query($conexao, $sqlTotal) or die (mysql_error());
-                                            $numTotal 		= mysqli_num_rows($qrTotal);
-                                            $totalpagina = (ceil($numTotal/$quantidade)<=0) ? 1 : ceil($numTotal/$quantidade);
-
-                                            $exibir = 3;
-                                            $anterior = (($pagina-1) <= 0) ? 1 : $pagina - 1;
-                                            $posterior = (($pagina+1) >= $totalpagina) ? $totalpagina : $pagina+1;
-
-                                            echo "<li class='page-item'><a class='page-link' href='?pagina=1'> Primeira</a></li> "; 
-                                            echo "<li class='page-item'><a class='page-link' href=\"?pagina=$anterior\">&laquo;</a></li> ";
-                                                
-                                            echo '<li class="page-item"><a class="page-link" href="?pagina='.$pagina.'"><strong>'.$pagina.'</strong></a></li> ';
-
-                                            for($i = $pagina+1; $i < $pagina+$exibir; $i++){
-                                                if($i <= $totalpagina){
-                                                    echo '<li class="page-item"><a class="page-link" href="?pagina='.$i.'"> '.$i.' </a></li> '; 
-                                                }    
-                                            }
-
-                                            echo "<li class='page-item'><a class='page-link' href=\"?pagina=$posterior\">&raquo;</a></li> ";
-                                            echo "<li class='page-item'><a class='page-link' href=\"?pagina=$totalpagina\">Última</a></li>";
-                                        ?>
+                                            <?php pagination("id_turma", "turma"); ?>
                                         </ul>
                                     </nav>
                                 </div>
