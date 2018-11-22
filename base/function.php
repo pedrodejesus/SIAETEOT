@@ -43,4 +43,13 @@ function curso(){
          <option value="5">Informática para Internet</option>';
 }
 
+function upper($a, $b){
+    if(empty($b) or $a >= $b){
+        $n = $a;
+    }elseif ($b > $a){
+        $n = $b;
+    }
+    return $n;
+}
+
 ?>

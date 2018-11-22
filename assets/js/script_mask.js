@@ -4,6 +4,8 @@ $(document).ready(function(){
     $('#tel_resp').inputmask("(99)9999-9999");
     $('#tel_ue').inputmask("(99)9999-9999");
 	$('#celoufixo').inputmask("(99)9999[9]-9999");
+	$('#cel_alu').inputmask("(99)99999-9999");
+	$('#tel_alu').inputmask("(99)9999-9999");
 	$('#data').inputmask("99/99/9999");
     
 	$('#cpf').inputmask("999.999.999-99");

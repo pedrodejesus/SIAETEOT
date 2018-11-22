@@ -3,10 +3,10 @@
         <ul class="nav">
             <li class="nav-title">Ações</li>
             <li class="nav-item">
-                <a href="\projeto/index.php" class="nav-link <?php if($page=='dashboard'){echo'active';} ?>"><i class="far fa-home"></i> Dashboard</a>
+                <a href="\siaeteot/index.php" class="nav-link <?php if($page=='dashboard'){echo'active';} ?>"><i class="far fa-home"></i> Dashboard</a>
             </li>
             <li class="nav-item">
-                <a href="\projeto/model/coord/horario/horario.php" class="nav-link <?php if($page=='horario'){echo'active';} ?>"><i class="far fa-clock"></i> Horários</a>
+                <a href="\siaeteot/model/coord/horario/horario.php" class="nav-link <?php if($page=='horario'){echo'active';} ?>"><i class="far fa-clock"></i> Horários</a>
             </li>
         </ul>
     </nav>

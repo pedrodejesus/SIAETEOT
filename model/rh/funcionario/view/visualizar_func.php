@@ -31,8 +31,8 @@ include "../../../../base/head.php";
             <div class="content">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-light">
-                            <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="\projeto/model/rh/funcionario/lista_funcionario.php">Funcionários</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/index.php"><i class="far fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/model/rh/funcionario/lista_funcionario.php">Funcionários</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Detalhes</li>
                         </ol>
                     </nav>
@@ -175,12 +175,12 @@ include "../../../../base/head.php";
             </div>
         </div>
     </div>
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/popper.min.js"></script>
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/chart.min.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
+    <script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="\siaeteot/assets/js/popper.min.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+    <script src="\siaeteot/assets/js/chart.min.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/demo.js"></script>
 
 </body>
 

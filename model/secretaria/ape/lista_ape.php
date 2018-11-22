@@ -9,9 +9,9 @@ $page = 'ape';
 include "../../../base/head.php";
 ?>
 <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
-<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
+<script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js" integrity="sha256-MCmDSoIMecFUw3f1LicZ/D/yonYAoHrgiep/3pCH9rw=" crossorigin="anonymous"></script>
-<script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
+<script src="\siaeteot/assets/js/jquery-migrate-1.4.1"></script>
 <script>
     $(document).ready(function(){
         $('#id_cur').change(function(){
@@ -38,7 +38,7 @@ include "../../../base/head.php";
             <div class="content">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-light">
-                            <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/index.php"><i class="far fa-home"></i> Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">APE</li>
                         </ol>
                     </nav>
@@ -149,7 +149,7 @@ include "../../../base/head.php";
         </div>
     </div>
     
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">
             var el = document.getElementById('listanotas');
 			el.addEventListener('keydown', function(e) {
@@ -175,9 +175,9 @@ include "../../../base/head.php";
 				});
 			});
     </script>
-    <!--<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
-	<script src="\projeto/assets/js/script_mask.js"></script>-->
-    <script src="\projeto/assets/js/carbon.js"></script>
+    <!--<script src="\siaeteot/assets/js/jquery.inputmask.bundle.js"></script>
+	<script src="\siaeteot/assets/js/script_mask.js"></script>-->
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@ $page = 'ue';
 include "../../../../base/head.php";
 ?>
 <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
-<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
+<script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body class="sidebar-fixed header-fixed">
@@ -27,8 +27,8 @@ include "../../../../base/head.php";
             <div class="content">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-light">
-                            <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="\projeto/model/secretaria/ue/lista_ue.php">Unidades Escolares</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/index.php"><i class="far fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/model/secretaria/ue/lista_ue.php">Unidades Escolares</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Editar</li>
                         </ol>
                     </nav>
@@ -78,9 +78,9 @@ include "../../../../base/head.php";
         </div>
     </div>
 
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+	<script src="\siaeteot/assets/js/script_mask.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>

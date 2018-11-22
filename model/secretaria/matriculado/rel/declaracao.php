@@ -89,7 +89,19 @@ switch($curso){
 $html .= '<p class="dec_txt">no ano letivo de '.$row['ano_letivo'].', no horário de 7:00 horas ás 18:10 horas; com aulas aos sábados, no horário de 7:00 horas ás 12:00 horas.</p><br><br>';
 
 $html .= '<p class="num_mat"><b>NÚMERO DE MATRÍCULA: &nbsp;&nbsp;&nbsp;&nbsp;'.$row['matricula_alu'].'</b></p>';
-$html .= '<p class="num_mat"><b>PREVISÃO DE TÉRMINO:</b></p><br><br>';
+
+$data = $row['dt_matricula'];
+$mes = substr($data, 5, -3);
+$ano = substr($data, 0, -6);
+$ano_termino_inte = $ano + 3;
+
+$html .= '<p class="num_mat"><b>PREVISÃO DE TÉRMINO: &nbsp;&nbsp;&nbsp;&nbsp;';
+
+if($mes <= 5 and $row['tipo_matricula'] == 1){
+    $html.= "Dezembro de ".$ano_termino_inte;
+}
+
+$html .= '</b></p><br><br>';
 $html .= '<p class="num_mat"><b>VALIDADE DE 6 (SEIS) MESES.</b></p><br>';
 
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');

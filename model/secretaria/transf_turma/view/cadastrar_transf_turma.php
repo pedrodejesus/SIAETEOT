@@ -8,10 +8,10 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 8)) { // Ver
 $page = 'transf_tur';
 include "../../../../base/head.php";
 ?>
-<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-<script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
-<script src="\projeto/assets/js/jquery.autocomplete.js"></script>
-<link href="\projeto/assets/js/jquery.autocomplete.css" rel="stylesheet">
+<script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
+<script src="\siaeteot/assets/js/jquery-migrate-1.4.1"></script>
+<script src="\siaeteot/assets/js/jquery.autocomplete.js"></script>
+<link href="\siaeteot/assets/js/jquery.autocomplete.css" rel="stylesheet">
 <script type="text/javascript">
     $().ready(function() {
         $("#matricula_alu").autocomplete("filtra_alu.php", {
@@ -45,8 +45,8 @@ include "../../../../base/head.php";
             <div class="content">
                 <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-light">
-                            <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="\projeto/model/secretaria/transf_turma/lista_transf_turma.php">Transferências de Turma</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/index.php"><i class="far fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/model/secretaria/transf_turma/lista_transf_turma.php">Transferências de Turma</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Transferir aluno</li>
                         </ol>
                     </nav>
@@ -117,8 +117,8 @@ include "../../../../base/head.php";
         </div>
     </div>
     
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>

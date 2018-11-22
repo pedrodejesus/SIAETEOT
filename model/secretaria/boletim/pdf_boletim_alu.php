@@ -1,15 +1,14 @@
-<script src="https://use.fontawesome.com/5c09ce9350.js"></script>
 <?php
-require_once '../../assets/vendor/autoload.php';
+require_once '../../../assets/vendor/autoload.php';
 //if (!isset($_SESSION)) session_start();
-include "../../base/conexao.php";
+include "../../../base/conexao.php";
 
 $mpdf = new \Mpdf\Mpdf([
     'mode' => 'utf-8',
     'orientation' => 'L',
 	'default_font_size' => 10,
-	'default_font' => 'arial'
-    //'debug' => true
+	'default_font' => 'arial',
+    'debug' => true
 ]);
 
 $mpdf->DefHTMLHeaderByName('MyHeader1',
@@ -25,7 +24,7 @@ $mpdf->DefHTMLFooterByName('MyFooter1',
 $mpdf->SetHTMLHeaderByName('MyHeader1');
 $mpdf->SetHTMLFooterByName('MyFooter1');
 
-$css = file_get_contents('../../assets/css/style-rel.css');
+$css = file_get_contents('../../../assets/css/style-rel.css');
 $mpdf->WriteHTML($css,1);
 
 $matricula_alu = $_GET['matricula_alu'];

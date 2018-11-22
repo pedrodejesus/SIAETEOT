@@ -121,11 +121,11 @@ include "../../../base/head.php";
         </div>
     </div>    
     
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
+    <script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
     <script src="search.js"></script>
-    <script src="\projeto/assets/js/function-delete.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/function-delete.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>

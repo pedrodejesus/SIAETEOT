@@ -31,8 +31,8 @@ include "../../../../base/head.php";
             <div class="content">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-light">
-                            <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="\projeto/model/secretaria/transf_turma/lista_transf_turma.php">Transferências de Turma</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/index.php"><i class="far fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/model/secretaria/transf_turma/lista_transf_turma.php">Transferências de Turma</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Detalhes</li>
                         </ol>
                     </nav>
@@ -106,10 +106,10 @@ include "../../../../base/head.php";
         </div>
     </div>
     
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/function-delete.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+    <script src="\siaeteot/assets/js/function-delete.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>

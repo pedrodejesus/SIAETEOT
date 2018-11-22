@@ -8,10 +8,10 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 8)) { // Ver
 $page = 'resp';
 include "../../../../base/head.php";
 ?>
-<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-<script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
-<script src="\projeto/assets/js/jquery.autocomplete.js"></script>
-<link href="\projeto/assets/js/jquery.autocomplete.css" rel="stylesheet">
+<script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
+<script src="\siaeteot/assets/js/jquery-migrate-1.4.1"></script>
+<script src="\siaeteot/assets/js/jquery.autocomplete.js"></script>
+<link href="\siaeteot/assets/js/jquery.autocomplete.css" rel="stylesheet">
 <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
 <script type="text/javascript">
     $().ready(function() {
@@ -134,10 +134,10 @@ include "../../../../base/head.php";
         </div>
     </div>
 
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-	<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
-	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+	<script src="\siaeteot/assets/js/jquery.inputmask.bundle.js"></script>
+	<script src="\siaeteot/assets/js/script_mask.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>

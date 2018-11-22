@@ -7,19 +7,22 @@ include("../../../../base/conexao.php");
 include("../../../../base/logatvusu.php");
 $encoding = mb_internal_encoding();
 
-//$matricula_alu       = $_POST["matricula_alu"];
-$nome_alu            = mb_strtoupper($_POST["nome_alu"], $encoding);
+//Resgata os dados pessoais do aluno;
+$nome_alu            = mb_strtoupper(trim($_POST["nome_alu"]), $encoding);
 $nome_alu           .= " ";
-$sobrenome_alu       = mb_strtoupper($_POST["sobrenome_alu"], $encoding);
+$sobrenome_alu       = mb_strtoupper(trim($_POST["sobrenome_alu"]), $encoding);
 $cpf_alu             = $_POST["cpf_alu"];
-$rg_alu              = $_POST["rg_alu"];
 $dt_nasc_alu         = implode("-", array_reverse(explode("/", $_POST["dt_nasc_alu"])));
-$nome_pai            = mb_strtoupper($_POST["nome_pai"], $encoding);
-$nome_mae            = mb_strtoupper($_POST["nome_mae"], $encoding);
+$nome_pai            = mb_strtoupper(trim($_POST["nome_pai"]), $encoding);
+$rg_pai              = trim($_POST["rg_pai"]);
+$nome_mae            = mb_strtoupper(trim($_POST["nome_mae"]), $encoding);
+$rg_mae              = trim($_POST["rg_mae"]);
+$resp                = mb_strtoupper(trim($_POST["resp"]), $encoding);
+$rg_resp             = trim($_POST["rg_resp"]);
 $sexo_alu            = $_POST["sexo_alu"];
 $cep                 = $_POST["cep"];
 $num_resid_alu       = $_POST["num_resid_alu"];
-$complemento_alu     = $_POST["complemento_alu"]; //Resgata os dados pessoais do aluno;
+$complemento_alu     = $_POST["complemento_alu"]; 
 
 //Dados para a matríoula
 $ano_letivo          = $_POST["ano_letivo"];
@@ -56,11 +59,15 @@ switch($id_cur){
 $mat_fixa = $ano.$semestre_mat.$modalidade.$curso;
 
 //Algoritmo matrícula parte sequencial
-$sql_ano = "select distinct substring(ano_letivo, -2) as ano from matriculado order by ano_letivo desc";
+//$sql_ano = "select distinct substring(ano_letivo, -2) as ano from matriculado order by ano_letivo desc";
+$sql_ano = "select distinct substring(matricula_alu, 1, 2) as ano from aluno order by matricula_alu desc";
 $query_ano = mysqli_query($conexao, $sql_ano);
 //$array_ano = mysqli_fetch_all($query_ano, MYSQLI_NUM);
 while($array_ano = mysqli_fetch_array($query_ano)){
     $array[] = $array_ano['ano'];
+}
+if($array == null){
+    $array[] = ' ';
 }
 //$ultimo_ano = substr($array_ano[0], -2); Antes pegava o ano através do php, agora pega direto do mysql;
 
@@ -80,9 +87,13 @@ if(in_array($ano, $array)){ //Senão, puxa do banco as matrículas daquele ano, 
 $matricula_alu = $mat_fixa.$mat_sequencial;
 
 $sql  = "insert into aluno values ";
-$sql .= "('$matricula_alu', '$nome_alu', '$sobrenome_alu', '$cpf_alu', '$rg_alu', '$dt_nasc_alu', '$nome_pai', '$nome_mae', '$sexo_alu', NULL, 1, '$tipo_alu', NULL, NULL, NULL, NULL, NULL, '$cep', '$num_resid_alu', '$complemento_alu');";
+$sql .= "('$matricula_alu', '$nome_alu', '$sobrenome_alu', '$cpf_alu', '$dt_nasc_alu', '$nome_pai', '$rg_pai', '$nome_mae', '$rg_mae', '$resp', '$rg_resp', '$sexo_alu', NULL, 1, '$tipo_alu', NULL, NULL, NULL, NULL, NULL, '$cep', '$num_resid_alu', '$complemento_alu');";
+
+$sql2 = "insert into aluno_doc (matricula_alu) values ($matricula_alu)";
+//$sql3 = "insert into aluno_comp (matricula_alu) values ($matricula_alu)";
 
 $resultado = mysqli_query($conexao, $sql) or die (mysqli_error($conexao));
+$resultado2 = mysqli_query($conexao, $sql2) or die (mysqli_error($conexao));
 
 if($resultado){
     $registra_atv = mysqli_query ($conexao, lau($usuario, str_replace( array("'"), "\'", $sql), $id_usuario));

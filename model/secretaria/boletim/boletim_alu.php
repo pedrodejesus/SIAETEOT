@@ -7,6 +7,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 8)) { // Ver
 }
 $page = 'matricula';
 include "../../../base/head.php";
+require "../../../base/function.php";
 ?>
 </head>
 
@@ -105,7 +106,16 @@ include "../../../base/head.php";
                                                                        echo "<td class='text-center'>".$row_bol['nota_rec_1t']."</td>"; 
                                                                     }
                                                                 }
-                                                                echo "<td></td>"; //Presença 1T
+                                                                
+                                                                if($row_bol['aulas_dadas_1t'] <> null and $row_bol['faltas_1t'] <> null){
+                                                                    $percent_faltas1t = $row_bol['faltas_1t'] * 100 / $row_bol['aulas_dadas_1t'];
+                                                                }
+                                                                
+                                                                echo "<td class='text-center'>";
+                                                                if($row_bol['aulas_dadas_1t'] <> null and $row_bol['faltas_1t'] <> null){
+                                                                    echo number_format($percent_faltas1t,1,",",".")."%";
+                                                                }
+                                                                echo"</td>"; //Presença 1T
                                                                 
                                                                 //Segundo Trimestre
                                                                 if (empty($row_bol['nota_2t'])){
@@ -126,7 +136,15 @@ include "../../../base/head.php";
                                                                        echo "<td class='text-center'>".$row_bol['nota_rec_2t']."</td>"; 
                                                                     }
                                                                 }
-                                                                echo "<td></td>"; //Presença 2T
+                                                                
+                                                                if($row_bol['aulas_dadas_2t'] <> null and $row_bol['faltas_2t'] <> null){
+                                                                    $percent_faltas2t = $row_bol['faltas_2t'] * 100 / $row_bol['aulas_dadas_2t'];
+                                                                }
+                                                                echo "<td class='text-center'>";
+                                                                if($row_bol['aulas_dadas_2t'] <> null and $row_bol['faltas_2t'] <> null){
+                                                                    echo number_format($percent_faltas2t,1,",",".")."%";
+                                                                }
+                                                                echo"</td>"; //Presença 2T
                                                                 
                                                                 //Terceiro Trimestre
                                                                 if (empty($row_bol['nota_3t'])){
@@ -147,29 +165,19 @@ include "../../../base/head.php";
                                                                        echo "<td class='text-center'>".$row_bol['nota_rec_3t']."</td>"; 
                                                                     }
                                                                 }
-                                                                echo "<td></td>"; //Presença 3T
+                                                                if($row_bol['aulas_dadas_3t'] <> null and $row_bol['faltas_3t'] <> null){
+                                                                    $percent_faltas3t = $row_bol['faltas_3t'] * 100 / $row_bol['aulas_dadas_3t'];
+                                                                }
+                                                                echo "<td class='text-center'>";
+                                                                if($row_bol['aulas_dadas_3t'] <> null and $row_bol['faltas_3t'] <> null){
+                                                                    echo number_format($percent_faltas3t,1,",",".")."%";
+                                                                }
+                                                                echo"</td>"; //Presença 3T
                                                                 
-                                                                if  (empty($row_bol['nota_rec_1t'])){ //Pega maior nota entre recuperação e nota normal;
-                                                                    $nota_final_1 = $row_bol['nota_1t'];
-                                                                }else if ($row_bol['nota_rec_1t'] >= $row_bol['nota_1t']){
-                                                                    $nota_final_1 = $row_bol['nota_rec_1t'];
-                                                                }else if ($row_bol['nota_rec_1t'] < $row_bol['nota_1t']){
-                                                                    $nota_final_1 = $row_bol['nota_1t'];
-                                                                }
-                                                                if  (empty($row_bol['nota_rec_2t'])){
-                                                                    $nota_final_2 = $row_bol['nota_2t'];
-                                                                }else if ($row_bol['nota_rec_2t'] >= $row_bol['nota_2t']){
-                                                                    $nota_final_2 = $row_bol['nota_rec_2t'];
-                                                                }else if ($row_bol['nota_rec_2t'] < $row_bol['nota_2t']){
-                                                                    $nota_final_2 = $row_bol['nota_2t'];
-                                                                }
-                                                                if  (empty($row_bol['nota_rec_3t'])){
-                                                                    $nota_final_3 = $row_bol['nota_3t'];
-                                                                }else if ($row_bol['nota_rec_3t'] >= $row_bol['nota_3t']){
-                                                                    $nota_final_3 = $row_bol['nota_rec_3t'];
-                                                                }else if ($row_bol['nota_rec_3t'] < $row_bol['nota_3t']){
-                                                                    $nota_final_3 = $row_bol['nota_3t'];
-                                                                }
+
+                                                                $nota_final_1 = upper($row_bol['nota_1t'], $row_bol['nota_rec_1t']);
+                                                                $nota_final_2 = upper($row_bol['nota_2t'], $row_bol['nota_rec_2t']);
+                                                                $nota_final_3 = upper($row_bol['nota_3t'], $row_bol['nota_rec_3t']);
                                                                 
                                                                 //Cálculo média final
                                                                 $media_final_decimal = ($nota_final_1 + $nota_final_2 + $nota_final_3) / 3;
@@ -257,7 +265,7 @@ include "../../../base/head.php";
                                             <div class="btn-group" role="group"> 
                                                 <a class='btn btn-primary' target="_blank" <?php echo"href='pdf_boletim_alu.php?matricula_alu=".$matricula_alu."&id_turma=".$id_turma."'"; ?> ><i class='fal fa-print'></i>&nbsp; Imprimir</a>   
                                                 
-                                                <a class='btn btn-light' href='../matriculado/lista_matriculado.php'><i class='fa fa-undo'></i>&nbsp; Voltar</a>
+                                                <a class='btn btn-light' href='../matriculado/view/visualizar_mat.php?matricula_alu=<?php echo $matricula_alu ?>'><i class='fa fa-undo'></i>&nbsp; Voltar</a>
                                             </div>
                                         </div>
                                     </div>

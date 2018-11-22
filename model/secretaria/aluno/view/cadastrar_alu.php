@@ -9,7 +9,7 @@ $page = 'aluno';
 include "../../../../base/head.php";
 ?>
 <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
-<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
+<script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body class="sidebar-fixed header-fixed">
@@ -20,8 +20,8 @@ include "../../../../base/head.php";
             <div class="content">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-light">
-                            <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="\projeto/model/secretaria/aluno/lista_aluno.php">Alunos</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/index.php"><i class="far fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/model/secretaria/aluno/lista_aluno.php">Alunos</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Adicionar</li>
                         </ol>
                     </nav>
@@ -44,13 +44,6 @@ include "../../../../base/head.php";
                                                     }
                                                 }
                                             </script>
-                                            <!--<div class="col-md-4">
-                                                
-                                                <div class="form-group">
-                                                    <label for="matricula_alu" class="form-control-label">Matrícula</label>
-                                                    <input onkeypress='return SomenteNumero(event)' class="form-control" type="text" maxlength="18" name="matricula_alu" id="matricula_alu" required />
-                                                </div>
-                                            </div>-->
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="nome_alu" class="form-control-label">Nome</label>
@@ -118,29 +111,8 @@ include "../../../../base/head.php";
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="rg_alu" class="form-control-label">RG</label>
-                                                    <input onkeypress='return SomenteNumero(event)' class="form-control" type="text" maxlength="20" name="rg_alu" id="rg_alu" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
                                                     <label for="dt_nasc_alu" class="form-control-label">Data de nascimento</label>
                                                     <input class="form-control" type="date" name="dt_nasc_alu" id="dt_nasc_alu" required />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="nome_pai" class="form-control-label">Nome do pai</label>
-                                                    <input class="form-control" type="text" maxlength="100" name="nome_pai" id="nome_pai" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="nome_mae" class="form-control-label">Nome da mãe</label>
-                                                    <input class="form-control" type="text" maxlength="100" name="nome_mae" id="nome_mae" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -152,7 +124,59 @@ include "../../../../base/head.php";
                                                     </select>
                                                 </div>
                                             </div>
-                                            
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="nome_pai" class="form-control-label">Nome do pai</label>
+                                                    <input class="form-control" type="text" maxlength="100" name="nome_pai" id="nome_pai" />
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="rg_pai" class="form-control-label">RG pai</label>
+                                                    <input class="form-control" type="text" maxlength="12" name="rg_pai" id="rg_pai" />
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="nome_mae" class="form-control-label">Nome da mãe</label>
+                                                    <input class="form-control" type="text" maxlength="100" name="nome_mae" id="nome_mae" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="rg_mae" class="form-control-label">RG mãe</label>
+                                                    <input class="form-control" type="text" maxlength="12" name="rg_mae" id="rg_mae" />
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="resp" class="form-control-label">Responsável</label>
+                                                    <input class="form-control" type="text" maxlength="100" name="resp" id="resp" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="rg_resp" class="form-control-label">RG responsável</label>
+                                                    <input class="form-control" type="text" maxlength="12" name="rg_resp" id="rg_resp" />
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="cel_alu" class="form-control-label">Celular</label>
+                                                    <input class="form-control" type="text" name="cel_alu" id="cel_alu" />
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="tel_alu" class="form-control-label">Telefone</label>
+                                                    <input class="form-control" type="text" name="tel_alu" id="tel_alu" />
+                                                </div>
+                                            </div> 
                                         </div>
 
                                         <div class="row">
@@ -263,11 +287,11 @@ include "../../../../base/head.php";
         </div>
     </div>
     
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-	<script src="\projeto/assets/js/cep.js"></script>
-	<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
-	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+	<script src="\siaeteot/assets/js/cep.js"></script>
+	<script src="\siaeteot/assets/js/jquery.inputmask.bundle.js"></script>
+	<script src="\siaeteot/assets/js/script_mask.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>

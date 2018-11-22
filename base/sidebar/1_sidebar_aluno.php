@@ -3,10 +3,10 @@
         <ul class="nav">
             <li class="nav-title">Ações</li>
             <li class="nav-item">
-                <a href="\projeto/index.php" class="nav-link <?php if($page=='dashboard'){echo'active';} ?>"><i class="far fa-home"></i> Dashboard</a>
+                <a href="\siaeteot/index.php" class="nav-link <?php if($page=='dashboard'){echo'active';} ?>"><i class="far fa-home"></i> Dashboard</a>
             </li>
             <li class="nav-item">
-                <a href="\projeto/model/aluno/boletim/boletim_alu.php?matricula_alu=<?php echo $_SESSION['matricula_alu'] ?>" class="nav-link <?php if($page=='boletim'){echo'active';} ?>"><i class="far fa-list-ol"></i> Boletim</a>
+                <a href="\siaeteot/model/aluno/boletim/boletim_alu.php?matricula_alu=<?php echo $_SESSION['matricula_alu'] ?>" class="nav-link <?php if($page=='boletim'){echo'active';} ?>"><i class="far fa-list-ol"></i> Boletim</a>
             </li>
             <li class="nav-item nav-dropdown">
                 <a href="" class="nav-link nav-dropdown-toggle">
@@ -17,7 +17,7 @@
                         <a href="#" class="nav-link <?php if($page=='calendario_geral'){echo'active';} ?>"><i class="far fa-calendar-alt"></i> Calendário geral</a>
                     </li>
                     <li class="nav-item ml-3">
-                        <a href="\projeto/model/aluno/calendario/calendario_turma/calendario_turma.php" class="nav-link <?php if($page=='calendario_turma'){echo'active';} ?>"><i class="far fa-calendar-alt"></i> Calendário de turma</a>
+                        <a href="\siaeteot/model/aluno/calendario/calendario_turma/calendario_turma.php" class="nav-link <?php if($page=='calendario_turma'){echo'active';} ?>"><i class="far fa-calendar-alt"></i> Calendário de turma</a>
                     </li>
                 </ul>
             </li>

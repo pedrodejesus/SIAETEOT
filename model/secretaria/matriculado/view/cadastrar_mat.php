@@ -6,23 +6,25 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 8)) { // Ver
 	header("Location: ../../../../login.php?msg=4"); exit; // Redireciona o visitante de volta pro login
 }
 $page = 'matricula';
+require "../../../../base/function.php";
 include "../../../../base/head.php";
 ?>
-<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-<script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
-<script src="\projeto/assets/js/jquery.autocomplete.js"></script>
-<link href="\projeto/assets/js/jquery.autocomplete.css" rel="stylesheet">
+<script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
+<script src="\siaeteot/assets/js/jquery-migrate-1.4.1"></script>
+<script src="\siaeteot/assets/js/jquery.autocomplete.js"></script>
+<link href="\siaeteot/assets/js/jquery.autocomplete.css" rel="stylesheet">
 <script type="text/javascript">
     $().ready(function() {
         $("#matricula_alu").autocomplete("filtra_alu.php", {
-            width: 250,
+            //width: 400,
             matchContains: true,
+            //autoFill: true,
             //mustMatch: true,
             //minChars: 0,
             //multiple: true,
-            //highlight: false,
             //multipleSeparator: ",",
-            selectFirst: false
+            //highlight: true,
+            selectFirst: true
         });
     });
     $(document).ready(function(){
@@ -42,8 +44,8 @@ include "../../../../base/head.php";
             <div class="content">
                 <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-light">
-                            <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="\projeto/model/secretaria/matriculado/lista_matriculado.php">Matrículas</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/index.php"><i class="far fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/model/secretaria/matriculado/lista_matriculado.php">Matrículas</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Matricular</li>
                         </ol>
                     </nav>
@@ -80,14 +82,8 @@ include "../../../../base/head.php";
                                                 <select class="form-control" type="text" name="ano_letivo" id="ano_letivo">
                                                     <option value="">Selecione</option>
                                                     <?php
-                                                        $ano_atual = date("Y");
-                                                        $ano_anterior = $ano_atual - 1;
-                                                        $ano_preanterior = $ano_atual - 2;
-                                                        $proximo_ano = $ano_atual + 1;
-                                                        echo "<option value='".$ano_atual."'>".$ano_atual."</option>";
-                                                        echo "<option value='".$ano_anterior."'>".$ano_anterior."</option>";
-                                                        echo "<option value='".$proximo_ano."'>".$proximo_ano."</option>";
-                                                        echo "<option value='".$ano_preanterior."'>".$ano_preanterior."</option>";
+                                                        include "../../../../base/conexao.php";
+                                                        ano_letivo();
                                                     ?>
                                                 </select>
                                             </div>
@@ -138,8 +134,8 @@ include "../../../../base/head.php";
         </div>
     </div>
     
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>

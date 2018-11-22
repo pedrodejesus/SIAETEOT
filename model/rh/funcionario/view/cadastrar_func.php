@@ -9,7 +9,7 @@ $page = 'func';
 include "../../../../base/head.php";
 ?>
 <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
-<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
+<script src="\/assets/js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body class="sidebar-fixed header-fixed">
@@ -196,11 +196,11 @@ include "../../../../base/head.php";
         </div>
     </div>
 	
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/cep.js"></script>
-	<script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
-	<script src="\projeto/assets/js/script_mask.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+    <script src="\siaeteot/assets/js/cep.js"></script>
+	<script src="\siaeteot/assets/js/jquery.inputmask.bundle.js"></script>
+	<script src="\siaeteot/assets/js/script_mask.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>

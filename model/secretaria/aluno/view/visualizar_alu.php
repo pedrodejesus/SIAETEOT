@@ -20,20 +20,15 @@ include "../../../../base/head.php";
                 include "../../../../base/conexao.php";
                         
                 $matricula_alu = $_GET['matricula_alu'];
-                $sql   = "select a.matricula_alu, a.nome_alu, a.sobrenome_alu, a.cpf_alu, a.rg_alu, a.dt_nasc_alu, ";
-                $sql  .= "a.nome_pai, a.nome_mae, a.sexo_alu, a.tipo_alu, a.cep, a.num_resid_alu, a.complemento_alu, ";
-                $sql  .= "l.cep, upper(l.tp_logradouro) as tp_logradouro, upper(l.logradouro) as logradouro, upper(l.bairro) as bairro, upper(l.cidade) as cidade, upper(l.uf) as uf ";
-                $sql  .= "from aluno a, localidade l ";
-                $sql  .= "where a.cep = l.cep ";
-                $sql  .= "and a.matricula_alu = '".$matricula_alu."';";
+                $sql = "call select_dados_alu($matricula_alu)";
                 $query = mysqli_query($conexao, $sql);
                 $row   = mysqli_fetch_array($query);
             ?>
             <div class="content">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-light">
-                            <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="\projeto/model/secretaria/aluno/lista_aluno.php">Alunos</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/index.php"><i class="far fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/model/secretaria/aluno/lista_aluno.php">Alunos</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Detalhes</li>
                         </ol>
                     </nav>
@@ -44,7 +39,10 @@ include "../../../../base/head.php";
                                     <a class="nav-link active" data-toggle="tab" href="#pess" role="tab" aria-controls="home" aria-expanded="true"><i class="fal fa-user-graduate"></i> Dados pessoais</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#comp" role="tab" aria-controls="profile" aria-expanded="false"><i class="fal fa-id-card"></i> Dados complementares</a>
+                                    <a class="nav-link" data-toggle="tab" href="#docs" role="tab" aria-controls="profile" aria-expanded="false"><i class="fal fa-id-card"></i> Documentos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#comp" role="tab" aria-controls="test" aria-expanded="false"><i class="fal fa-info-circle"></i> Dados complementares</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -197,12 +195,118 @@ include "../../../../base/head.php";
                                         </div>
                                     </div>
                                 </div>
+                                <div class="tab-pane" id="docs" role="tabpanel" aria-expanded="false">
+                                    <div class="card">
+                                        <div class="card-header bg-light">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h4><?php echo $row["matricula_alu"]." - ".$row["nome_alu"]." ".$row["sobrenome_alu"]; ?></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <strong>Tipo de certidão</strong>
+                                                        <p class="form-control-plaintext">
+                                                            <?php 
+                                                                switch($row['certidao_tipo']){
+                                                                    case 1:
+                                                                        echo "Certdão de Nascimento";
+                                                                        break;
+                                                                    case 2:
+                                                                        echo "Certdão de Casamento";
+                                                                        break;
+                                                                }
+                                                            ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <strong>Termo</strong>
+                                                        <p class="form-control-plaintext"><?php echo $row["certidao_termo"]; ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <strong>Circunscrição</strong>
+                                                        <p class="form-control-plaintext"><?php echo $row["certidao_circ"]; ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <strong>Livro</strong>
+                                                        <p class="form-control-plaintext"><?php echo $row["certidao_livro"]; ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <strong>Folha</strong>
+                                                        <p class="form-control-plaintext"><?php echo $row["certidao_folha"]; ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <strong>Cidade</strong>
+                                                        <p class="form-control-plaintext"><?php echo $row["certidao_cidade"]; ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <strong>UF</strong>
+                                                        <p class="form-control-plaintext"><?php echo $row["certidao_uf"]; ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <strong>RG Identidade</strong>
+                                                        <p class="form-control-plaintext"><?php echo $row["identidade_rg"]; ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <strong>Data Expedição Identidade</strong>
+                                                        <p class="form-control-plaintext"><?php echo implode("/", array_reverse(explode("-", $row["identidade_dt_exp"]))) ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <strong>Orgão Emissor Identidade</strong>
+                                                        <p class="form-control-plaintext"><?php echo $row["identidade_org_exp"]; ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <strong>Naturalidade</strong>
+                                                        <p class="form-control-plaintext"><?php echo $row["naturalidade"]; ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="btn-group" role="group"> 
+                                                        <a class='btn btn-warning' href='editar_alu.php?matricula_alu=<?php echo $matricula_alu ?>'><i class='fa fa-edit'></i>&nbsp; Editar</a>   
+
+                                                        <a class='btn btn-danger' onclick='deletaAlu(<?php echo $matricula_alu ?>)' data-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
+
+                                                        <a class='btn btn-light' onclick="window.history.back();" ><i class='fa fa-undo'></i>&nbsp; Voltar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="tab-pane" id="comp" role="tabpanel" aria-expanded="false">
                                     <div class="card">
                                         <div class="card-header bg-light">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <h4><?php echo $row["matricula_alu"]." - ".$row["nome_alu"]." ".$row["sobrenome_alu"]; ?></h4>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -215,10 +319,10 @@ include "../../../../base/head.php";
         </div>
     </div>
     
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/function-delete.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+    <script src="\siaeteot/assets/js/function-delete.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>

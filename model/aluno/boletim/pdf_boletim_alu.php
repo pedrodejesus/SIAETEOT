@@ -1,4 +1,3 @@
-<script src="https://use.fontawesome.com/5c09ce9350.js"></script>
 <?php
 require_once '../../../assets/vendor/autoload.php';
 //if (!isset($_SESSION)) session_start();

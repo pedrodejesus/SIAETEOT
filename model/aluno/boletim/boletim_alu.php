@@ -8,8 +8,8 @@ if ($_SESSION['UsuarioNivel'] != 1) { // Verifica se não há a variável da ses
 $page = 'boletim';
 include "../../../base/head.php";
 ?>
-<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-<script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
+<script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
+<script src="\siaeteot/assets/js/jquery-migrate-1.4.1"></script>
 <script type="text/javascript" src="search.js"></script>
 </head>
 <body class="sidebar-fixed header-fixed">
@@ -28,7 +28,7 @@ include "../../../base/head.php";
             <div class="content">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-light">
-                        <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="\siaeteot/index.php"><i class="far fa-home"></i> Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Boletim</li>
                     </ol>
                 </nav>
@@ -315,13 +315,13 @@ include "../../../base/head.php";
         </div>
     </div>    
     
-    <script src="\projeto/assets/js/popper.min.js"></script>
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/function-delete.js"></script>
-    <script src="\projeto/assets/js/function-search.js"></script>
-    <script src="\projeto/assets/js/chart.min.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
-    <script src="\projeto/assets/js/demo.js"></script>
+    <script src="\siaeteot/assets/js/popper.min.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+    <script src="\siaeteot/assets/js/function-delete.js"></script>
+    <script src="\siaeteot/assets/js/function-search.js"></script>
+    <script src="\siaeteot/assets/js/chart.min.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/demo.js"></script>
 </body>
 
 </html>

@@ -11,7 +11,6 @@ $matricula_alu       = $_POST["matricula_alu"];
 $nome_alu            = mb_strtoupper($_POST["nome_alu"], $encoding);
 $sobrenome_alu       = mb_strtoupper($_POST["sobrenome_alu"], $encoding);
 $cpf_alu             = $_POST["cpf_alu"];
-$rg_alu              = $_POST["rg_alu"];
 $dt_nasc_alu         = implode("-", array_reverse(explode("/", $_POST["dt_nasc_alu"])));
 $nome_pai            = mb_strtoupper($_POST["nome_pai"], $encoding);
 $nome_mae            = mb_strtoupper($_POST["nome_mae"], $encoding);
