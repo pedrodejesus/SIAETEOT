@@ -200,11 +200,22 @@ include "../../../base/conexao.php";
                                 document.getElementById("resp"+num).innerHTML = "<i class='fa fa-times ml-4' style='color:red;'></i>";
                             }
 						}
-                        if(val_nota > 10){
+                        
+                        if(val_nota > 10){ //Se nota for maior do que 10, recebe 10;
                             document.getElementById("nota"+num).value = 10;
                         }else if(val_rec > 10){
                             document.getElementById("recu"+num).value = 10;
                         }
+                        
+                        //Troca vírgulas por ponto para inserir no banco
+                        document.getElementById("nota"+num).value = document.getElementById("nota"+num).value.replace(",", ".");
+                        document.getElementById("recu"+num).value = document.getElementById("recu"+num).value.replace(",", ".");
+                        
+                        var nota_final = Math.round(val_nota/0.5) * 0.5;
+                        document.getElementById("nota"+num).value = nota_final; 
+                        //Arredonda as notas para 0.5 ou valor inteiro
+                        var recu_final = Math.round(val_rec/0.5) * 0.5;
+                        document.getElementById("nota"+recu).value = recu_final;
 					});
 				});
 			});

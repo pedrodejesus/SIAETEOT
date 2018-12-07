@@ -6,6 +6,7 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 8)) { // Ver
 	header("Location: ../../../../login.php?msg=4"); exit; // Redireciona o visitante de volta pro login
 }
 $page = 'transf_tur';
+require "../../../../base/function.php";
 include "../../../../base/head.php";
 ?>
 <script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
@@ -69,13 +70,8 @@ include "../../../../base/head.php";
                                             <div class="form-group">
                                                 <label for="ano_letivo" class="form-control-label">Ano letivo</label>
                                                 <select class="form-control" name="ano_letivo" id="ano_letivo">
-                                                    <?php
-                                                        $query = mysqli_query($conexao, "select distinct ano_letivo from matriculado order by ano_letivo desc");
-                                                        echo"<option value=''>Selecione</option>";
-                                                        while($array = mysqli_fetch_array($query)){
-                                                            echo"<option value='".$array['ano_letivo']."'>".$array['ano_letivo']."</option>";
-                                                        }
-                                                    ?>
+                                                    <option value="">Selecione</option>
+                                                    <?php ano_letivo() ?>
                                                 </select>
                                             </div>
                                         </div>

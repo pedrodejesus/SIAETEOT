@@ -10,7 +10,7 @@ $q = strtolower($_GET["q"]);
 if (!$q) return;
 
 $sql = "select matricula_alu, nome_alu, sobrenome_alu from aluno where concat(nome_alu, sobrenome_alu) like '%$q%' order by nome_alu asc, sobrenome_alu asc";
-$rsd = mysqli_query($conexao, $sql);
+$rsd = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 while($rs = mysqli_fetch_array($rsd)) {
 	$_SESSION["smatricula_alu"] = $rs['matricula_alu'];

@@ -46,3 +46,7 @@ function deletaTransfUe(idDado){
     var href = "/siaeteot/model/secretaria/transf_ue/controller/exclui_transf_ue.php?id_trans=" + idDado; //Seta o caminho para quando clicar em "Sim"
     $('#confirmDelete').prop("href", href); //Adiciona atributo de deleção ao link
 }
+function deletaTransfTurma(idDado){
+    var href = "/siaeteot/model/secretaria/transf_turma/controller/exclui_transf_turma.php?id_trans=" + idDado; //Seta o caminho para quando clicar em "Sim"
+    $('#confirmDelete').prop("href", href); //Adiciona atributo de deleção ao link
+}

@@ -1,9 +1,10 @@
 <?php
 include "../../../base/conexao.php";
  
-$id_cur = $_GET['id_cur'];
+$id_cur     = $_GET['id_cur'];
+$ano_letivo = $_GET['ano_letivo'];
  
-$rs = mysqli_query($conexao, "SELECT * FROM turma WHERE id_cur = '$id_cur' ORDER BY numero");
+$rs = mysqli_query($conexao, "SELECT * FROM turma WHERE id_cur = '$id_cur' and ano_letivo = $ano_letivo ORDER BY numero");
 $nr = mysqli_num_rows($rs);
 
 echo "<option value=''>Selecione</option>";  

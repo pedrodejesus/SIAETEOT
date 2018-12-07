@@ -149,9 +149,19 @@ include "../../../../base/head.php";
                                                             <input class="form-control" type="text" maxlength="12" name="rg_resp" id="rg_resp" value="<?php echo $row["rg_resp"];?>" />
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="cel_alu" class="form-control-label">Celular</label>
+                                                    <input class="form-control" type="text" name="cel_alu" id="cel_alu" />
                                                 </div>
-                                                <!--<div class="row">
-                                                    <div class="col-md-3">
+                                            </div> 
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="tel_alu" class="form-control-label">Telefone</label>
+                                                    <input class="form-control" type="text" name="tel_alu" id="tel_alu" />
+                                                </div>
+                                            </div> 
+                                                    <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label for="tipo_alu">Tipo do aluno</label>
                                                             <select id="tipo_alu" name="tipo_alu" class="form-control">
@@ -160,7 +170,8 @@ include "../../../../base/head.php";
                                                             </select>
                                                         </div>
                                                     </div>
-                                                </div>-->
+                                                </div>
+                                            
 
                                                 <div class="row">
                                                     <div class="col-md-4">
@@ -286,7 +297,7 @@ include "../../../../base/head.php";
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="identidade_dt_exp">Data Expedição Identidade</label>
-                                                        <input id="identidade_dt_exp" name="identidade_dt_exp" class="form-control" value="<?php echo implode("/", array_reverse(explode("-", $row["identidade_dt_exp"]))) ?>" />
+                                                        <input type='date' id="identidade_dt_exp" name="identidade_dt_exp" class="form-control" value="<?php echo $row["identidade_dt_exp"]?>" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">

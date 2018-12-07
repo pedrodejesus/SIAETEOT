@@ -9,10 +9,11 @@ $encoding = mb_internal_encoding();
 
 $nome_disc        = mb_strtoupper($_POST["nome_disc"], $encoding);
 $sigla_disc       = mb_strtoupper($_POST["sigla_disc"], $encoding);
-$id_cur         = $_POST["id_cur"];
+$ch               = $_POST["ch"];
+$id_cur           = $_POST["id_cur"];
 
 $sql   = "insert into disciplina values ";  // Adiciona os dados à tabela;
-$sql  .= "('0', '$nome_disc', '$sigla_disc', '$id_cur');";
+$sql  .= "('0', '$nome_disc', '$sigla_disc', '$ch', '$id_cur');";
 
 $resultado = mysqli_query($conexao, $sql);
 

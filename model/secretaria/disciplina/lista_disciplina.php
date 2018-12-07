@@ -54,6 +54,7 @@ include "../../../base/head.php";
                                                 <th scope="col">ID&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                                 <th scope="col">Nome</th>
                                                 <th scope="col">Sigla</th>
+                                                <th scope="col">Carga Horária</th>
                                                 <th scope="col">Curso</th>
                                                 <th scope="col">Ações</th>
                                             </tr>
@@ -66,7 +67,7 @@ include "../../../base/head.php";
                                             $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
                                             $inicio = ($quantidade * $pagina) - $quantidade;
                                             
-                                            $sql  = "select d.id_disc, d.nome_disc, d.sigla_disc, d.id_cur, ";
+                                            $sql  = "select d.id_disc, d.nome_disc, d.sigla_disc, d.ch, d.id_cur, ";
                                             $sql .= "c.id_cur, c.nome_cur  ";
                                             $sql .= "from disciplina d, curso c ";
                                             $sql .= "where d.id_cur = c.id_cur ";
@@ -79,6 +80,7 @@ include "../../../base/head.php";
                                                 echo "<td>".$info['id_disc']."</td>";
                                                 echo "<td>".$info['nome_disc']."</td>";
                                                 echo "<td>".$info['sigla_disc']."</td>";
+                                                echo "<td>".$info['ch']."</td>";
                                                 echo "<td>".$info['nome_cur']."</td>";
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                             <a class='btn btn-success' href=view/visualizar_disc.php?id_disc=".$info['id_disc']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>

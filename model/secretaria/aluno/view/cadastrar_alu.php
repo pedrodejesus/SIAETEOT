@@ -235,6 +235,9 @@ include "../../../../base/head.php";
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group">
+                                                    <script>
+                                                        //$("#2trim").attr('disabled', 'disabled');
+                                                    </script>
                                                     <label for="tipo_alu">Modalidade</label>
                                                     <select id="tipo_alu" name="tipo_alu" class="form-control">
                                                         <option value="I">Ensino Integrado</option>
@@ -264,7 +267,7 @@ include "../../../../base/head.php";
                                                     <label for="uf">Semestre</label>
                                                     <select class="form-control" type="text" name="semestre" id="semestre">
                                                         <option value="1">1º semestre</option>
-                                                        <option value="2">2º semestre</option>
+                                                        <option id="2trim" value="2">2º semestre</option>
                                                     </select>
                                                 </div>
                                             </div>

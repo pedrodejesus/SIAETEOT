@@ -21,7 +21,7 @@ include "../../../../base/head.php";
                 include "../../../../base/sidebar/8_sidebar_secretaria.php";
                 include("../../../../base/conexao.php");
                         
-                $id_turma = (int) $_GET['id_turma'];
+                $id_turma = $_GET['id_turma'];
                 $sql  = "select distinct m.matricula_alu, m.id_turma, m.remat, ";
                 $sql .= "a.matricula_alu, a.nome_alu, a.sobrenome_alu, a.situacao as situacao_aluno, ";
                 $sql .= "t.id_turma, t.numero, t.ano_letivo, t.situacao as situacao_turma, t.turno, t.dt_inicio, t.dt_fim, t.id_cur ";
@@ -215,7 +215,7 @@ include "../../../../base/head.php";
                                                                     echo "</td>";
                                                                     echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                                             <a class='btn btn-success' href=../../matriculado/view/visualizar_mat.php?matricula_alu=".$row_alu['matricula_alu']."><i class='fa fa-info-circle'></i>&nbsp; Visualizar matrícula</a>";
-                                                                    if  (($row_alu['situacao_aluno'] == 1 || $row_alu['situacao_aluno'] == 3) && $row['situacao_turma'] == 1) {
+                                                                    if  ($row_alu['situacao_aluno'] == 1 && $row['situacao_turma'] == 1) {
                                                                         echo"<a class='btn btn-warning' href=view/visualizar_turma.php?matricula_alu=".$row_alu['matricula_alu']."><i class='fa fa-exchange-alt'></i>&nbsp; Transferir de turma</a>"; 
                                                                     } 
                                                                     echo "</div></td></tr>";  

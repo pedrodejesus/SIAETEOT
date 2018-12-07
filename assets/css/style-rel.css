@@ -1,4 +1,7 @@
 /* Boletim */
+.txt-center{
+    text-align: center !important;
+}
 .logo_rj{
     float: left;
     height: 14%;
@@ -12,16 +15,32 @@
 }
 .total-bol{
 	text-align:center;
-	/*border-collapse: collapse;*/
 }
+.total-bol th{
+    border: 0.5px solid black !important;
+
+    vertical-align: middle!important
+}
+/*.faltas_sit{
+    font-size: 8px;
+}*/
+.tbody-bol td{
+    border: 0.1px solid black !important;
+    /*font-size: 9px;*/
+}
+
+
 /*table#body_bol td{
 	border:solid 1px black !important;
     margin-bottom: 70px !important;
 }*/
 
-.info-alu{/*margin-top:80px;*/}
+.td_bol{
+    border: solid 1px black !important;
+    margin: 0px 0px 0px 0px !important;
+}
 .ref{background:#e4e4e4}
-.red-not{background-color:rgb(255,199,206); color:rgb(156,0,6);}
+.red-not{background-color:#CC0000; color:#FFF;}
 .rodape{
 	width:100%;
 	bottom:0;
@@ -38,6 +57,7 @@
 .table-sm th {
     padding: .3rem
 }
+
 
 /* Declaração */
 .logo_rj_dec{
@@ -76,3 +96,27 @@
 .table th, .table td, .table tr {
     margin: 0px 0px 0px 0px;    
 }
+
+table {
+    border-collapse: collapse;
+}
+thead {
+    vertical-align: bottom;
+    text-align: center !important;
+    font-weight: bold;
+}
+/*th {
+    text-align: left;
+    padding-left: 0.35em;
+    padding-right: 0.35em;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    vertical-align: top;
+}
+td {
+    padding-left: 0.35em;
+    padding-right: 0.35em;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    vertical-align: top;
+}*/

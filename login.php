@@ -47,7 +47,7 @@ include "base/head.php"
                         <div class="row">
                             <div class="col-md-4 mt-3">
                                 <img src="assets/img/logo.jpg" class="img-fluid" />
-                                <div class="card-header text-center text-uppercase h4 font-weight-light">SISETEOT</div>
+                                <div class="card-header text-center text-uppercase h4 font-weight-light">SIAETEOT</div>
                                 <h5 class="text-center">LOGIN</h5>
                             </div>
                             <div class="col-md-2"></div>

@@ -32,8 +32,9 @@ $mpdf->SetHTMLHeaderByName('MyHeader1');
 $css = file_get_contents('../../../../assets/css/style-rel.css');
 $mpdf->WriteHTML($css,1);
 
-$matricula_alu = $_GET['matricula_alu'];
-//$id_turma = $_GET['id_turma'];
+$matricula_alu = $_POST['matricula_alu'];
+$tipo = $_POST['tipo'];
+
 $sql  = "select m.tipo_matricula, m.dt_matricula, m.ano_letivo, m.matricula_alu, m.id_turma, m.id_disc, m.dt_matricula, m.situacao as sit_pdg, ";
 $sql .= "a.matricula_alu, a.nome_alu, a.sobrenome_alu, a.situacao as sit_adm, a.dt_nasc_alu, a.nome_pai, a.nome_mae, ";
 $sql .= "d.id_disc, d.nome_disc, ";
@@ -51,7 +52,12 @@ $row = mysqli_fetch_array($query);
 // Área do html PDF
 $html ='<h1 class="dec_tit"><b>DECLARAÇÃO</b></h1>';
 
-$html .='<p class="dec_txt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declaramos que, de acordo com os assentamentos constantes no arquivo deste Estabelecimento de Ensino: </p>';
+if($tipo == 2){
+    $html .='<p class="dec_txt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declaramos para fins de comprovação junto ao Instituto de Previdência e Assistência do Município do Rio de Janeiro / PREVI-RIO, conforme determina a RESOLUÇÃO CONJUNTA SMA/PREVI_RIO Nº 13 DE 29 DE JANEIRO DE 2016, que o(a) aluno(a): </p>';
+}else{
+    $html .='<p class="dec_txt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declaramos que, de acordo com os assentamentos constantes no arquivo deste Estabelecimento de Ensino: </p>';
+}
+
 
 $html .='<h2 class="dec_nome"><b>'.$row['nome_alu'].' '.$row['sobrenome_alu'].'</b></h2>';
 
@@ -86,19 +92,29 @@ switch($curso){
         break;
 }
 
-$html .= '<p class="dec_txt">no ano letivo de '.$row['ano_letivo'].', no horário de 7:00 horas ás 18:10 horas; com aulas aos sábados, no horário de 7:00 horas ás 12:00 horas.</p><br><br>';
+if ($tipo == 3) {
+     $html .= '<p class="dec_txt">no ano letivo de '.$row['ano_letivo'].', no horário de 13:00 horas ás 18:10 horas; com aulas aos sábados, no horário de 7:00 horas ás 12:00 horas.</p><br><br>';
+} else {
+    $html .= '<p class="dec_txt">no ano letivo de '.$row['ano_letivo'].', no horário de 7:00 horas ás 18:10 horas; com aulas aos sábados, no horário de 7:00 horas ás 12:00 horas.</p><br><br>';
+}
+
 
 $html .= '<p class="num_mat"><b>NÚMERO DE MATRÍCULA: &nbsp;&nbsp;&nbsp;&nbsp;'.$row['matricula_alu'].'</b></p>';
 
 $data = $row['dt_matricula'];
 $mes = substr($data, 5, -3);
 $ano = substr($data, 0, -6);
-$ano_termino_inte = $ano + 3;
+$ano_termino_inte = $ano + 2;
+$ano_termino_sub = $ano + 1;
 
 $html .= '<p class="num_mat"><b>PREVISÃO DE TÉRMINO: &nbsp;&nbsp;&nbsp;&nbsp;';
 
-if($mes <= 5 and $row['tipo_matricula'] == 1){
+if ($mes <= 5 and $row['tipo_matricula'] == 1) {
     $html.= "Dezembro de ".$ano_termino_inte;
+} elseif ($mes <= 5 and $row['tipo_matricula'] == 2){
+    $html.= "Junho de ".$ano_termino_sub;
+} elseif ($mes >= 5 and $row['tipo_matricula'] == 2){
+    $html.= "Dezembro de ".$ano_termino_sub;
 }
 
 $html .= '</b></p><br><br>';

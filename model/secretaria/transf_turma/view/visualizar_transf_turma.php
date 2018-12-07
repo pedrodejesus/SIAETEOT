@@ -92,7 +92,7 @@ include "../../../../base/head.php";
                                             <div class="btn-group" role="group"> 
                                                 <!--<a class='btn btn-warning' href='editar_transf_ue.php?id_trans=<?php echo $id_trans ?>'><i class='fa fa-edit'></i>&nbsp; Editar</a>-->   
                                                 
-                                                <a class='btn btn-danger' onclick='deletaAlu(<?php echo $id_trans ?>)' data-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
+                                                <a class='btn btn-danger' onclick='deletaTransfTurma(<?php echo $id_trans ?>)' data-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>
                                                 
                                                 <a class='btn btn-light' href='../lista_transf_turma.php'><i class='fa fa-undo'></i>&nbsp; Voltar</a>
                                             </div>

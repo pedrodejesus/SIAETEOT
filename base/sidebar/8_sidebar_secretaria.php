@@ -58,7 +58,7 @@
                                         <a href="\siaeteot/model/secretaria/rel/alunos_turma/alunos_turma.php" class="nav-link <?php if($page=='rel_alunos_turma'){echo'active';} ?>"><i class="far fa-clipboard-list"></i> Alunos por turma</a>
                                     </li>
                                     <li class="nav-item ml-3">
-                                        <a href="\siaeteot/model/secretaria/rel/boletim_geral/boletim_geral.php" class="nav-link <?php if($page=='rel_alunos_turma'){echo'active';} ?>"><i class="far fa-clipboard-list"></i> Boletim geral</a>
+                                        <a href="\siaeteot/model/secretaria/rel/listagem_alu/listagem_alu.php" class="nav-link <?php if($page=='listagem_alu'){echo'active';} ?>"><i class="far fa-clipboard-list"></i> Listagem de alunos</a>
                                     </li>
                                 </ul>
                             </li>

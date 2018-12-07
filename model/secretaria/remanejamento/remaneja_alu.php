@@ -86,10 +86,10 @@ include "../../../base/head.php";
                                                             $ano_anterior = $ano_atual - 1;
                                                             $ano_preanterior = $ano_atual - 2;
                                                             $proximo_ano = $ano_atual + 1;
+                                                            echo "<option value='".$proximo_ano."'>".$proximo_ano."</option>";
                                                             echo "<option value='".$ano_atual."'>".$ano_atual."</option>";
                                                             echo "<option value='".$ano_anterior."'>".$ano_anterior."</option>";
                                                             echo "<option value='".$ano_preanterior."'>".$ano_preanterior."</option>";
-                                                            echo "<option value='".$proximo_ano."'>".$proximo_ano."</option>";
                                                         ?>
                                                     </select>
                                                 </div>

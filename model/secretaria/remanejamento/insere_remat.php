@@ -12,16 +12,17 @@ $ano_letivo_corrente    = $_POST["ano_letivo_corrente"];
 //$proximo_ano_letivo   = $_POST["proximo_ano_letivo"];
 $proximo_ano_letivo     = $ano_letivo_corrente + 1;
 $id_turma               = $_POST["id_turma"];
+//echo $id_turma;
 
-if($id_turma = "desistente"){
+if($id_turma == "desistente"){
     foreach($matricula_alu as /*$index =>*/ $matricula){
         $sql_update = "update aluno set situacao = 2 where matricula_alu = '".$matricula."'";
-        $resultado = mysqli_query($conexao, $sql_update); 
+        $resultado = mysqli_query($conexao, $sql_update) or die(mysqli_error($conexao)); 
     }
-}elseif($id_turma = "concluinte"){
+}elseif($id_turma == "concluinte"){
     foreach($matricula_alu as /*$index =>*/ $matricula){
         $sql_update = "update aluno set situacao = 4 where matricula_alu = '".$matricula."'";
-        $resultado = mysqli_query($conexao, $sql_update); 
+        $resultado = mysqli_query($conexao, $sql_update) or die(mysqli_error($conexao)); 
     }
 }else{
     foreach($matricula_alu as /*$index =>*/ $matricula){ //Para cada aluno selecionado, faça:
@@ -39,11 +40,11 @@ if($id_turma = "desistente"){
         $consulta = mysqli_query($conexao, $sql); //Seleciona as disciplinas padrão da nova turma e matricula cada aluno selecionado nelas
         while ($disciplinas = mysqli_fetch_array($consulta)){
             $sql_insert = "insert into matriculado values (0, '".$tipo."', '".$data."', '".$proximo_ano_letivo."', 1, '0', '".$matricula."', '".$id_turma."',  '".$disciplinas['id_disc']."');";
-            $resultado = mysqli_query($conexao, $sql_insert);
+            $resultado = mysqli_query($conexao, $sql_insert) or die(mysqli_error($conexao));
             //echo $sql_insert."<br>";
 
             $sql_insert_bol = "insert into boletim (id_boletim, matricula_alu, id_turma, id_disc) values (0, '".$matricula."', '".$id_turma."', '".$disciplinas['id_disc']."');";
-            $resultado_insert_bol = mysqli_query($conexao, $sql_insert_bol); //Insere no boletim as novas disciplinas e turma 
+            $resultado_insert_bol = mysqli_query($conexao, $sql_insert_bol) or die(mysqli_error($conexao)); //Insere no boletim as novas disciplinas e turma 
         }
     }
 }    

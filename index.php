@@ -48,10 +48,7 @@ include "base/head.php";
                             include "base/sidebar/9_sidebar_dir.php";
                             break;
                         case 0:
-                            include "base/sidebar.php";
-                            break;
-                        default:
-                            include "base/sidebar.php";
+                            include "base/sidebar/0_sidebar_admin.php";
                             break;
                     }
                 ?>
@@ -68,9 +65,7 @@ include "base/head.php";
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/carbon.js"></script>
-    <script src="assets/js/demo.js"></script>
 </body>
 
 </html>

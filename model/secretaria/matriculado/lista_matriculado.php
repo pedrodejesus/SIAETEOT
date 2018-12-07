@@ -8,6 +8,24 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 8)) { // Ver
 $page = 'matricula';
 include "../../../base/head.php";
 ?>
+<script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js" integrity="sha256-MCmDSoIMecFUw3f1LicZ/D/yonYAoHrgiep/3pCH9rw=" crossorigin="anonymous"></script>
+<script src="\siaeteot/assets/js/jquery-migrate-1.4.1"></script>
+<script>
+    $(document).ready(function(){
+        $('#modal-declaracao').on('show.bs.modal', function(e){
+            var matricula_alu = $(e.relatedTarget).data('alu'); //Recebe o id do data-alu
+            $.ajax({
+                type: 'get', 
+                url: 'modal_info.php', 
+                data: 'matricula_alu='+ matricula_alu, 
+                success: function(data){
+                    $('.modal-body').html(data);
+                } 
+            });
+        });
+    });
+</script>
 </head>
 
 <body class="sidebar-fixed header-fixed">
@@ -114,9 +132,11 @@ include "../../../base/head.php";
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                             <a class='btn btn-success' href=view/visualizar_mat.php?matricula_alu=".$info['matricula_alu']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
                                                             
-                                                            <a target='_blank' class='btn btn-primary' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='far fa-print'></i>&nbsp; Declaração</a>
+                                                            <a class='btn btn-primary' data-toggle='modal' data-alu='".$info['matricula_alu']."' href='#modal-declaracao'><i class='far fa-print'></i>&nbsp; Declaração</a>
                                                             
-                                                            <a class='btn btn-danger' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='fa fa-lock'></i>&nbsp; Trancar Matrícula</a>
+                                                            <!--<a target='_blank' class='btn btn-primary' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='far fa-print'></i>&nbsp; Declaração</a>-->
+                                                            
+                                                            <a class='btn btn-danger' href='#'><i class='fa fa-lock'></i>&nbsp; Trancar Matrícula</a>
                                                                 
                                                             <!--<a class='btn btn-warning' href=view/editar_mat.php?matricula_mat=".$info['matricula_alu']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
                                                                 
@@ -165,7 +185,6 @@ include "../../../base/head.php";
         </div>
     </div>    
     
-    <script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
     <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="search.js"></script>
     <script src="\siaeteot/assets/js/function-delete.js"></script>

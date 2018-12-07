@@ -69,7 +69,7 @@ include "../../../../base/head.php";
                                                     }
                                                 ?>
                                                 <label for="matricula_alu" class="form-control-label">Nome do aluno</label>
-                                                <input class="form-control" type="text" name="matricula_alu" value="<?php echo $matricula_alu.' - '.$alu['nome_alu'].$alu['sobrenome_alu'] ?>" id="matricula_alu" required />
+                                                <input class="form-control" type="text" name="matricula_alu" id="matricula_alu" required />
                                             </div>
                                         </div>
                                         <div class="col-md-3">

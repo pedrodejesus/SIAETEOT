@@ -14,10 +14,6 @@ $mpdf = new \Mpdf\Mpdf([
 $ano_letivo = $_POST['ano_letivo'];
 
 $mpdf->DefHTMLHeaderByName('MyHeader1', '<h1 style="text-align:center">Relatório de alunos por turma - '.$ano_letivo.'</h1>');
-//$mpdf->DefHTMLFooterByName('MyFooter1','');
-
-$mpdf->SetHTMLHeaderByName('MyHeader1');
-//$mpdf->SetHTMLFooterByName('MyFooter1');
 
 $css = file_get_contents('../../../../assets/css/style-rel.css');
 $mpdf->WriteHTML($css,1);

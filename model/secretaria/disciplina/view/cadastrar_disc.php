@@ -52,6 +52,12 @@ include "../../../../base/head.php";
                                                     <input class="form-control" type="text" maxlength="10" name="sigla_disc" id="sigla_disc" required />
                                                 </div>
                                             </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="sigla_disc" class="form-control-label">Carga Horária</label>
+                                                    <input class="form-control" type="text" maxlength="3" name="ch" id="ch" required />
+                                                </div>
+                                            </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="id_cur">Curso</label>

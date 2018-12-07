@@ -52,12 +52,12 @@ include "../../../../base/head.php";
                                     <h4>Relatório de Alunos por Turma</h4>
                                 </div>
                                 <div id="listanotas" class="card-body">
-                                    <form action="rel_alunos_turma.php" method="post">
+                                    <form target="_blank" action="rel_alunos_turma.php" method="post">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="id_cur" class="form-control-label">Ano letivo</label>
-                                                    <select class="form-control" type="text" name="ano_letivo" id="ano_letivo">
+                                                    <select class="form-control" type="text" name="ano_letivo" id="ano_letivo" required>
                                                         <option value="">Selecione o ano letivo </option>
                                                         <?php
                                                             $sql = "select distinct ano_letivo from matriculado order by ano_letivo desc";

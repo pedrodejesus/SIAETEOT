@@ -87,7 +87,7 @@ if(in_array($ano, $array)){ //Senão, puxa do banco as matrículas daquele ano, 
 $matricula_alu = $mat_fixa.$mat_sequencial;
 
 $sql  = "insert into aluno values ";
-$sql .= "('$matricula_alu', '$nome_alu', '$sobrenome_alu', '$cpf_alu', '$dt_nasc_alu', '$nome_pai', '$rg_pai', '$nome_mae', '$rg_mae', '$resp', '$rg_resp', '$sexo_alu', NULL, 1, '$tipo_alu', NULL, NULL, NULL, NULL, NULL, '$cep', '$num_resid_alu', '$complemento_alu');";
+$sql .= "('$matricula_alu', '$nome_alu', '$sobrenome_alu', '$cpf_alu', '$dt_nasc_alu', '$nome_pai', '$rg_pai', '$nome_mae', '$rg_mae', '$resp', '$rg_resp', '$sexo_alu', NULL, 1, '$tipo_alu', '$matricula_alu', '$matricula_alu', NULL, 1, 1, '$cep', '$num_resid_alu', '$complemento_alu');";
 
 $sql2 = "insert into aluno_doc (matricula_alu) values ($matricula_alu)";
 //$sql3 = "insert into aluno_comp (matricula_alu) values ($matricula_alu)";

@@ -52,12 +52,18 @@ while($info = mysqli_fetch_array($query)){
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                             <a class='btn btn-success' href=view/visualizar_mat.php?matricula_alu=".$info['matricula_alu']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
                                                             
-                                                            <a target='_blank' class='btn btn-primary' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='far fa-print'></i>&nbsp; Declaração</a>
+                                                            <a class='btn btn-primary' data-toggle='modal' data-alu='".$info['matricula_alu']."' href='#modal-declaracao'><i class='far fa-print'></i>&nbsp; Declaração</a>
                                                             
-                                                            <a class='btn btn-light' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='fal fa-id-card'></i>&nbsp; Documentos</a>
+                                                            <!--<a target='_blank' class='btn btn-primary' href=rel/declaracao.php?matricula_alu=".$info['matricula_alu']."><i class='far fa-print'></i>&nbsp; Declaração</a>-->
+                                                            
+                                                            <a class='btn btn-danger' href='#'><i class='fa fa-lock'></i>&nbsp; Trancar Matrícula</a>
                                                                 
+                                                            <!--<a class='btn btn-warning' href=view/editar_mat.php?matricula_mat=".$info['matricula_alu']."><i class='fa fa-edit'></i>&nbsp; Editar</a>
+                                                                
+                                                            <a class='btn btn-danger' onclick='deletaAlu(".$info['matricula_alu'].")' sql-toggle='modal' href='#delete-modal'><i class='fa fa-trash'></i>&nbsp; Excluir</a>-->
                                                           </div>
                                                         </td></tr>";
+                                            
                                             }
 
 

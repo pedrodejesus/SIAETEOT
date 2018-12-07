@@ -34,7 +34,7 @@ while($row_alu = mysqli_fetch_array($query)){
     echo "<td>".$row_alu['nome_alu']." ".$row_alu['sobrenome_alu']."</td>"; 
     echo "<td><input class='form-control form-control-sm' type='text' maxlength='4' id='falta' name='falta[]' value='".$faltas_trim."' autocomplete='off' /></td>";
     echo "<td><input class='form-control form-control-sm' type='text' maxlength='4' id='nota".$cont_nota++."' name='nota[]' value='".$nota_trimestre."' autocomplete='off' /></td>";
-    echo "<td><input class='form-control form-control-sm' type='text' maxlength='4' id='recu".$cont_rec++."' name='rec[]' value='".$recu_trimestre."' autocomplete='off' readonly tabindex='-1' /></td>";
+    echo "<td><input class='form-control form-control-sm' type='text' maxlength='4' id='recu".$cont_rec++."' name='rec[]' value='".$recu_trimestre."' autocomplete='off' ";if(is_null($recu_trimestre)){echo "readonly";}echo " tabindex='-1' /></td>";
     echo "<td id='resp".$cont_resp++."' ></td>"; 
     echo "<td><input type='hidden' name='matricula_alu[]' id='matricula_alu[]' value='".$row_alu['matricula_alu']."' /></td>";
     echo "</tr>";

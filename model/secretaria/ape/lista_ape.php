@@ -24,10 +24,31 @@ include "../../../base/head.php";
             //$('#tbody_turma').load('lista_turma.php?ano_letivo='+$('#ano_letivo_corrente').val());
         });
     });
+    $(document).ready(function(){
+        $('#id_turma').change(function(){
+            $('#tbody_turma').load('lista_turma.php?ano_letivo='+$('#ano_letivo').val()+'&id_cur='+$('#id_cur').val());
+        });
+    });
+    
+    $(document).ready(function(){
+        $('#modal-detail').on('show.bs.modal', function(e){
+            var matricula_alu = $(e.relatedTarget).data('alu'); //Recebe o id do data-alu
+            var id_turma = $(e.relatedTarget).data('turma'); //Recebe o id do data-turma
+            $.ajax({
+                type: 'get', 
+                url: 'modal_info.php', 
+                data: {matricula_alu : matricula_alu, id_turma : id_turma}, 
+                success: function(data){
+                    $('.modal-body').html(data);
+                } 
+            });
+        });
+    });
 </script>
 </head>
 
 <body class="sidebar-fixed header-fixed">
+    <?php include "modal.php"; ?>
     <div class="page-wrapper">
         <?php include "../../../base/nav.php" ?>
         <div class="main-container">
@@ -114,9 +135,9 @@ include "../../../base/head.php";
                                         </div> 
                                         <br>
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                     <div id="table-list" class="table-responsive">
-                                                        <table id="tabela_turma" class="table table-sm table-hover">
+                                                        <table id="tabela_alu" class="table table-sm table-hover">
                                                             <thead>
                                                                 <tr>
                                                                     <th scope='col'>Matrícula</th>
@@ -131,7 +152,22 @@ include "../../../base/head.php";
                                                         </table>
                                                     </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div id="table-list" class="table-responsive">
+                                                    <table id="tabela_turma" class="table table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope='col'>Selecione próxima turma</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbody_turma">
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
+                                        
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="btn-group" role="group">

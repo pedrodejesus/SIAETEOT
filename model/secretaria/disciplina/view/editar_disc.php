@@ -40,7 +40,7 @@ include "../../../../base/head.php";
                                 <div class="card-body">
                                     <form action="../controller/atualiza_disc.php?id_disc=<?php echo $row["id_disc"]; ?>" method="post">
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-1">
                                                 <div class="form-group">
                                                     <label for="id_disc" class="form-control-label">ID</label>
                                                     <input class="form-control" type="text"name="id_disc" id="id_disc" value="<?php echo $row["id_disc"];?>" readonly />
@@ -56,6 +56,12 @@ include "../../../../base/head.php";
                                                 <div class="form-group">
                                                     <label for="sigla_disc" class="form-control-label">Sigla</label>
                                                     <input class="form-control" type="text" maxlength="10" name="sigla_disc" id="sigla_disc" value="<?php echo $row["sigla_disc"];?>" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="sigla_disc" class="form-control-label">Carga Horária</label>
+                                                    <input class="form-control" type="text" maxlength="3" name="ch" id="ch" value="<?php echo $row["ch"];?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">

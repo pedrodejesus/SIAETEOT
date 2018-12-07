@@ -35,10 +35,8 @@ while($alunos = mysqli_fetch_array($query)){
         }
         echo "</td>";
         echo "<td><div class='btn-group btn-group-sm' role='group'>
-                <a class='btn btn-success' href='visualizar_ape.php?matricula_alu=".$alunos['matricula_alu']."&id_turma=".$id_turma."'><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
-                                                            
-                <a class='btn btn-primary' href='rel/declaracao.php?matricula_alu='".$alunos['matricula_alu']."'><i class='far fa-arrow-right'></i>&nbsp; Matricular</a>
-               </div>
+                <a href='#' data-toggle='modal' data-target='#modal-detail' data-alu='".$alunos['matricula_alu']."' data-turma='".$id_turma."' class='btn btn-success'><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>
+                
               </td></tr>";
     }
 }

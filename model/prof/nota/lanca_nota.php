@@ -6,16 +6,18 @@ if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] != 7)) { // Ver
 	header("Location: ../../../login.php?msg=4"); exit; // Redireciona o visitante de volta pro login
 }
 $page = 'nota';
+require "../../../base/function.php";
 include "../../../base/head.php";
+include "../../../base/conexao.php";
 ?>
 <style>input{text-transform: uppercase!important;}</style><!--Deixa inputs com letra maiúscula-->
-<script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
+<script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js" integrity="sha256-MCmDSoIMecFUw3f1LicZ/D/yonYAoHrgiep/3pCH9rw=" crossorigin="anonymous"></script>
-<script src="\projeto/assets/js/jquery-migrate-1.4.1"></script>
+<script src="\siaeteot/assets/js/jquery-migrate-1.4.1"></script>
 <script>
     $(document).ready(function(){
         $('#id_cur').change(function(){
-            $('#id_turma').load('select_turma.php?id_cur='+$('#id_cur').val());
+            $('#id_turma').load('select_turma.php?id_cur='+$('#id_cur').val()+'&ano_letivo='+$('#ano_letivo').val());
         });
     });
     $(document).ready(function(){
@@ -39,7 +41,7 @@ include "../../../base/head.php";
             <div class="content">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-light">
-                            <li class="breadcrumb-item"><a href="\projeto/index.php"><i class="far fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="\siaeteot/index.php"><i class="far fa-home"></i> Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Lançamento de Notas</li>
                         </ol>
                     </nav>
@@ -77,13 +79,19 @@ include "../../../base/head.php";
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
+                                                    <label for="ano_letivo" class="form-control-label">Ano letivo</label>
+                                                    <select class="form-control" type="text" name="ano_letivo" id="ano_letivo">
+                                                        <option value="">Selecione</option>
+                                                        <?php ano_letivo() ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
                                                     <label for="id_cur" class="form-control-label">Curso</label>
                                                     <select class="form-control" type="text" name="id_cur" id="id_cur">
                                                         <option value="">Selecione</option>
-                                                        <option value="0">Administração</option>
-                                                        <option value="3">Análises Clínicas</option>
-                                                        <option value="4">Gerência em Saúde</option>
-                                                        <option value="5">Informática para Internet</option>
+                                                        <?php curso() ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -95,6 +103,9 @@ include "../../../base/head.php";
                                                     </select>
                                                 </div>
                                             </div>
+                                        </div>
+                                        
+                                        <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="id_disc" class="form-control-label">Disciplina</label>
@@ -103,10 +114,7 @@ include "../../../base/head.php";
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="trimestre" class="form-control-label">Trimestre</label>
                                                     <select class="form-control" type="text" name="trimestre" id="trimestre">
@@ -140,6 +148,7 @@ include "../../../base/head.php";
                                                             <th scope='col'>Matrícula</th>
                                                             <th scope='col'>Número</th>
                                                             <th scope='col'>Nome</th>
+                                                            <th scope='col'>Faltas</th>
                                                             <th scope='col'>Nota</th>
                                                             <th scope='col'>Recuperação</th>
                                                             <th scope='col'>Status</th>
@@ -169,14 +178,14 @@ include "../../../base/head.php";
         </div>
     </div>
     
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/jquery.inputmask.bundle.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+    <script src="\siaeteot/assets/js/jquery.inputmask.bundle.js"></script>
     <script type="text/javascript">
             var el = document.getElementById('listanotas');
 			el.addEventListener('keydown', function(e) {
 				var num = (e.target.id).substring(4,6);
 				$(document).ready(function() {
-					$("input[id='"+e.target.id+"']").bind('keydown blur click',function() {
+					$("input[id='"+e.target.id+"']").bind('blur',function() {
 						var val_nota = parseFloat(document.getElementById("nota"+num).value);
 						var val_rec = parseFloat(document.getElementById("recu"+num).value);
 						if(val_nota >= 6){
@@ -191,18 +200,28 @@ include "../../../base/head.php";
                                 document.getElementById("resp"+num).innerHTML = "<i class='fa fa-times ml-4' style='color:red;'></i>";
                             }
 						}
-                        if(val_nota > 10){
+                        
+                        if(val_nota > 10){ //Se nota for maior do que 10, recebe 10;
                             document.getElementById("nota"+num).value = 10;
                         }else if(val_rec > 10){
                             document.getElementById("recu"+num).value = 10;
                         }
-					
+                        
+                        //Troca vírgulas por ponto para inserir no banco
+                        document.getElementById("nota"+num).value = document.getElementById("nota"+num).value.replace(",", ".");
+                        document.getElementById("recu"+num).value = document.getElementById("recu"+num).value.replace(",", ".");
+                        
+                        var nota_final = Math.round(val_nota/0.5) * 0.5;
+                        document.getElementById("nota"+num).value = nota_final; 
+                        //Arredonda as notas para 0.5 ou valor inteiro
+                        var recu_final = Math.round(val_rec/0.5) * 0.5;
+                        document.getElementById("nota"+recu).value = recu_final;
 					});
 				});
 			});
     </script>
-	<!--<script src="\projeto/assets/js/script_mask.js"></script>-->
-    <script src="\projeto/assets/js/carbon.js"></script>
+	<!--<script src="\siaeteot/assets/js/script_mask.js"></script>-->
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>

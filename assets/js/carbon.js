@@ -30,10 +30,9 @@ $(document).ready(function () {
         $('body').toggleClass('sidebar-mobile-show');
     });
     
-   
     
     /*$(document).on("pagecreate",function(){    
-        $(document).on('swiperight', function () {
+        $('.container-fluid').on('swiperight', function () {
             $('body').toggleClass('sidebar-mobile-show');
         });
     });*/

@@ -17,6 +17,7 @@ while($info = mysqli_fetch_array($sql)){ //Transforma o conteúdo da variável $da
                                                 echo "<td>".$info['id_disc']."</td>";
                                                 echo "<td>".$info['nome_disc']."</td>";
                                                 echo "<td>".$info['sigla_disc']."</td>";
+                                                echo "<td>".$info['ch']."</td>";
                                                 echo "<td>".$info_cur['nome_cur']."</td>";
                                                 echo "<td><div class='btn-group btn-group-sm' role='group'>
                                                             <a class='btn btn-success' href=view/visualizar_disc.php?id_disc=".$info['id_disc']."><i class='fa fa-info-circle'></i>&nbsp; Detalhes</a>

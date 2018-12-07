@@ -76,7 +76,8 @@ require "../../../base/function.php";
                                                             $sql_bol = "call select_disciplinas_aluno_boletim(".$matricula_alu.", ".$id_turma.")";
                                                             $query_bol = mysqli_query($conexao, $sql_bol) or die(mysqli_error($conexao));
                                                             mysqli_next_result($conexao);
-                                                            
+                                                            $mf = 0;
+                                                
                                                             while($row_bol = mysqli_fetch_array($query_bol)){  
                                                                 
                                                                 //Disciplinas
@@ -87,106 +88,21 @@ require "../../../base/function.php";
                                                                 echo "<tr scope='row'>";
                                                                 echo "<td>".$row_bol['nome_disc']."</td>";
                                                                 
-                                                                //Primeiro Trimestre
-                                                                if (empty($row_bol['nota_1t'])){
-                                                                    echo "<td class='text-center'>-</td>";
-                                                                }else{
-                                                                    if( $row_bol['nota_1t'] < 6){
-                                                                        echo "<td style='background-color:red;color:#FFF;' class='text-center'>".$row_bol['nota_1t']."</td>";
-                                                                    }else{
-                                                                       echo "<td class='text-center'>".$row_bol['nota_1t']."</td>"; 
-                                                                    }                                                                  
-                                                                }
-                                                                if (empty($row_bol['nota_rec_1t'])){
-                                                                    echo "<td class='text-center'>-</td>";
-                                                                }else{
-                                                                    if( $row_bol['nota_rec_1t'] < 6){
-                                                                        echo "<td style='background-color:red;color:#FFF;' class='text-center'>".$row_bol['nota_rec_1t']."</td>";
-                                                                    }else{
-                                                                       echo "<td class='text-center'>".$row_bol['nota_rec_1t']."</td>"; 
-                                                                    }
-                                                                }
+                                                                //Mostra notas e calcula percentual de faltas
+                                                                echo rowBoletim($row_bol['nota_1t'], $row_bol['nota_rec_1t'], $row_bol['aulas_dadas_1t'], $row_bol['faltas_1t']);
+                                                                echo rowBoletim($row_bol['nota_2t'], $row_bol['nota_rec_2t'], $row_bol['aulas_dadas_2t'], $row_bol['faltas_2t']);
+                                                                echo rowBoletim($row_bol['nota_3t'], $row_bol['nota_rec_3t'], $row_bol['aulas_dadas_3t'], $row_bol['faltas_3t']);
                                                                 
-                                                                if($row_bol['aulas_dadas_1t'] <> null and $row_bol['faltas_1t'] <> null){
-                                                                    $percent_faltas1t = $row_bol['faltas_1t'] * 100 / $row_bol['aulas_dadas_1t'];
-                                                                }
-                                                                
-                                                                echo "<td class='text-center'>";
-                                                                if($row_bol['aulas_dadas_1t'] <> null and $row_bol['faltas_1t'] <> null){
-                                                                    echo number_format($percent_faltas1t,1,",",".")."%";
-                                                                }
-                                                                echo"</td>"; //Presença 1T
-                                                                
-                                                                //Segundo Trimestre
-                                                                if (empty($row_bol['nota_2t'])){
-                                                                    echo "<td class='text-center'>-</td>";
-                                                                }else{
-                                                                    if( $row_bol['nota_2t'] < 6){
-                                                                        echo "<td style='background-color:red;color:#FFF;' class='text-center'>".$row_bol['nota_2t']."</td>";
-                                                                    }else{
-                                                                       echo "<td class='text-center'>".$row_bol['nota_2t']."</td>"; 
-                                                                    } 
-                                                                }
-                                                                if (empty($row_bol['nota_rec_2t'])){
-                                                                    echo "<td class='text-center'>-</td>";
-                                                                }else{
-                                                                    if( $row_bol['nota_rec_2t'] < 6){
-                                                                        echo "<td style='background-color:red;color:#FFF;' class='text-center'>".$row_bol['nota_rec_2t']."</td>";
-                                                                    }else{
-                                                                       echo "<td class='text-center'>".$row_bol['nota_rec_2t']."</td>"; 
-                                                                    }
-                                                                }
-                                                                
-                                                                if($row_bol['aulas_dadas_2t'] <> null and $row_bol['faltas_2t'] <> null){
-                                                                    $percent_faltas2t = $row_bol['faltas_2t'] * 100 / $row_bol['aulas_dadas_2t'];
-                                                                }
-                                                                echo "<td class='text-center'>";
-                                                                if($row_bol['aulas_dadas_2t'] <> null and $row_bol['faltas_2t'] <> null){
-                                                                    echo number_format($percent_faltas2t,1,",",".")."%";
-                                                                }
-                                                                echo"</td>"; //Presença 2T
-                                                                
-                                                                //Terceiro Trimestre
-                                                                if (empty($row_bol['nota_3t'])){
-                                                                    echo "<td class='text-center'>-</td>";
-                                                                }else{
-                                                                    if( $row_bol['nota_3t'] < 6){
-                                                                        echo "<td style='background-color:red;color:#FFF;' class='text-center'>".$row_bol['nota_3t']."</td>";
-                                                                    }else{
-                                                                       echo "<td class='text-center'>".$row_bol['nota_3t']."</td>"; 
-                                                                    } 
-                                                                }
-                                                                if (empty($row_bol['nota_rec_3t'])){
-                                                                    echo "<td class='text-center'>-</td>";
-                                                                }else{
-                                                                    if( $row_bol['nota_rec_3t'] < 6){
-                                                                        echo "<td style='background-color:red;color:#FFF;' class='text-center'>".$row_bol['nota_rec_3t']."</td>";
-                                                                    }else{
-                                                                       echo "<td class='text-center'>".$row_bol['nota_rec_3t']."</td>"; 
-                                                                    }
-                                                                }
-                                                                if($row_bol['aulas_dadas_3t'] <> null and $row_bol['faltas_3t'] <> null){
-                                                                    $percent_faltas3t = $row_bol['faltas_3t'] * 100 / $row_bol['aulas_dadas_3t'];
-                                                                }
-                                                                echo "<td class='text-center'>";
-                                                                if($row_bol['aulas_dadas_3t'] <> null and $row_bol['faltas_3t'] <> null){
-                                                                    echo number_format($percent_faltas3t,1,",",".")."%";
-                                                                }
-                                                                echo"</td>"; //Presença 3T
-                                                                
-
+                                                                //Define notas finais
                                                                 $nota_final_1 = upper($row_bol['nota_1t'], $row_bol['nota_rec_1t']);
                                                                 $nota_final_2 = upper($row_bol['nota_2t'], $row_bol['nota_rec_2t']);
                                                                 $nota_final_3 = upper($row_bol['nota_3t'], $row_bol['nota_rec_3t']);
+                                                                                                                            
+                                                                echo totalFinal($row_bol['faltas_1t'], $row_bol['faltas_2t'], $row_bol['faltas_3t'], $row_bol['aulas_dadas_1t'], $row_bol['aulas_dadas_2t'], $row_bol['aulas_dadas_3t']);
                                                                 
-                                                                //Cálculo média final
-                                                                $media_final_decimal = ($nota_final_1 + $nota_final_2 + $nota_final_3) / 3;
-                                                                $media_final = number_format($media_final_decimal,1,",",".");
-                                                                if((empty($row_bol['nota_1t']))||(empty($row_bol['nota_2t']))||(empty($row_bol['nota_3t']))){
-                                                                    $media_final = "<i class='fa fa-exclamation-triangle' style='color:red;'></i>";
-                                                                } //Se média não houver nota para gerar média, mostra um alerta;
-                                                                echo "<td><center>".$media_final."</center></td>";
-                                                                echo "<td></td>"; //Faltas totais;
+                                                                if(isset($media_final_round)){
+                                                                    $mf += $media_final_round;
+                                                                } 
                                                                 
                                                                 //Situação na 3ª etapa;
                                                                 if ($row_bol['situacao_pre_rf'] == NULL){
@@ -196,63 +112,73 @@ require "../../../base/function.php";
                                                                 }
                                                                 
                                                                 if($media_final == "<i class='fa fa-exclamation-triangle' style='color:red;'></i>"){
-                                                                    echo "<td class='text-center'>-</td>";
-                                                                    echo "<td class='text-center'>-</td>";   
-                                                                }elseif ($media_final >= 6){
-                                                                        $sql_insert_sf     = "update boletim set " ;
-                                                                        $sql_insert_sf    .= "situacao_pre_rf='APR', nota_rf=NULL, situacao_pos_rf='APR' ";
-                                                                        $sql_insert_sf    .= "where matricula_alu = '".$matricula_alu."' ";
-                                                                        $sql_insert_sf    .= "and id_disc = '".$row_bol['id_disc']."' ";
-                                                                        $sql_insert_sf    .= "and id_turma = '".$row_bol['id_turma']."'; ";
-
-                                                                        $query_insert_sf   = mysqli_query($conexao, $sql_insert_sf) /*or die(mysqli_error($conexao))*/;
-                                                                            
-                                                                        echo "<td class='text-center'>-</td>";
-                                                                        //echo "<td class='text-center'>".$row_bol['situacao_pos_rf']."</td>";  
-                                                                        if ($query_insert_sf){
-                                                                            echo "<td class='text-center'>".$row_bol['situacao_pos_rf']."</td>"; 
-                                                                        }else{
-                                                                           echo "<td class='text-center'>ERRO</td>"; 
-                                                                        }
-                                                                }elseif ($media_final < 6){
-                                                                        $sql_insert_sf     = "update boletim set " ;
-                                                                        $sql_insert_sf    .= "situacao_pre_rf='REC', nota_rf=NULL, situacao_pos_rf=NULL ";
-                                                                        $sql_insert_sf    .= "where matricula_alu = '".$matricula_alu."' ";
-                                                                        $sql_insert_sf    .= "and id_disc = '".$row_bol['id_disc']."' ";
-                                                                        $sql_insert_sf    .= "and id_turma = '".$row_bol['id_turma']."'; ";
                                                                     
-                                                                        $query_insert_sf   = mysqli_query($conexao, $sql_insert_sf) /*or die(mysqli_error($conexao))*/;
+                                                                    echo "<td class='text-center'>-</td>";
+                                                                    echo "<td class='text-center'>-</td>";  
+                                                                    
+                                                                }elseif ($media_final >= 6){
+                                                                    
+                                                                    updateSituacaoFinal("'APR'", "NULL", "'APR'", $matricula_alu, $row_bol['id_disc'], $row_bol['id_turma']);
+                                                                    echo "<td class='text-center'>-</td>";
+                                                                    echo "<td class='text-center'>".$row_bol['situacao_pos_rf']."</td>";
+                                                                    
+                                                                }elseif ($media_final < 6){
+                                                                    
+                                                                    updateSituacaoFinal("'REC'", "NULL", "NULL", $matricula_alu, $row_bol['id_disc'], $row_bol['id_turma']);   
                                                                         
-                                                                        if($row_bol['nota_rf'] == NULL){ //NOTA RECUPERAÇÃO FINAL
-                                                                            echo "<td class='text-center'>-</td>";
-                                                                            echo "<td class='text-center'>-</td>";
-                                                                        }else{
-                                                                            echo "<td class='text-center'>".$row_bol['nota_rf']."</td>"; 
+                                                                    if($row_bol['nota_rf'] == NULL){ //NOTA RECUPERAÇÃO FINAL
+                                                                        
+                                                                        echo "<td class='text-center'>-</td>";
+                                                                        echo "<td class='text-center'>-</td>";
+                                                                        
+                                                                    }else{
+                                                                        echo "<td class='text-center'>".$row_bol['nota_rf']."</td>"; 
                                                                             
-                                                                            if ($row_bol['nota_rf'] >= 6){
-                                                                                $sql_insert_sf2    = "update boletim set " ;
-                                                                                $sql_insert_sf2   .= "situacao_pre_rf='REC', nota_rf='".$row_bol['nota_rf']."', situacao_pos_rf='APR' ";
-                                                                                $sql_insert_sf2   .= "where matricula_alu = '".$matricula_alu."' ";
-                                                                                $sql_insert_sf2   .= "and id_disc = '".$row_bol['id_disc']."' ";
-                                                                                $sql_insert_sf2   .= "and id_turma = '".$row_bol['id_turma']."'; ";
-
-                                                                                $query_insert_sf2  = mysqli_query($conexao, $sql_insert_sf2) /*or die(mysqli_error($conexao))*/;
+                                                                        if ($row_bol['nota_rf'] >= 6){                                                                              
+                                                                            updateSituacaoFinal("'REC'", $row_bol['nota_rf'], "'APR'", $matricula_alu, $row_bol['id_disc'], $row_bol['id_turma']);
                                                                                 
-                                                                                echo "<td class='text-center'>".$row_bol['situacao_pos_rf']."</td>";
-                                                                            }else{
-                                                                               $sql_insert_sf2    = "update boletim set " ;
-                                                                                $sql_insert_sf2   .= "situacao_pre_rf='REC', nota_rf='".$row_bol['nota_rf']."', situacao_pos_rf='REP' ";
-                                                                                $sql_insert_sf2   .= "where matricula_alu = '".$matricula_alu."' ";
-                                                                                $sql_insert_sf2   .= "and id_disc = '".$row_bol['id_disc']."' ";
-                                                                                $sql_insert_sf2   .= "and id_turma = '".$row_bol['id_turma']."'; ";
-
-                                                                                $query_insert_sf2  = mysqli_query($conexao, $sql_insert_sf2);
+                                                                            echo "<td class='text-center'>".$row_bol['situacao_pos_rf']."</td>";
+                                                                            
+                                                                        }else{
                                                                                 
-                                                                                echo "<td class='text-center'>".$row_bol['situacao_pos_rf']."</td>";
-                                                                            }
-                                                                        }     
+                                                                            updateSituacaoFinal("'REC'", $row_bol['nota_rf'], "'REP'", $matricula_alu, $row_bol['id_disc'], $row_bol['id_turma']);
+                                                                                
+                                                                            echo "<td class='text-center'>".$row_bol['situacao_pos_rf']."</td>";
+                                                                            
+                                                                        }
+                                                                    }
                                                                 }
                                                             }
+                                                
+                                                            echo "<tr><td><b>SITUAÇÃO GLOBAL DO ALUNO</b></td>";
+                                                
+                                                            echo "<td class='text-center'>".mediaGlobalTrim($matricula_alu, $id_turma, "1t")."</td>";
+                                                            echo "<td class='text-center'>-</td>";
+                                                            
+                                                            echo "<td class='text-center'>".number_format(totalFaltasTrim($matricula_alu, $id_turma, "1t"),1,",",".")."%</td>";
+                                                
+                                                            echo "<td class='text-center'>".mediaGlobalTrim($matricula_alu, $id_turma, "3t")."</td>";
+                                                            echo "<td class='text-center'>-</td>";
+                                                
+                                                            echo "<td class='text-center'>".number_format(totalFaltasTrim($matricula_alu, $id_turma, "2t"),1,",",".")."%</td>";
+                                                
+                                                            echo "<td class='text-center'>".mediaGlobalTrim($matricula_alu, $id_turma, "3t")."</td>";
+                                                            echo "<td class='text-center'>-</td>";
+                                                
+                                                            echo "<td class='text-center'>".number_format(totalFaltasTrim($matricula_alu, $id_turma, "3t"),1,",",".")."%</td>";   
+                                                
+                                                            $media_global = $mf / mysqli_num_rows($query_bol);
+                                                
+                                                            $faltas_global = (totalFaltasTrim($matricula_alu, $id_turma, "1t") + totalFaltasTrim($matricula_alu, $id_turma, "2t") + totalFaltasTrim($matricula_alu, $id_turma, "3t")) / 3;
+                                                
+                                                            //echo "<td class='text-center'>".$media_final."</td>";
+                                                            echo "<td class='text-center'>".number_format($media_global,1,",",".")."</td>";
+                                                            echo "<td class='text-center'>".number_format($faltas_global, 1, ",", ".")."%</td>";
+                                                            echo "<td class='text-center'>-</td>";
+                                                            echo "<td class='text-center'>-</td>";
+                                                            echo "<td class='text-center'>-</td>"; //TODO: Média global de médias e de faltas;
+                                                
+                                                            echo "</tr>";
                                                         ?>
                                                     </tbody>
                                                 </table>
@@ -278,24 +204,9 @@ require "../../../base/function.php";
         </div>
     </div>
     
-    <script src="\projeto/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="\projeto/assets/js/bootstrap.min.js"></script>
-    <script src="\projeto/assets/js/carbon.js"></script>
+    <script src="\siaeteot/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="\siaeteot/assets/js/bootstrap.min.js"></script>
+    <script src="\siaeteot/assets/js/carbon.js"></script>
 </body>
 
 </html>
-
-<?php
-/*function TestaNota($coluna){
-    if (empty($row_bol["\'".$coluna."\'"])){
-        $jesus = "<td class='text-center'>-</td>";
-    }else{
-        if( $row_bol["\'".$coluna."\'"] < 6){
-        $jesus = "<td style='background-color:red;color:#FFF;' class='text-center'>".$row_bol["\'".$coluna."\'"]."</td>";
-    }else{
-        $jesus = "<td class='text-center'>".$row_bol["\'".$coluna."\'"]."</td>"; 
-    }                                                                  
-    }
-    return $jesus;
-}*/
-?>
